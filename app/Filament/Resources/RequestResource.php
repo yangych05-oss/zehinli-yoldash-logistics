@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\RequestResource\Pages;
-use App\Models\Client;
 use App\Models\Request as CrmRequest;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -20,7 +19,7 @@ class RequestResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\Select::make('client_id')->options(Client::query()->pluck('name', 'id'))->searchable(),
+            Forms\Components\Select::make('client_id')->relationship('client', 'name')->searchable()->preload(),
             Forms\Components\TextInput::make('subject')->required(),
             Forms\Components\TextInput::make('type')->required(),
             Forms\Components\Select::make('status')->options([

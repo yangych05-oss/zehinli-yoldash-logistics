@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ShipmentEventResource\Pages;
-use App\Models\Shipment;
 use App\Models\ShipmentEvent;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -21,9 +20,10 @@ class ShipmentEventResource extends Resource
     {
         return $form->schema([
             Forms\Components\Select::make('shipment_id')
-                ->options(Shipment::query()->pluck('tracking_code', 'id'))
+                ->relationship('shipment', 'tracking_code')
                 ->required()
-                ->searchable(),
+                ->searchable()
+                ->preload(),
             Forms\Components\TextInput::make('status')->required(),
             Forms\Components\TextInput::make('location'),
             Forms\Components\DateTimePicker::make('event_time')->required(),
