@@ -23,10 +23,11 @@ class ShipmentStatusUpdatedNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Shipment status updated')
-            ->greeting('Shipment update')
+            ->subject('Shipment status updated - ZNY LOGISTICS')
+            ->greeting('Shipment update from ZNY LOGISTICS')
             ->line("Tracking code: {$this->shipment->tracking_code}")
             ->line("Current status: {$this->shipment->status}")
-            ->line("Current location: {$this->shipment->current_location}");
+            ->line("Current location: {$this->shipment->current_location}")
+            ->salutation('ZNY LOGISTICS | +99364 918998');
     }
 }

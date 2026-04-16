@@ -11,7 +11,7 @@ class AdminUserSeeder extends Seeder
     public function run(): void
     {
         $admin = User::query()->updateOrCreate(
-            ['email' => 'admin@zehinliyoldash.com'],
+            ['email' => 'info@znylogistics.com'],
             [
                 'name' => 'System Admin',
                 'password' => Hash::make('password'),

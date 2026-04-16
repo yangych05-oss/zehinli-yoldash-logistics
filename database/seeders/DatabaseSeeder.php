@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
         ], [
             'name' => 'Demo Client',
             'company' => 'Demo Import LLC',
-            'phone' => '+99361234567',
-            'address' => 'Ashgabat',
+            'phone' => '+99364 918998',
+            'address' => 'Rysgal BC, 917, Ashgabat, Turkmenistan',
             'status' => 'active',
         ]);
 
@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         ], [
             'name' => 'Potential Customer',
             'company' => 'Trade Group',
-            'phone' => '+99369876543',
+            'phone' => '+99364 918998',
             'origin' => 'Istanbul',
             'destination' => 'Ashgabat',
             'cargo_details' => 'Electronics, 4 pallets',
@@ -51,9 +51,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $shipment = Shipment::query()->updateOrCreate([
-            'tracking_code' => 'ZYL-2026-0001',
+            'tracking_code' => 'ZNY-2026-0001',
         ], [
-            'tracking_number' => 'ZYL-2026-0001',
+            'tracking_number' => 'ZNY-2026-0001',
             'public_access_code' => 'PUBLIC-1234',
             'client_id' => $client->id,
             'origin' => 'Istanbul',

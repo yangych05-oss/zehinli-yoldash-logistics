@@ -4,7 +4,7 @@
     <h1 class="text-3xl font-bold mb-4">{{ __('messages.track_shipment') }}</h1>
     <form method="POST" action="/{{ app()->getLocale() }}/tracking" class="grid md:grid-cols-2 gap-2 mb-6">
         @csrf
-        <input name="tracking_code" class="rounded border px-3 py-2 w-full" placeholder="ZYL-2026-0001" required>
+        <input name="tracking_code" class="rounded border px-3 py-2 w-full" placeholder="ZNY-2026-0001" required>
         <input name="public_access_code" class="rounded border px-3 py-2 w-full" placeholder="Access code" required>
         <button class="rounded bg-slate-900 px-4 py-2 text-white md:col-span-2">{{ __('messages.search') }}</button>
     </form>

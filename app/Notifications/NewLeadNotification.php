@@ -23,11 +23,12 @@ class NewLeadNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('New lead received')
-            ->greeting('New lead captured')
+            ->subject('New lead received - ZNY LOGISTICS')
+            ->greeting('New lead captured for ZNY LOGISTICS')
             ->line("Name: {$this->lead->name}")
             ->line("Email: {$this->lead->email}")
             ->line("Route: {$this->lead->origin} → {$this->lead->destination}")
-            ->line('Please review this lead in the admin panel.');
+            ->line('Please review this lead in the ZNY LOGISTICS admin panel.')
+            ->salutation('ZNY LOGISTICS | info@znylogistics.com | akja@znylogistics.com');
     }
 }

@@ -5,6 +5,9 @@
         <div>
             <h1 class="text-4xl font-bold mb-3">{{ __('messages.hero_title') }}</h1>
             <p class="text-slate-700 mb-6">{{ __('messages.hero_text') }}</p>
+            <p class="text-slate-600 mb-6">
+                {{ __('messages.company') }}: <span class="font-semibold">ZNY LOGISTICS</span>
+            </p>
             <a href="/{{ app()->getLocale() }}/tracking" class="inline-block rounded bg-slate-900 px-5 py-3 text-white">{{ __('messages.track_shipment') }}</a>
         </div>
         <div class="bg-white rounded-xl shadow p-6">
@@ -25,6 +28,11 @@
 
     <section class="mt-12 bg-white rounded-xl shadow p-6">
         <h2 class="text-2xl font-semibold mb-4">{{ __('messages.contact_us') }}</h2>
+        <div class="mb-6 text-sm text-slate-700 space-y-1">
+            <p><span class="font-semibold">Email:</span> info@znylogistics.com, akja@znylogistics.com</p>
+            <p><span class="font-semibold">Phone:</span> +99364 918998</p>
+            <p><span class="font-semibold">Address:</span> Rysgal BC, 917, Ashgabat, Turkmenistan</p>
+        </div>
         <form method="POST" action="/{{ app()->getLocale() }}/contact" class="grid md:grid-cols-2 gap-4">
             @csrf
             <input name="name" class="rounded border px-3 py-2" placeholder="{{ __('messages.name') }}" required>

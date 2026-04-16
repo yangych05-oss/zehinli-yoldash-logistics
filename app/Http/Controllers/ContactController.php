@@ -22,7 +22,7 @@ class ContactController extends Controller
 
         Mail::raw("New contact message from {$data['name']} ({$data['email']})", function ($message): void {
             $message->to(config('mail.from.address'))
-                ->subject('New contact form submission');
+                ->subject('New contact form submission - ZNY LOGISTICS');
         });
 
         return back()->with('status', __('messages.contact_sent'));

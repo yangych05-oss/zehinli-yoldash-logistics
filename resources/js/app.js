@@ -1,1 +1,1 @@
-console.log('ZEHINLI YOLDASH LOGISTICS frontend loaded.');
+console.log('ZNY LOGISTICS frontend loaded.');
