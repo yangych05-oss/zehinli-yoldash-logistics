@@ -5,6 +5,7 @@ return [
     'nav_about' => 'Kompaniýa barada',
     'nav_services' => 'Hyzmatlar',
     'nav_tracking' => 'Yzarlaýyş',
+    'nav_contact' => 'Habarlaşmak',
     'hero_title' => 'Türkmenistandan dünýä ygtybarly logistika',
     'hero_text' => 'Halkara daşamalary, gümrük goldawy we açyk ýük yzarlaýyş.',
     'track_shipment' => 'Ýüki yzarla',

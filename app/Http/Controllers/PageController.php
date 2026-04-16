@@ -20,4 +20,9 @@ class PageController extends Controller
     {
         return view('pages.services', compact('locale'));
     }
+
+    public function contact(string $locale): View
+    {
+        return view('pages.contact', compact('locale'));
+    }
 }

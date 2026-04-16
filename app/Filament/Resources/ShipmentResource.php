@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ShipmentResource\Pages;
+use App\Models\Client;
 use App\Models\Shipment;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -19,7 +20,9 @@ class ShipmentResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\TextInput::make('tracking_number')->required(),
+            Forms\Components\TextInput::make('tracking_code')->required()->unique(ignoreRecord: true),
+            Forms\Components\TextInput::make('public_access_code')->required()->password()->revealable(),
+            Forms\Components\Select::make('client_id')->options(Client::query()->pluck('name', 'id'))->searchable(),
             Forms\Components\TextInput::make('origin')->required(),
             Forms\Components\TextInput::make('destination')->required(),
             Forms\Components\Select::make('status')->options([
@@ -37,7 +40,8 @@ class ShipmentResource extends Resource
     public static function table(Table $table): Table
     {
         return $table->columns([
-            Tables\Columns\TextColumn::make('tracking_number')->searchable(),
+            Tables\Columns\TextColumn::make('tracking_code')->searchable(),
+            Tables\Columns\TextColumn::make('client.name')->label('Client'),
             Tables\Columns\TextColumn::make('origin'),
             Tables\Columns\TextColumn::make('destination'),
             Tables\Columns\TextColumn::make('status')->badge(),

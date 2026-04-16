@@ -15,6 +15,7 @@
             <a href="/{{ app()->getLocale() }}/about" class="hover:underline">{{ __('messages.nav_about') }}</a>
             <a href="/{{ app()->getLocale() }}/services" class="hover:underline">{{ __('messages.nav_services') }}</a>
             <a href="/{{ app()->getLocale() }}/tracking" class="hover:underline">{{ __('messages.nav_tracking') }}</a>
+            <a href="/{{ app()->getLocale() }}/contact" class="hover:underline">{{ __('messages.nav_contact') }}</a>
         </nav>
     </div>
 </header>

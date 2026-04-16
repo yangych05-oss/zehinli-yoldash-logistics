@@ -5,6 +5,7 @@ return [
     'nav_about' => 'About',
     'nav_services' => 'Services',
     'nav_tracking' => 'Tracking',
+    'nav_contact' => 'Contact',
     'hero_title' => 'Reliable logistics from Turkmenistan to the world',
     'hero_text' => 'International freight forwarding, customs support and transparent shipment tracking.',
     'track_shipment' => 'Track Shipment',

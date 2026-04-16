@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lead;
+use App\Notifications\NewLeadNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class LeadController extends Controller
 {
@@ -21,12 +22,10 @@ class LeadController extends Controller
             'cargo_details' => ['required', 'string', 'max:5000'],
         ]);
 
-        Lead::query()->create($data + ['locale' => $locale, 'status' => 'new']);
+        $lead = Lead::query()->create($data + ['locale' => $locale, 'status' => 'new']);
 
-        Mail::raw("New quote request from {$data['name']} ({$data['email']})", function ($message): void {
-            $message->to(config('mail.from.address'))
-                ->subject('New quote request');
-        });
+        Notification::route('mail', config('mail.from.address'))
+            ->notify(new NewLeadNotification($lead));
 
         return back()->with('status', __('messages.quote_sent'));
     }

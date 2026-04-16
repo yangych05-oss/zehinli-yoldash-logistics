@@ -15,8 +15,12 @@ class RolePermissionSeeder extends Seeder
             'manage leads',
             'view clients',
             'manage clients',
+            'view requests',
+            'manage requests',
             'view shipments',
             'manage shipments',
+            'view shipment events',
+            'manage shipment events',
             'access admin panel',
         ];
 
@@ -34,12 +38,17 @@ class RolePermissionSeeder extends Seeder
             'manage leads',
             'view clients',
             'manage clients',
+            'view requests',
+            'manage requests',
             'view shipments',
             'manage shipments',
+            'view shipment events',
+            'manage shipment events',
             'access admin panel',
         ]);
         $client->syncPermissions([
             'view shipments',
+            'view shipment events',
         ]);
     }
 }
