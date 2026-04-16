@@ -13,5 +13,6 @@ return [
     'cipher' => 'AES-256-CBC',
     'providers' => [
         App\Providers\AppServiceProvider::class,
+        App\Providers\Filament\AdminPanelProvider::class,
     ],
 ];
