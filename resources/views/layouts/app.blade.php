@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'ZEHINLI YOLDASH LOGISTICS') }}</title>
+    <title>{{ config('app.name', 'ZNY LOGISTICS') }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-50 text-slate-900">
 <header class="bg-white shadow-sm">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        <a href="/{{ app()->getLocale() }}" class="font-bold text-lg">ZEHINLI YOLDASH LOGISTICS</a>
+        <a href="/{{ app()->getLocale() }}" class="font-bold text-lg">ZNY LOGISTICS</a>
         <nav class="space-x-4">
             <a href="/{{ app()->getLocale() }}" class="hover:underline">{{ __('messages.nav_home') }}</a>
             <a href="/{{ app()->getLocale() }}/about" class="hover:underline">{{ __('messages.nav_about') }}</a>
@@ -31,11 +31,12 @@
     <div class="max-w-6xl mx-auto px-4 py-8 grid md:grid-cols-2 gap-3 text-sm">
         <div>
             <p class="font-semibold">{{ config('app.name') }}</p>
+            <p>{{ env('COMPANY_DOMAIN') }}</p>
             <p>{{ env('COMPANY_ADDRESS') }}</p>
         </div>
         <div class="md:text-right">
-            <p>{{ env('COMPANY_PHONE_PRIMARY') }} | {{ env('COMPANY_PHONE_SECONDARY') }}</p>
-            <p>{{ env('COMPANY_EMAIL') }}</p>
+            <p>{{ env('COMPANY_PHONE_PRIMARY') }}</p>
+            <p>{{ env('COMPANY_EMAIL') }} | {{ env('COMPANY_EMAIL_SECONDARY') }}</p>
         </div>
     </div>
 </footer>

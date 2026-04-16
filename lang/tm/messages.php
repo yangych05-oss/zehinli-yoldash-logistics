@@ -20,7 +20,7 @@ return [
     'origin' => 'Gelýän ýeri',
     'destination' => 'Barýan ýeri',
     'current_location' => 'Häzirki ýerleşýän ýeri',
-    'about_text' => 'ZEHINLI YOLDASH LOGISTICS multimodal daşamalary we üpjünçilik zynjyry boýunça doly goldawy hödürleýär.',
+    'about_text' => 'ZNY LOGISTICS multimodal daşamalary we üpjünçilik zynjyry boýunça doly goldawy hödürleýär.',
     'service_1' => 'Halkara awto, demir ýol we deňiz daşamalary',
     'service_2' => 'Ammar we konsolidasiýa',
     'service_3' => 'Gümrük resminamalary we dellalçylyk',

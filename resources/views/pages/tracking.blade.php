@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="text-3xl font-bold mb-4">{{ __('messages.track_shipment') }}</h1>
+    <h1 class="text-3xl font-bold mb-2">{{ __('messages.track_shipment') }}</h1>
+    <p class="text-slate-700 mb-4">Need help? {{ env('COMPANY_EMAIL') }} · {{ env('COMPANY_PHONE_PRIMARY') }}</p>
+
     <form method="POST" action="/{{ app()->getLocale() }}/tracking" class="grid md:grid-cols-2 gap-2 mb-6">
         @csrf
         <input name="tracking_code" class="rounded border px-3 py-2 w-full" placeholder="ZYL-2026-0001" required>
