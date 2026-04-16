@@ -1,7 +1,7 @@
 {
-  "name": "zehinliyoldash/logistics",
+  "name": "znylogistics/logistics",
   "type": "project",
-  "description": "ZEHINLI YOLDASH LOGISTICS corporate website, tracking and CRM.",
+  "description": "ZNY LOGISTICS corporate website, tracking and CRM.",
   "keywords": ["laravel", "logistics", "crm", "filament"],
   "license": "proprietary",
   "require": {

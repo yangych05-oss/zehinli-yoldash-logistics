@@ -1,4 +1,4 @@
-# ZEHINLI YOLDASH LOGISTICS (Laravel 11)
+# ZNY LOGISTICS (Laravel 11)
 
 Production-ready scaffold for:
 - Corporate website (ru/tm/en)
@@ -41,7 +41,7 @@ Production-ready scaffold for:
    ```
 
 ## Default seeded admin
-- Email: `admin@zehinliyoldash.com`
+- Email: `admin@znylogistics.com`
 - Password: `password`
 
 ## Main Routes

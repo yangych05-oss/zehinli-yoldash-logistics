@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="text-3xl font-bold mb-6">{{ __('messages.contact_us') }}</h1>
+    <h1 class="text-3xl font-bold mb-3">{{ __('messages.contact_us') }}</h1>
+    <p class="text-slate-700 mb-6">
+        {{ env('COMPANY_PHONE_PRIMARY') }} · {{ env('COMPANY_EMAIL') }} · {{ env('COMPANY_EMAIL_SECONDARY') }}<br>
+        {{ env('COMPANY_ADDRESS') }}
+    </p>
 
     <form method="POST" action="/{{ app()->getLocale() }}/contact" class="grid md:grid-cols-2 gap-4 bg-white rounded-xl shadow p-6">
         @csrf

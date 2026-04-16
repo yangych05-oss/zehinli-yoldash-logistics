@@ -20,7 +20,7 @@ return [
     'origin' => 'Origin',
     'destination' => 'Destination',
     'current_location' => 'Current location',
-    'about_text' => 'ZEHINLI YOLDASH LOGISTICS provides multimodal transportation and complete supply chain support.',
+    'about_text' => 'ZNY LOGISTICS provides multimodal transportation and complete supply chain support.',
     'service_1' => 'International road, rail and sea freight',
     'service_2' => 'Warehousing and consolidation',
     'service_3' => 'Customs documentation and brokerage',
