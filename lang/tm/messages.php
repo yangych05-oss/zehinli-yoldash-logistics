@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'nav_home' => 'Baş sahypa',
+    'nav_about' => 'Kompaniýa barada',
+    'nav_services' => 'Hyzmatlar',
+    'nav_tracking' => 'Yzarlaýyş',
+    'hero_title' => 'Türkmenistandan dünýä ygtybarly logistika',
+    'hero_text' => 'Halkara daşamalary, gümrük goldawy we açyk ýük yzarlaýyş.',
+    'track_shipment' => 'Ýüki yzarla',
+    'request_quote' => 'Bahany soramak',
+    'contact_us' => 'Habarlaşmak',
+    'name' => 'Ady',
+    'company' => 'Kompaniýa',
+    'message' => 'Habar',
+    'send' => 'Ugrat',
+    'search' => 'Gözleg',
+    'status' => 'Status',
+    'origin' => 'Gelýän ýeri',
+    'destination' => 'Barýan ýeri',
+    'current_location' => 'Häzirki ýerleşýän ýeri',
+    'about_text' => 'ZEHINLI YOLDASH LOGISTICS multimodal daşamalary we üpjünçilik zynjyry boýunça doly goldawy hödürleýär.',
+    'service_1' => 'Halkara awto, demir ýol we deňiz daşamalary',
+    'service_2' => 'Ammar we konsolidasiýa',
+    'service_3' => 'Gümrük resminamalary we dellalçylyk',
+    'contact_sent' => 'Siziň habaryňyz ugradyldy.',
+    'quote_sent' => 'Siziň baha soragyňyz ugradyldy.',
+];

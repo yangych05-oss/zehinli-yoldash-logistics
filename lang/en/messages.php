@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'nav_home' => 'Home',
+    'nav_about' => 'About',
+    'nav_services' => 'Services',
+    'nav_tracking' => 'Tracking',
+    'hero_title' => 'Reliable logistics from Turkmenistan to the world',
+    'hero_text' => 'International freight forwarding, customs support and transparent shipment tracking.',
+    'track_shipment' => 'Track Shipment',
+    'request_quote' => 'Request a Quote',
+    'contact_us' => 'Contact Us',
+    'name' => 'Name',
+    'company' => 'Company',
+    'message' => 'Message',
+    'send' => 'Send',
+    'search' => 'Search',
+    'status' => 'Status',
+    'origin' => 'Origin',
+    'destination' => 'Destination',
+    'current_location' => 'Current location',
+    'about_text' => 'ZEHINLI YOLDASH LOGISTICS provides multimodal transportation and complete supply chain support.',
+    'service_1' => 'International road, rail and sea freight',
+    'service_2' => 'Warehousing and consolidation',
+    'service_3' => 'Customs documentation and brokerage',
+    'contact_sent' => 'Your contact message has been sent.',
+    'quote_sent' => 'Your quote request has been sent.',
+];
