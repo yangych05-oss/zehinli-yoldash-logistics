@@ -137,6 +137,66 @@
         }
         .zny-nav-link:hover::after { right: 0; }
 
+        .zny-header-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.95rem;
+            min-width: 0;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .zny-header-logo-wrap {
+            display: grid;
+            place-items: center;
+            height: 64px;
+            width: 64px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(15, 47, 120, 0.14);
+            box-shadow: 0 9px 24px rgba(8, 21, 47, 0.12);
+            transition: transform 0.22s ease, box-shadow 0.22s ease;
+            flex-shrink: 0;
+        }
+
+        .zny-header-brand:hover .zny-header-logo-wrap {
+            transform: scale(1.05);
+            box-shadow: 0 12px 28px rgba(8, 21, 47, 0.16);
+        }
+
+        .zny-header-logo {
+            height: 56px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .zny-header-brand-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0;
+            line-height: 1.05;
+        }
+
+        .zny-header-brand-title {
+            color: #08152f;
+            font-size: 1.18rem;
+            font-weight: 900;
+            letter-spacing: 0.055em;
+            white-space: nowrap;
+        }
+
+        .zny-header-brand-subtitle {
+            margin-top: 0.2rem;
+            font-size: 0.74rem;
+            color: #4f6183;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
         @keyframes drift {
             0%, 100% { transform: translate3d(0, 0, 0); }
             50% { transform: translate3d(0, 16px, 0); }
@@ -144,6 +204,22 @@
 
         @media (max-width: 768px) {
             .zny-brand-subtitle { display: none; }
+            .zny-header-brand { gap: 0.72rem; }
+            .zny-header-logo-wrap {
+                width: 52px;
+                height: 52px;
+                border-radius: 12px;
+            }
+            .zny-header-logo { height: 44px; }
+            .zny-header-brand-title {
+                font-size: 1.04rem;
+                letter-spacing: 0.04em;
+            }
+            .zny-header-brand-subtitle {
+                margin-top: 0.14rem;
+                font-size: 0.68rem;
+                letter-spacing: 0.06em;
+            }
         }
     </style>
 </head>
@@ -158,11 +234,13 @@
 <body>
 <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
     <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-wrap items-center justify-between gap-4">
-        <a href="/" class="flex items-center gap-3 no-underline">
-            <img src="/images/logo_clean.png" alt="ZNY LOGISTICS" class="h-12 w-auto block">
-            <div class="leading-tight">
-                <div class="text-base sm:text-lg font-bold text-slate-900">ZNY LOGISTICS</div>
-                <div class="text-[11px] text-slate-500">Global Logistics</div>
+        <a href="/" class="zny-header-brand">
+            <span class="zny-header-logo-wrap">
+                <img src="/images/logo_clean.png" alt="ZNY LOGISTICS" class="zny-header-logo">
+            </span>
+            <div class="zny-header-brand-text">
+                <div class="zny-header-brand-title">ZNY LOGISTICS</div>
+                <div class="zny-header-brand-subtitle">Global Logistics</div>
             </div>
         </a>
 
