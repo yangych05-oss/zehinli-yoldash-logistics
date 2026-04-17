@@ -27,6 +27,43 @@
             letter-spacing: .08em;
         }
 
+        .zny-brand-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .75rem;
+            min-width: 0;
+        }
+
+        .zny-brand-logo {
+            height: 42px;
+            width: auto;
+            object-fit: contain;
+            border-radius: .75rem;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+            flex-shrink: 0;
+        }
+
+        .zny-brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .zny-brand-title {
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: .06em;
+            color: #0f172a;
+        }
+
+        .zny-brand-subtitle {
+            margin-top: .2rem;
+            font-size: .75rem;
+            color: #64748b;
+            letter-spacing: .03em;
+            font-weight: 500;
+        }
+
         .zny-logo-mark {
             width: 2.15rem;
             height: 2.15rem;
@@ -102,11 +139,11 @@
 <body>
 <header class="sticky top-0 z-40 border-b border-slate-200/70 bg-white/90 backdrop-blur">
     <div class="max-w-7xl mx-auto px-4 py-4 flex flex-wrap items-center justify-between gap-4">
-        <a href="/{{ app()->getLocale() }}" class="zny-logo">
-            <span class="zny-logo-mark">ZNY</span>
-            <span>
-                <span class="block text-sm leading-none text-slate-500">znylogistic.com</span>
-                <span class="text-base sm:text-lg leading-tight">ZNY LOGISTICS</span>
+        <a href="/{{ app()->getLocale() }}" class="zny-brand-link">
+            <img src="/images/logo_clean.png" alt="ZNY LOGISTICS logo" class="zny-brand-logo">
+            <span class="zny-brand-text">
+                <span class="zny-brand-title">ZNY LOGISTICS</span>
+                <span class="zny-brand-subtitle">Global Logistics</span>
             </span>
         </a>
 
