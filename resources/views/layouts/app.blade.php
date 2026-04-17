@@ -158,14 +158,12 @@
 <body>
 <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
     <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-wrap items-center justify-between gap-4">
-        <a href="/{{ app()->getLocale() }}" class="zny-brand-link">
-            <span class="zny-brand-logo-wrap">
-                <img src="/images/logo_clean.png" alt="ZNY LOGISTICS logo" class="zny-brand-logo">
-            </span>
-            <span class="zny-brand-text">
-                <span class="zny-brand-title">ZNY LOGISTICS</span>
-                <span class="zny-brand-subtitle">International Freight Solutions</span>
-            </span>
+        <a href="/" class="flex items-center gap-3 no-underline">
+            <img src="/images/logo_clean.png" alt="ZNY LOGISTICS" class="h-12 w-auto block">
+            <div class="leading-tight">
+                <div class="text-base sm:text-lg font-bold text-slate-900">ZNY LOGISTICS</div>
+                <div class="text-[11px] text-slate-500">Global Logistics</div>
+            </div>
         </a>
 
         <nav class="flex flex-wrap items-center gap-4 md:gap-5 text-sm font-semibold text-slate-700">
