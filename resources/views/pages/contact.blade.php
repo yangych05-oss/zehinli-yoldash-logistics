@@ -25,14 +25,24 @@
         </div>
 
         <aside class="zny-card p-6 lg:sticky lg:top-28">
-            <h2 class="text-2xl font-bold mb-2">Scan & Visit</h2>
-            <p class="text-slate-600 mb-4">Use this QR code to open our domain instantly.</p>
-            <img
-                src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=https://znylogistic.com"
-                alt="QR code linking to znylogistic.com"
-                class="rounded-xl border border-slate-200 p-2 bg-white w-full max-w-[280px] mx-auto"
-            >
-            <p class="mt-4 text-center text-sm text-slate-500">https://znylogistic.com</p>
+            <div class="text-center">
+                <h2 class="text-2xl font-bold mb-2">Contact us instantly via WhatsApp</h2>
+                <p class="text-slate-600 mb-5">Scan the QR code to start a direct chat with our support team anytime.</p>
+                <img
+                    src="/images/qr_clean.png"
+                    alt="WhatsApp QR code for ZNY LOGISTICS"
+                    class="rounded-2xl border border-slate-200 p-3 bg-white w-full max-w-[260px] mx-auto shadow-sm"
+                >
+                <p class="mt-4 text-sm text-slate-500">Fast response for freight, tracking, and quote requests.</p>
+                <a
+                    href="https://wa.me/99364918998"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="mt-5 inline-flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold text-white bg-[#25D366] hover:bg-[#1ebe57] transition-colors shadow-sm"
+                >
+                    Open WhatsApp
+                </a>
+            </div>
         </aside>
     </section>
 @endsection

@@ -70,7 +70,7 @@
         </div>
     </section>
 
-    <section class="mt-14 grid lg:grid-cols-2 gap-6">
+    <section class="mt-16 grid lg:grid-cols-2 gap-6">
         <div class="zny-card p-7">
             <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-700">Why Choose Us</p>
             <h2 class="text-3xl font-black mt-2 mb-4">Trusted by businesses moving critical cargo.</h2>
@@ -90,7 +90,28 @@
         </div>
     </section>
 
-    <section class="mt-14 zny-card p-7">
+    <section class="mt-16 zny-card p-7 md:p-8">
+        <div class="max-w-2xl mx-auto text-center">
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-700">Quick Contact</p>
+            <h2 class="text-3xl font-black mt-2 mb-4">Reach our team in one scan.</h2>
+            <p class="text-slate-600 mb-6">Use WhatsApp for instant support on pricing, shipment updates, and routing inquiries.</p>
+            <img
+                src="/images/qr_clean.png"
+                alt="WhatsApp QR code for quick contact"
+                class="mx-auto rounded-2xl border border-slate-200 p-3 bg-white max-w-[220px] shadow-sm"
+            >
+            <a
+                href="https://wa.me/99364918998"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex mt-6 items-center justify-center rounded-xl bg-[#25D366] px-6 py-3 text-sm font-semibold text-white hover:bg-[#1ebe57] transition-colors shadow-sm"
+            >
+                Open WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <section class="mt-16 zny-card p-7 md:p-8">
         <div class="grid lg:grid-cols-[1.3fr_.7fr] gap-8 items-center">
             <div>
                 <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-700">Contact</p>
@@ -101,11 +122,11 @@
             </div>
             <div class="text-center">
                 <img
-                    src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://znylogistic.com"
-                    alt="QR code for znylogistic.com"
-                    class="mx-auto rounded-xl border border-slate-200 p-2 bg-white"
+                    src="/images/qr_clean.png"
+                    alt="QR code for ZNY LOGISTICS WhatsApp"
+                    class="mx-auto rounded-2xl border border-slate-200 p-3 bg-white max-w-[220px] shadow-sm"
                 >
-                <p class="mt-3 text-sm text-slate-600">Scan to visit <span class="font-semibold">znylogistic.com</span></p>
+                <p class="mt-3 text-sm text-slate-600">Scan to connect with <span class="font-semibold">ZNY LOGISTICS</span></p>
             </div>
         </div>
     </section>
