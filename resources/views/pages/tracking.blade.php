@@ -1,34 +1,43 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="text-3xl font-bold mb-2">{{ __('messages.track_shipment') }}</h1>
-    <p class="text-slate-700 mb-4">Need help? {{ env('COMPANY_EMAIL') }} · {{ env('COMPANY_PHONE_PRIMARY') }}</p>
+    <section class="rounded-3xl bg-gradient-to-r from-slate-900 to-blue-900 text-white p-8 md:p-10 mb-8">
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-300">Shipment Visibility</p>
+        <h1 class="text-4xl font-black mt-2 mb-3">{{ __('messages.track_shipment') }}</h1>
+        <p class="text-slate-200 max-w-2xl">Enter your tracking code and public access code to get real-time status, route, and delivery milestone details.</p>
+    </section>
 
-    <form method="POST" action="/{{ app()->getLocale() }}/tracking" class="grid md:grid-cols-2 gap-2 mb-6">
-        @csrf
-        <input name="tracking_code" class="rounded border px-3 py-2 w-full" placeholder="ZYL-2026-0001" required>
-        <input name="public_access_code" class="rounded border px-3 py-2 w-full" placeholder="Access code" required>
-        <button class="rounded bg-slate-900 px-4 py-2 text-white md:col-span-2">{{ __('messages.search') }}</button>
-    </form>
+    <section class="zny-card p-6 md:p-8 mb-7">
+        <p class="text-slate-600 mb-4">Need help? info@znylogistics.com · +99364 918998</p>
+        <form method="POST" action="/{{ app()->getLocale() }}/tracking" class="grid md:grid-cols-2 gap-3">
+            @csrf
+            <input name="tracking_code" class="rounded-xl border border-slate-200 px-3 py-2.5 w-full" placeholder="ZYL-2026-0001" required>
+            <input name="public_access_code" class="rounded-xl border border-slate-200 px-3 py-2.5 w-full" placeholder="Access code" required>
+            <button class="rounded-xl bg-slate-900 px-4 py-2.5 text-white md:col-span-2 font-semibold hover:bg-slate-700 transition">{{ __('messages.search') }}</button>
+        </form>
+    </section>
 
     @if($shipment)
-        <div class="bg-white rounded-xl shadow p-6 space-y-1">
-            <p><strong>{{ __('messages.status') }}:</strong> {{ $shipment->status }}</p>
-            <p><strong>{{ __('messages.origin') }}:</strong> {{ $shipment->origin }}</p>
-            <p><strong>{{ __('messages.destination') }}:</strong> {{ $shipment->destination }}</p>
-            <p><strong>{{ __('messages.current_location') }}:</strong> {{ $shipment->current_location }}</p>
+        <section class="zny-card p-6 md:p-8 space-y-3">
+            <h2 class="text-2xl font-black mb-2">Shipment Summary</h2>
+            <div class="grid sm:grid-cols-2 gap-3 text-slate-700">
+                <p><strong>{{ __('messages.status') }}:</strong> {{ $shipment->status }}</p>
+                <p><strong>{{ __('messages.current_location') }}:</strong> {{ $shipment->current_location }}</p>
+                <p><strong>{{ __('messages.origin') }}:</strong> {{ $shipment->origin }}</p>
+                <p><strong>{{ __('messages.destination') }}:</strong> {{ $shipment->destination }}</p>
+            </div>
 
             @if($shipment->events->count())
-                <h2 class="font-semibold text-lg mt-4">Timeline</h2>
-                <ul class="space-y-2">
+                <h3 class="font-bold text-lg mt-5">Timeline</h3>
+                <ul class="space-y-3">
                     @foreach($shipment->events as $event)
-                        <li class="border rounded p-2">
-                            <p class="font-medium">{{ $event->status }} @if($event->location)- {{ $event->location }}@endif</p>
+                        <li class="rounded-xl border border-slate-200 bg-slate-50 p-3">
+                            <p class="font-semibold text-slate-900">{{ $event->status }} @if($event->location)- {{ $event->location }}@endif</p>
                             <p class="text-sm text-slate-600">{{ $event->description }}</p>
                         </li>
                     @endforeach
                 </ul>
             @endif
-        </div>
+        </section>
     @endif
 @endsection
