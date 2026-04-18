@@ -7,226 +7,212 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
-            --zny-primary: #08152f;
-            --zny-secondary: #0f2f78;
-            --zny-accent: #1492ff;
-            --zny-light: #f6f9ff;
-            --zny-text: #10213f;
+            --zny-primary: #0a1735;
+            --zny-secondary: #123e95;
+            --zny-accent: #2ca4ff;
+            --zny-light: #f4f8ff;
+            --zny-text: #10203d;
+            --zny-surface: rgba(255, 255, 255, 0.72);
+            --zny-surface-strong: rgba(255, 255, 255, 0.92);
+            --zny-border: rgba(18, 42, 88, 0.12);
+            --zny-shadow: 0 22px 54px rgba(7, 23, 52, 0.10);
+            --zny-floating-right: 1.3rem;
+            --zny-floating-left: auto;
+            --zny-floating-bottom-safe: 8rem;
         }
 
         * { box-sizing: border-box; }
 
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: Inter, "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+            font-family: Inter, "SF Pro Display", "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
             background:
-                radial-gradient(circle at 12% 12%, rgba(20,146,255,0.10), transparent 28%),
-                radial-gradient(circle at 86% 4%, rgba(15,47,120,0.08), transparent 34%),
-                var(--zny-light);
+                radial-gradient(circle at 6% 8%, rgba(44,164,255,0.14), transparent 32%),
+                radial-gradient(circle at 92% 2%, rgba(18,62,149,0.08), transparent 30%),
+                linear-gradient(180deg, #f7faff 0%, #eef4ff 48%, #f5f8ff 100%);
             color: var(--zny-text);
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .zny-brand-link {
+        .zny-glass-nav {
+            border-bottom: 1px solid rgba(10, 23, 53, 0.07);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.83), rgba(255, 255, 255, 0.74));
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .zny-brand-link, .zny-header-brand {
             display: inline-flex;
             align-items: center;
-            gap: .85rem;
+            gap: .9rem;
             min-width: 0;
-        }
-
-        .zny-brand-logo-wrap {
-            display: grid;
-            place-items: center;
-            width: 52px;
-            height: 52px;
-            border-radius: 16px;
-            background: linear-gradient(140deg, rgba(15,47,120,.16), rgba(20,146,255,.08));
-            border: 1px solid rgba(15,47,120,.12);
-            box-shadow: 0 12px 24px rgba(8,21,47,.10);
-            flex-shrink: 0;
-        }
-
-        .zny-brand-logo {
-            max-width: 38px;
-            max-height: 38px;
-            object-fit: contain;
-        }
-
-        .zny-brand-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.1;
-        }
-
-        .zny-brand-title {
-            font-size: 1.02rem;
-            font-weight: 800;
-            letter-spacing: .08em;
-            color: #08152f;
-        }
-
-        .zny-brand-subtitle {
-            margin-top: .18rem;
-            font-size: .73rem;
-            color: #526384;
-            letter-spacing: .08em;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .zny-gradient-text {
-            background: linear-gradient(130deg, #0f2f78 0%, #1492ff 85%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .zny-card {
-            background: rgba(255,255,255,.92);
-            border: 1px solid rgba(8,21,47,.08);
-            border-radius: 1.25rem;
-            box-shadow: 0 10px 32px rgba(8, 21, 47, 0.07);
-        }
-
-        .zny-surface-glow {
-            position: relative;
-            overflow: hidden;
-            isolation: isolate;
-        }
-
-        .zny-surface-glow::before {
-            content: "";
-            position: absolute;
-            width: 19rem;
-            height: 19rem;
-            border-radius: 9999px;
-            background: radial-gradient(circle, rgba(20,146,255,.24) 0%, rgba(20,146,255,0) 70%);
-            top: -8rem;
-            right: -6rem;
-            z-index: -1;
-            animation: drift 12s ease-in-out infinite;
-        }
-
-        .zny-surface-glow::after {
-            content: "";
-            position: absolute;
-            width: 16rem;
-            height: 16rem;
-            border-radius: 9999px;
-            background: radial-gradient(circle, rgba(15,47,120,.16) 0%, rgba(15,47,120,0) 70%);
-            bottom: -7rem;
-            left: -5rem;
-            z-index: -1;
-            animation: drift 13s ease-in-out infinite reverse;
-        }
-
-        .zny-grid-overlay {
-            background-image:
-                linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px);
-            background-size: 24px 24px;
-        }
-
-        .zny-nav-link { position: relative; }
-        .zny-nav-link::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 100%;
-            bottom: -5px;
-            border-bottom: 2px solid #1492ff;
-            transition: right .25s ease;
-        }
-        .zny-nav-link:hover::after { right: 0; }
-
-        .zny-header-brand {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.95rem;
-            min-width: 0;
-            flex-shrink: 0;
             text-decoration: none;
         }
 
-        .zny-header-logo-wrap {
+        .zny-header-logo-wrap,
+        .zny-brand-logo-wrap {
             display: grid;
             place-items: center;
-            height: 64px;
-            width: 64px;
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.96);
+            border-radius: 16px;
+            background: linear-gradient(145deg, rgba(255,255,255,.92), rgba(233,244,255,.75));
             border: 1px solid rgba(15, 47, 120, 0.14);
-            box-shadow: 0 9px 24px rgba(8, 21, 47, 0.12);
-            transition: transform 0.22s ease, box-shadow 0.22s ease;
+            box-shadow: 0 12px 26px rgba(8,21,47,.12);
             flex-shrink: 0;
+            transition: transform .25s ease, box-shadow .25s ease;
         }
 
-        .zny-header-brand:hover .zny-header-logo-wrap {
-            transform: scale(1.05);
-            box-shadow: 0 12px 28px rgba(8, 21, 47, 0.16);
+        .zny-header-logo-wrap { width: 64px; height: 64px; }
+        .zny-brand-logo-wrap { width: 52px; height: 52px; }
+
+        .zny-header-brand:hover .zny-header-logo-wrap,
+        .zny-brand-link:hover .zny-brand-logo-wrap {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 32px rgba(8,21,47,.17);
         }
 
-        .zny-header-logo {
-            height: 56px;
-            width: auto;
-            display: block;
-            object-fit: contain;
-        }
+        .zny-header-logo { height: 56px; width: auto; object-fit: contain; }
+        .zny-brand-logo { max-width: 38px; max-height: 38px; object-fit: contain; }
 
-        .zny-header-brand-text {
+        .zny-header-brand-text, .zny-brand-text {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             min-width: 0;
             line-height: 1.05;
         }
 
         .zny-header-brand-title {
-            color: #08152f;
-            font-size: 1.18rem;
-            font-weight: 900;
-            letter-spacing: 0.055em;
+            font-size: 1.15rem;
+            letter-spacing: .055em;
+            font-weight: 850;
+            color: #07162f;
             white-space: nowrap;
         }
 
-        .zny-header-brand-subtitle {
-            margin-top: 0.2rem;
-            font-size: 0.74rem;
-            color: #4f6183;
-            font-weight: 600;
-            letter-spacing: 0.08em;
+        .zny-header-brand-subtitle,
+        .zny-brand-subtitle {
+            margin-top: .2rem;
+            font-size: .72rem;
+            letter-spacing: .08em;
             text-transform: uppercase;
+            color: #516689;
+            font-weight: 620;
             white-space: nowrap;
         }
 
-        @keyframes drift {
-            0%, 100% { transform: translate3d(0, 0, 0); }
-            50% { transform: translate3d(0, 16px, 0); }
+        .zny-brand-title {
+            font-size: 1rem;
+            letter-spacing: .08em;
+            font-weight: 800;
+            color: #f8fbff;
         }
 
-        @keyframes zny-fade-up {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .zny-gradient-text {
+            background: linear-gradient(132deg, #1447a2 0%, #18a5ff 78%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
-        .zny-reveal {
-            opacity: 0;
-            animation: zny-fade-up .8s ease forwards;
+        .zny-nav-link {
+            position: relative;
+            color: #2a3f63;
+            transition: color .22s ease;
         }
 
+        .zny-nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 100%;
+            bottom: -8px;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #1447a2, #18a5ff);
+            transition: right .24s ease;
+        }
+
+        .zny-nav-link:hover::after,
+        .zny-nav-link[aria-current="page"]::after { right: 0; }
+        .zny-nav-link:hover,
+        .zny-nav-link[aria-current="page"] { color: #123e95; }
+
+        .zny-card {
+            border-radius: 1.35rem;
+            border: 1px solid var(--zny-border);
+            background: var(--zny-surface-strong);
+            box-shadow: var(--zny-shadow);
+        }
+
+        .zny-soft-card {
+            border-radius: 1.3rem;
+            border: 1px solid rgba(255,255,255,0.54);
+            background: linear-gradient(145deg, rgba(255,255,255,.84), rgba(247,250,255,.65));
+            box-shadow: 0 12px 34px rgba(7, 26, 58, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .zny-pill {
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,.18);
+            background: rgba(255,255,255,.08);
+            padding: .46rem .8rem;
+            font-size: .72rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            font-weight: 680;
+        }
+
+        .zny-primary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            padding: .86rem 1.4rem;
+            font-size: .9rem;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, #0f3b8f, #1aa4ff);
+            box-shadow: 0 16px 34px rgba(16, 66, 156, 0.28);
+            transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+        }
+
+        .zny-primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(16, 66, 156, 0.34);
+            filter: saturate(1.03);
+        }
+
+        .zny-secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            padding: .86rem 1.4rem;
+            font-size: .9rem;
+            font-weight: 650;
+            color: #0d2a61;
+            border: 1px solid rgba(20, 71, 162, 0.20);
+            background: rgba(255,255,255,.74);
+            transition: all .25s ease;
+        }
+
+        .zny-secondary-btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(20, 71, 162, 0.35);
+            background: #fff;
+        }
+
+        .zny-reveal { opacity: 0; animation: zny-fade-up .8s ease forwards; }
         .zny-reveal-delay-1 { animation-delay: .08s; }
         .zny-reveal-delay-2 { animation-delay: .18s; }
         .zny-reveal-delay-3 { animation-delay: .28s; }
 
-        :root {
-            --zny-floating-right: 1.5rem;
-            --zny-floating-left: auto;
-            --zny-floating-bottom-base: 8rem;
-            --zny-floating-bottom-safe: 8rem;
+        @keyframes zny-fade-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .zny-floating-actions {
@@ -238,7 +224,6 @@
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: .7rem;
         }
 
         .zny-floating-whatsapp {
@@ -246,46 +231,33 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 3.6rem;
-            height: 3.6rem;
+            width: 3.75rem;
+            height: 3.75rem;
             border-radius: 999px;
             color: #fff;
-            background: radial-gradient(circle at 30% 28%, #4deda2 0%, #22c55e 48%, #169c4b 100%);
-            border: 1px solid rgba(255, 255, 255, 0.42);
-            box-shadow: 0 16px 30px rgba(9, 27, 54, 0.26), 0 0 0 1px rgba(34, 197, 94, 0.24) inset;
+            background: radial-gradient(circle at 30% 24%, #60f0af 0%, #27cb69 50%, #169c4b 100%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 18px 34px rgba(10, 30, 56, 0.30), 0 0 0 1px rgba(22, 156, 75, 0.35) inset;
             transition: transform .28s ease, box-shadow .28s ease, filter .28s ease;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             touch-action: manipulation;
         }
 
         .zny-floating-whatsapp::before {
             content: '';
             position: absolute;
-            inset: -6px;
+            inset: -7px;
             border-radius: inherit;
-            background: radial-gradient(circle, rgba(37, 211, 102, 0.26) 0%, rgba(37, 211, 102, 0) 72%);
+            background: radial-gradient(circle, rgba(37, 211, 102, 0.30) 0%, rgba(37, 211, 102, 0) 72%);
             z-index: -1;
-            transition: opacity .28s ease, transform .28s ease;
-            opacity: 0.86;
-        }
-
-        .zny-floating-whatsapp svg {
-            width: 1.45rem;
-            height: 1.45rem;
-            filter: drop-shadow(0 1px 1px rgba(8, 21, 47, 0.25));
-        }
-
-        .zny-floating-whatsapp:focus-visible {
-            outline: 2px solid rgba(255, 255, 255, 0.95);
-            outline-offset: 3px;
-            transform: translateY(-2px) scale(1.03);
+            opacity: .84;
+            transition: opacity .26s ease, transform .26s ease;
         }
 
         .zny-floating-whatsapp:hover {
-            transform: translateY(-4px) scale(1.045);
-            box-shadow: 0 20px 34px rgba(9, 27, 54, 0.3), 0 0 0 1px rgba(74, 222, 128, 0.34) inset;
-            filter: saturate(1.06);
+            transform: translateY(-4px) scale(1.035);
+            box-shadow: 0 22px 40px rgba(10, 30, 56, 0.34), 0 0 0 1px rgba(74, 222, 128, 0.34) inset;
         }
 
         .zny-floating-whatsapp:hover::before {
@@ -293,50 +265,43 @@
             transform: scale(1.02);
         }
 
+        .zny-floating-whatsapp:focus-visible {
+            outline: 2px solid rgba(255, 255, 255, 0.98);
+            outline-offset: 3px;
+        }
+
         .zny-floating-label {
             position: absolute;
             width: 1px;
             height: 1px;
-            padding: 0;
             margin: -1px;
             overflow: hidden;
-            clip: rect(0, 0, 0, 0);
+            clip: rect(0,0,0,0);
             white-space: nowrap;
             border: 0;
         }
 
-        @media (max-width: 768px) {
-            .zny-brand-subtitle { display: none; }
-            .zny-header-brand { gap: 0.72rem; }
-            .zny-header-logo-wrap {
-                width: 52px;
-                height: 52px;
-                border-radius: 12px;
-            }
-            .zny-header-logo { height: 44px; }
-            .zny-header-brand-title {
-                font-size: 1.04rem;
-                letter-spacing: 0.04em;
-            }
-            .zny-header-brand-subtitle {
-                margin-top: 0.14rem;
-                font-size: 0.68rem;
-                letter-spacing: 0.06em;
-            }
+        .zny-footer {
+            background: linear-gradient(130deg, #030d22, #05183d 48%, #092559 100%);
+            border-top: 1px solid rgba(255,255,255,.08);
+        }
+
+        @media (max-width: 1024px) {
             :root {
                 --zny-floating-right: auto;
                 --zny-floating-left: 1rem;
-                --zny-floating-bottom-base: 5.75rem;
-                --zny-floating-bottom-safe: 5.75rem;
+                --zny-floating-bottom-safe: 6rem;
             }
-            .zny-floating-actions {
-                gap: .55rem;
-                align-items: flex-start;
-            }
-            .zny-floating-whatsapp {
-                width: 3.35rem;
-                height: 3.35rem;
-            }
+            .zny-floating-actions { align-items: flex-start; }
+        }
+
+        @media (max-width: 768px) {
+            .zny-header-brand { gap: .72rem; }
+            .zny-header-logo-wrap { width: 52px; height: 52px; border-radius: 13px; }
+            .zny-header-logo { height: 44px; }
+            .zny-header-brand-title { font-size: 1rem; letter-spacing: .04em; }
+            .zny-header-brand-subtitle { font-size: .66rem; }
+            .zny-floating-whatsapp { width: 3.3rem; height: 3.3rem; }
         }
     </style>
 </head>
@@ -354,7 +319,7 @@
     $localizedPath = implode('/', $segments);
 @endphp
 <body>
-<header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
+<header class="sticky top-0 z-40 zny-glass-nav">
     <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-wrap items-center justify-between gap-4">
         <a href="/" class="zny-header-brand">
             <span class="zny-header-logo-wrap">
@@ -366,21 +331,21 @@
             </div>
         </a>
 
-        <nav class="flex flex-wrap items-center gap-4 md:gap-5 text-sm font-semibold text-slate-700">
-            <a href="/{{ app()->getLocale() }}" class="zny-nav-link hover:text-sky-700 transition">{{ __('messages.nav_home') }}</a>
-            <a href="/{{ app()->getLocale() }}/about" class="zny-nav-link hover:text-sky-700 transition">{{ __('messages.nav_about') }}</a>
-            <a href="/{{ app()->getLocale() }}/services" class="zny-nav-link hover:text-sky-700 transition">{{ __('messages.nav_services') }}</a>
-            <a href="/{{ app()->getLocale() }}/tracking" class="zny-nav-link hover:text-sky-700 transition">{{ __('messages.nav_tracking') }}</a>
-            <a href="/{{ app()->getLocale() }}/contact" class="zny-nav-link hover:text-sky-700 transition">{{ __('messages.nav_contact') }}</a>
+        <nav class="flex flex-wrap items-center gap-4 md:gap-5 text-sm font-semibold">
+            <a href="/{{ app()->getLocale() }}" class="zny-nav-link" @if(request()->routeIs('home')) aria-current="page" @endif>{{ __('messages.nav_home') }}</a>
+            <a href="/{{ app()->getLocale() }}/about" class="zny-nav-link" @if(request()->routeIs('about')) aria-current="page" @endif>{{ __('messages.nav_about') }}</a>
+            <a href="/{{ app()->getLocale() }}/services" class="zny-nav-link" @if(request()->routeIs('services')) aria-current="page" @endif>{{ __('messages.nav_services') }}</a>
+            <a href="/{{ app()->getLocale() }}/tracking" class="zny-nav-link" @if(request()->routeIs('tracking')) aria-current="page" @endif>{{ __('messages.nav_tracking') }}</a>
+            <a href="/{{ app()->getLocale() }}/contact" class="zny-nav-link" @if(request()->routeIs('contact')) aria-current="page" @endif>{{ __('messages.nav_contact') }}</a>
         </nav>
 
         <div class="flex items-center gap-3">
-            <div class="rounded-full border border-slate-300 p-1 text-xs font-semibold uppercase tracking-wide bg-white">
+            <div class="rounded-full border border-slate-200 p-1 text-xs font-semibold uppercase tracking-wide bg-white/80 backdrop-blur-sm">
                 @foreach($supportedLocales as $lang)
                     <a href="/{{ $lang }}{{ $localizedPath ? '/' . $localizedPath : '' }}" class="px-2 py-1 rounded-full {{ app()->getLocale() === $lang ? 'bg-slate-900 text-white' : 'text-slate-600 hover:text-slate-900' }}">{{ $lang }}</a>
                 @endforeach
             </div>
-            <a href="/{{ app()->getLocale() }}/contact" class="rounded-full bg-slate-900 px-4 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-blue-900 transition">Request a Quote</a>
+            <a href="/{{ app()->getLocale() }}/contact" class="zny-primary-btn !px-4 !py-2 !text-xs sm:!text-sm">Request a Quote</a>
         </div>
     </div>
 </header>
@@ -392,38 +357,41 @@
     @yield('content')
 </main>
 
-<footer class="mt-16 bg-slate-950 text-slate-200 border-t border-slate-800/80">
-    <div class="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-3 gap-8 text-sm">
+<footer class="mt-20 zny-footer text-slate-200">
+    <div class="max-w-7xl mx-auto px-4 py-14 grid md:grid-cols-3 gap-9 text-sm">
         <div>
-            <div class="flex items-center gap-3 mb-4">
+            <a href="/{{ app()->getLocale() }}" class="zny-brand-link mb-4">
                 <span class="zny-brand-logo-wrap !w-11 !h-11 !rounded-xl !bg-white/10 !border-white/10 !shadow-none">
                     <img src="{{ asset('images/logo_clean.png') }}" alt="{{ $companyName }} logo" class="zny-brand-logo">
                 </span>
-                <div>
-                    <p class="font-bold tracking-[0.12em] text-white text-xs">{{ $companyName }}</p>
-                    <p class="text-slate-400 text-xs">{{ site_setting('company_domain', 'znylogistic.com') }}</p>
+                <div class="zny-brand-text">
+                    <p class="zny-brand-title">{{ $companyName }}</p>
+                    <p class="text-slate-300 text-xs">{{ site_setting('company_domain', 'znylogistic.com') }}</p>
                 </div>
-            </div>
-            <p class="text-slate-400">{{ site_setting('footer_text') }}</p>
+            </a>
+            <p class="text-slate-300/90 leading-relaxed">{{ site_setting('footer_text') }}</p>
         </div>
         <div>
-            <p class="font-semibold text-white mb-2">Direct Contact</p>
-            <p class="text-slate-300">{{ site_setting('phone_primary') }}</p>
-            @if(!empty($siteSettings['phone_secondary']))
-                <p class="text-slate-300">{{ $siteSettings['phone_secondary'] }}</p>
-            @endif
-            <p class="text-slate-300">{{ site_setting('email_primary') }}</p>
-            @if(site_setting('email_secondary'))
-            <p class="text-slate-300">{{ site_setting('email_secondary') }}</p>
-            @endif
-            <p class="text-slate-400 mt-3">{{ site_setting('address') }}</p>
+            <p class="font-semibold text-white mb-3 tracking-wide uppercase text-xs">Direct Contact</p>
+            <div class="space-y-2 text-slate-300">
+                <p>{{ site_setting('phone_primary') }}</p>
+                @if(!empty($siteSettings['phone_secondary']))
+                    <p>{{ $siteSettings['phone_secondary'] }}</p>
+                @endif
+                <p>{{ site_setting('email_primary') }}</p>
+                @if(site_setting('email_secondary'))
+                    <p>{{ site_setting('email_secondary') }}</p>
+                @endif
+                <p class="pt-2 text-slate-400">{{ site_setting('address') }}</p>
+            </div>
         </div>
         <div class="md:text-right">
-            <p class="font-semibold text-white">Operational Clarity, Premium Service</p>
-            <p class="text-slate-400 mt-2">Built for manufacturers, importers, and distributors requiring dependable visibility and responsive execution.</p>
+            <p class="font-semibold text-white text-base">Operational clarity. Premium execution.</p>
+            <p class="text-slate-300 mt-2 leading-relaxed">Designed for manufacturers, importers, and distributors who need reliable timelines and proactive logistics communication.</p>
         </div>
     </div>
 </footer>
+
 <div class="zny-floating-actions" aria-label="Quick communication shortcuts">
     <a href="{{ whatsapp_link() }}" target="_blank" rel="noopener noreferrer" class="zny-floating-whatsapp" aria-label="Contact ZNY Logistics via WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
@@ -436,17 +404,15 @@
 <script>
 (function () {
     const actions = document.querySelector('.zny-floating-actions');
-    if (!actions) {
-        return;
-    }
+    if (!actions) return;
 
     const recalculateOffset = function () {
         const isTabletDown = window.matchMedia('(max-width: 1024px)').matches;
         const baseSpacing = isTabletDown ? 92 : 112;
         const extraGap = isTabletDown ? 16 : 22;
-        const tawkLauncherReserve = isTabletDown ? 82 : 78;
+        const hardReserve = isTabletDown ? 92 : 86;
         let safeBottom = baseSpacing;
-        let safeRight = isTabletDown ? null : 24;
+        let safeRight = isTabletDown ? null : 22;
 
         const tawkTargets = [
             '#tawkchat-minified-iframe-element',
@@ -458,25 +424,20 @@
 
         for (const selector of tawkTargets) {
             const chatEl = document.querySelector(selector);
-            if (!chatEl) {
-                continue;
-            }
+            if (!chatEl) continue;
 
             const rect = chatEl.getBoundingClientRect();
-            if (rect.width === 0 || rect.height === 0) {
-                continue;
-            }
+            if (rect.width === 0 || rect.height === 0) continue;
 
             const occupiedFromBottom = Math.max(0, window.innerHeight - rect.top);
             safeBottom = Math.max(safeBottom, occupiedFromBottom + extraGap);
 
-            if (!isTabletDown && rect.right > window.innerWidth - 8) {
-                const reserveRight = Math.max(24, Math.ceil(rect.width + 18));
-                safeRight = Math.max(safeRight, reserveRight);
+            if (!isTabletDown && rect.right > window.innerWidth - 10) {
+                safeRight = Math.max(safeRight, Math.ceil(rect.width + 22));
             }
         }
 
-        safeBottom = Math.max(safeBottom, tawkLauncherReserve + extraGap);
+        safeBottom = Math.max(safeBottom, hardReserve + extraGap);
         actions.style.bottom = safeBottom + 'px';
 
         if (isTabletDown) {
@@ -487,13 +448,13 @@
         }
 
         actions.style.left = 'auto';
-        actions.style.right = (safeRight || 24) + 'px';
+        actions.style.right = (safeRight || 22) + 'px';
         actions.style.alignItems = 'flex-end';
     };
 
     recalculateOffset();
     window.addEventListener('resize', recalculateOffset);
-    setInterval(recalculateOffset, 1500);
+    setInterval(recalculateOffset, 1400);
 })();
 </script>
 
