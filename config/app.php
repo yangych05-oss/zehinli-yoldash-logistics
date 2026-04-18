@@ -11,5 +11,4 @@ return [
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
     'key' => env('APP_KEY'),
     'cipher' => 'AES-256-CBC',
-    'live_chat_embed_url' => env('LIVE_CHAT_EMBED_URL'),
 ];
