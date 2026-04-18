@@ -2,13 +2,13 @@
 
 @section('content')
     <section class="rounded-[2rem] border border-slate-800 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 p-8 text-white shadow-xl md:p-10">
-        <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-300">Shipment Visibility</p>
+        <p class="zny-label text-sky-300">Shipment Visibility</p>
         <h1 class="mt-2 text-4xl font-black">{{ __('messages.track_shipment') }}</h1>
-        <p class="mt-3 max-w-2xl text-slate-200">Enter tracking code and public access code to view real-time route status and latest operational milestones.</p>
+        <p class="mt-3 max-w-2xl text-slate-200">Enter your tracking credentials to access shipment position, status, and timeline checkpoints.</p>
     </section>
 
     <section class="mt-10 zny-card p-6 md:p-8">
-        <p class="mb-4 text-slate-600">Need immediate support? {{ site_setting('email_primary') }} · {{ site_setting('phone_primary') }}</p>
+        <p class="mb-4 text-slate-600">Support line: {{ site_setting('email_primary') }} · {{ site_setting('phone_primary') }}</p>
         <form method="POST" action="/{{ app()->getLocale() }}/tracking" class="grid gap-3 md:grid-cols-2">
             @csrf
             <input name="tracking_code" class="zny-input" placeholder="ZYL-2026-0001" required>
