@@ -365,12 +365,6 @@
         </div>
     </div>
 </footer>
-@php
-    $liveChatEnabled = (bool) config('live_chat.enabled');
-    $liveChatEmbed = trim((string) config('live_chat.embed'));
-    $shouldRenderLiveChat = $liveChatEnabled && filled($liveChatEmbed);
-@endphp
-
 <div class="zny-floating-actions" aria-label="Quick communication shortcuts">
     <a href="https://wa.me/99364918998" target="_blank" rel="noopener noreferrer" class="zny-floating-whatsapp" aria-label="Contact ZNY Logistics via WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
@@ -379,9 +373,18 @@
         <span>WhatsApp</span>
     </a>
 </div>
-
-@if($shouldRenderLiveChat)
-    {!! $liveChatEmbed !!}
+@if(env('LIVE_CHAT_ENABLED') && env('LIVE_CHAT_SRC'))
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='{{ env("LIVE_CHAT_SRC") }}';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
 @endif
 </body>
 </html>
