@@ -145,7 +145,7 @@
                 <h2 class="text-3xl font-black mt-2 mb-4">Contact us instantly via WhatsApp</h2>
                 <p class="text-slate-600 mb-6">For quotes, route planning, and shipment updates, connect with our team directly through WhatsApp.</p>
                 <a
-                    href="{{ $whatsAppHref }}"
+                    href="{{ whatsapp_link() }}"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="inline-flex items-center justify-center rounded-xl bg-[#25D366] px-6 py-3 text-sm font-semibold text-white hover:bg-[#1ebe57] transition-colors shadow-sm"
