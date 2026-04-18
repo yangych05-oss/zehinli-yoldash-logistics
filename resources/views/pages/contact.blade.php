@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="rounded-3xl bg-gradient-to-r from-slate-950 to-blue-950 text-white p-8 md:p-10 mb-8">
-        <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-300">Contact {{ $siteSettings['company_name'] }}</p>
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-300">Contact {{ site_setting('company_name', 'ZNY LOGISTICS') }}</p>
         <h1 class="text-4xl font-black mt-2 mb-3">Talk to our international freight team.</h1>
         <p class="text-slate-200 max-w-2xl">For quote requests, routing support, and shipment follow-up, contact us through the form or WhatsApp channel.</p>
     </section>
@@ -12,20 +12,20 @@
             <div class="grid sm:grid-cols-2 gap-4 mb-6">
                 <div class="zny-card p-5">
                     <p class="text-xs uppercase tracking-[0.2em] text-sky-700 font-semibold mb-1">Phone</p>
-                    <p class="font-bold text-lg">{{ $siteSettings['phone_primary'] }}</p>
+                    <p class="font-bold text-lg">{{ site_setting('phone_primary') }}</p>
                 </div>
                 <div class="zny-card p-5">
                     <p class="text-xs uppercase tracking-[0.2em] text-sky-700 font-semibold mb-1">Address</p>
-                    <p class="text-slate-700">{{ $siteSettings['address'] }}</p>
+                    <p class="text-slate-700">{{ site_setting('address') }}</p>
                 </div>
                 <div class="zny-card p-5">
                     <p class="text-xs uppercase tracking-[0.2em] text-sky-700 font-semibold mb-1">Email</p>
-                    <p class="text-slate-700">{{ $siteSettings['email_primary'] }}</p>
+                    <p class="text-slate-700">{{ site_setting('email_primary') }}</p>
                 </div>
-                @if($siteSettings['email_secondary'])
+                @if(site_setting('email_secondary'))
                     <div class="zny-card p-5">
                         <p class="text-xs uppercase tracking-[0.2em] text-sky-700 font-semibold mb-1">Alternate</p>
-                        <p class="text-slate-700">{{ $siteSettings['email_secondary'] }}</p>
+                        <p class="text-slate-700">{{ site_setting('email_secondary') }}</p>
                     </div>
                 @endif
             </div>
@@ -47,7 +47,7 @@
                 <div class="rounded-2xl border border-slate-200 p-3 bg-gradient-to-br from-white to-sky-50">
                     <img
                         src="{{ asset('images/qr_clean.png') }}"
-                        alt="WhatsApp QR code for {{ $siteSettings['company_name'] }}"
+                        alt="WhatsApp QR code for {{ site_setting('company_name', 'ZNY LOGISTICS') }}"
                         class="rounded-xl border border-slate-200 p-3 bg-white w-full max-w-[260px] mx-auto shadow-sm"
                     >
                 </div>

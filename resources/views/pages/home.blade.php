@@ -13,7 +13,7 @@
                     Reliable global freight execution for businesses that move fast.
                 </h1>
                 <p class="zny-reveal zny-reveal-delay-2 text-slate-200 text-lg mb-8 max-w-xl">
-                    {{ $siteSettings['company_name'] }} orchestrates international cargo programs with transparent milestones, agile routing, and dependable delivery performance across multimodal lanes.
+                    {{ site_setting('company_name', 'ZNY LOGISTICS') }} orchestrates international cargo programs with transparent milestones, agile routing, and dependable delivery performance across multimodal lanes.
                 </p>
                 <div class="zny-reveal zny-reveal-delay-3 flex flex-wrap gap-3">
                     <a href="/{{ app()->getLocale() }}/contact" class="rounded-full bg-sky-400 px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-sky-300 transition">Request a Quote</a>
@@ -129,7 +129,7 @@
         <div class="grid lg:grid-cols-[1.2fr_.8fr] gap-6 items-center">
             <div>
                 <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-300">Tracking CTA</p>
-                <h3 class="text-3xl font-black mt-2">{{ $siteSettings['tracking_cta_text'] }}</h3>
+                <h3 class="text-3xl font-black mt-2">{{ site_setting('tracking_cta_text') }}</h3>
                 <p class="text-slate-200 mt-3">Use our secure tracking portal for checkpoint visibility, current location, and latest status in one view.</p>
             </div>
             <div class="flex lg:justify-end">
@@ -155,7 +155,7 @@
             </div>
             <div class="rounded-2xl border border-slate-200 p-4 bg-gradient-to-br from-white to-sky-50 text-center">
                 <img src="{{ asset('images/qr_clean.png') }}" alt="WhatsApp QR code for quick contact" class="mx-auto rounded-xl bg-white p-3 max-w-[190px] shadow-sm">
-                <p class="mt-3 text-xs text-slate-500">Scan to chat with {{ $siteSettings['company_name'] }}</p>
+                <p class="mt-3 text-xs text-slate-500">Scan to chat with {{ site_setting('company_name', 'ZNY LOGISTICS') }}</p>
             </div>
         </div>
     </section>
@@ -164,14 +164,14 @@
         <div class="grid lg:grid-cols-[1.2fr_.8fr] gap-8 items-center">
             <div>
                 <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-700">Contact</p>
-                <h2 class="text-3xl font-black mt-2 mb-4">{{ $siteSettings['contact_cta_text'] }}</h2>
+                <h2 class="text-3xl font-black mt-2 mb-4">{{ site_setting('contact_cta_text') }}</h2>
                 <ul class="space-y-2 text-slate-700">
-                    <li>📞 {{ $siteSettings['phone_primary'] }}</li>
-                    <li>✉️ {{ $siteSettings['email_primary'] }}</li>
-                    @if($siteSettings['email_secondary'])
-                        <li>✉️ {{ $siteSettings['email_secondary'] }}</li>
+                    <li>📞 {{ site_setting('phone_primary') }}</li>
+                    <li>✉️ {{ site_setting('email_primary') }}</li>
+                    @if(site_setting('email_secondary'))
+                        <li>✉️ {{ site_setting('email_secondary') }}</li>
                     @endif
-                    <li>📍 {{ $siteSettings['address'] }}</li>
+                    <li>📍 {{ site_setting('address') }}</li>
                 </ul>
                 <a href="/{{ app()->getLocale() }}/contact" class="inline-block mt-5 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-900 transition">Go to Contact Form</a>
             </div>
