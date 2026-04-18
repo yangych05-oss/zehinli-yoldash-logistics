@@ -223,9 +223,9 @@
         .zny-reveal-delay-3 { animation-delay: .28s; }
 
         :root {
-            --zny-floating-right: 1rem;
-            --zny-floating-bottom-base: 1rem;
-            --zny-floating-bottom-safe: 1rem;
+            --zny-floating-right: 1.5rem;
+            --zny-floating-bottom-base: 8rem;
+            --zny-floating-bottom-safe: 8rem;
         }
 
         .zny-floating-actions {
@@ -286,9 +286,9 @@
                 letter-spacing: 0.06em;
             }
             :root {
-                --zny-floating-right: .75rem;
-                --zny-floating-bottom-base: .75rem;
-                --zny-floating-bottom-safe: .75rem;
+                --zny-floating-right: 1rem;
+                --zny-floating-bottom-base: 8.5rem;
+                --zny-floating-bottom-safe: 8.5rem;
             }
             .zny-floating-actions {
                 gap: .55rem;
@@ -397,8 +397,9 @@
 
     const recalculateOffset = function () {
         const isMobile = window.matchMedia('(max-width: 768px)').matches;
-        const baseSpacing = isMobile ? 12 : 16;
-        const extraGap = isMobile ? 12 : 16;
+        const baseSpacing = isMobile ? 136 : 124;
+        const extraGap = isMobile ? 16 : 20;
+        const tawkLauncherReserve = isMobile ? 86 : 78;
         let safeBottom = baseSpacing;
 
         const tawkTargets = [
@@ -422,6 +423,8 @@
             const occupiedFromBottom = Math.max(0, window.innerHeight - rect.top);
             safeBottom = Math.max(safeBottom, occupiedFromBottom + extraGap);
         }
+
+        safeBottom = Math.max(safeBottom, tawkLauncherReserve + extraGap);
 
         actions.style.bottom = safeBottom + 'px';
     };
