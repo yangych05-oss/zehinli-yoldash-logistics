@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Cargo port logistics visual">
+  <defs>
+    <linearGradient id="skyPort" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a2e6b"/>
+      <stop offset="1" stop-color="#2f8fe5"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0f4f83"/>
+      <stop offset="1" stop-color="#0e6ea7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#skyPort)"/>
+  <rect y="548" width="1600" height="352" fill="url(#sea)"/>
+  <rect x="145" y="468" width="1280" height="100" rx="16" fill="#1f2937"/>
+  <g fill="#f4f8ff">
+    <rect x="220" y="380" width="66" height="180"/>
+    <rect x="376" y="340" width="66" height="220"/>
+    <rect x="532" y="318" width="66" height="242"/>
+    <rect x="688" y="340" width="66" height="220"/>
+  </g>
+  <g fill="#b8dcff" opacity=".9">
+    <rect x="260" y="420" width="148" height="38"/>
+    <rect x="416" y="392" width="148" height="38"/>
+    <rect x="572" y="372" width="148" height="38"/>
+    <rect x="728" y="396" width="148" height="38"/>
+  </g>
+  <g>
+    <rect x="864" y="478" width="566" height="70" rx="12" fill="#dceeff"/>
+    <polygon points="902,476 1380,476 1318,420 966,420" fill="#c3ddff"/>
+    <g fill="#1f4f90">
+      <rect x="908" y="500" width="106" height="18"/>
+      <rect x="1024" y="500" width="106" height="18"/>
+      <rect x="1140" y="500" width="106" height="18"/>
+      <rect x="1256" y="500" width="106" height="18"/>
+    </g>
+  </g>
+  <g fill="#f5fbff">
+    <rect x="210" y="590" width="120" height="58" rx="6"/>
+    <rect x="334" y="590" width="120" height="58" rx="6"/>
+    <rect x="458" y="590" width="120" height="58" rx="6"/>
+    <rect x="582" y="590" width="120" height="58" rx="6"/>
+    <rect x="706" y="590" width="120" height="58" rx="6"/>
+  </g>
+  <text x="84" y="118" fill="#e8f2ff" font-size="44" font-family="Inter, Arial, sans-serif" font-weight="700" letter-spacing="2">ZNY OCEAN FREIGHT EXECUTION</text>
+</svg>
