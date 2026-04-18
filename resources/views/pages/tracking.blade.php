@@ -8,7 +8,7 @@
     </section>
 
     <section class="zny-card p-6 md:p-8 mb-7">
-        <p class="text-slate-600 mb-4">Need help now? info@znylogistics.com · +99364918998</p>
+        <p class="text-slate-600 mb-4">Need help now? {{ $siteSettings['email_primary'] }} · {{ $siteSettings['phone_primary'] }}</p>
         <form method="POST" action="/{{ app()->getLocale() }}/tracking" class="grid md:grid-cols-2 gap-3">
             @csrf
             <input name="tracking_code" class="rounded-xl border border-slate-200 px-3 py-2.5 w-full" placeholder="ZYL-2026-0001" required>
