@@ -1,0 +1,31 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#071A3D"/>
+      <stop offset="100%" stop-color="#143A79"/>
+    </linearGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2F394D"/>
+      <stop offset="100%" stop-color="#1C2330"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect y="610" width="1600" height="290" fill="url(#road)"/>
+  <rect x="0" y="740" width="1600" height="12" fill="#CED8E8" opacity="0.45"/>
+  <g transform="translate(220 360)">
+    <rect x="0" y="130" width="760" height="210" rx="28" fill="#EEF3FB"/>
+    <rect x="40" y="165" width="230" height="68" rx="12" fill="#C7D7EE"/>
+    <rect x="300" y="165" width="230" height="68" rx="12" fill="#C7D7EE"/>
+    <rect x="560" y="165" width="160" height="68" rx="12" fill="#C7D7EE"/>
+    <path d="M760 182H982C1015.14 182 1042 208.863 1042 242V340H760V182Z" fill="#DCE7F7"/>
+    <path d="M820 220H980V272H820V220Z" fill="#BFD2EC"/>
+    <rect x="0" y="320" width="1042" height="20" fill="#BACCE8"/>
+    <circle cx="180" cy="360" r="64" fill="#152033"/>
+    <circle cx="180" cy="360" r="30" fill="#C6D7EF"/>
+    <circle cx="610" cy="360" r="64" fill="#152033"/>
+    <circle cx="610" cy="360" r="30" fill="#C6D7EF"/>
+    <circle cx="910" cy="360" r="64" fill="#152033"/>
+    <circle cx="910" cy="360" r="30" fill="#C6D7EF"/>
+  </g>
+  <text x="98" y="140" fill="#ECF3FF" font-size="58" font-family="Arial, sans-serif" font-weight="700" opacity="0.9">ZNY ROAD FREIGHT</text>
+</svg>
