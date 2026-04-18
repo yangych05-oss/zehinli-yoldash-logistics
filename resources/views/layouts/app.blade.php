@@ -40,7 +40,7 @@
 
         .zny-glass-nav {
             border-bottom: 1px solid rgba(10, 23, 53, .09);
-            background: linear-gradient(130deg, rgba(255,255,255,.88), rgba(255,255,255,.75));
+            background: linear-gradient(130deg, rgba(255,255,255,.9), rgba(255,255,255,.76));
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
         }
@@ -165,7 +165,7 @@
         }
 
         .zny-footer {
-            background: linear-gradient(128deg, #020d24, #071834 46%, #0b2a5f 100%);
+            background: linear-gradient(124deg, #010b1f, #071834 50%, #0a2d66 100%);
             border-top: 1px solid rgba(255,255,255,.09);
         }
 
@@ -180,17 +180,19 @@
         .zny-floating-whatsapp {
             pointer-events: auto;
             position: relative;
-            width: 3.9rem;
+            min-width: 3.9rem;
             height: 3.9rem;
             border-radius: 999px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            gap: .45rem;
             color: #fff;
-            background: radial-gradient(circle at 30% 24%, #61f4b0 0%, #28cd6b 50%, #14964a 100%);
+            background: radial-gradient(circle at 30% 24%, #61f4b0 0%, #28cd6b 52%, #14964a 100%);
             border: 1px solid rgba(255,255,255,.58);
             box-shadow: 0 20px 42px rgba(8, 26, 52, .35), 0 0 0 1px rgba(22, 156, 75, .44) inset;
             transition: transform .28s ease, box-shadow .28s ease;
+            padding: 0 1rem;
         }
 
         .zny-floating-whatsapp::before {
@@ -205,12 +207,20 @@
         }
 
         .zny-floating-whatsapp:hover {
-            transform: translateY(-4px) scale(1.04);
+            transform: translateY(-4px) scale(1.02);
             box-shadow: 0 24px 44px rgba(8, 26, 52, .38), 0 0 0 1px rgba(101, 238, 157, .46) inset;
         }
 
         .zny-floating-whatsapp:hover::before { transform: scale(1.04); opacity: 1; }
         .zny-floating-whatsapp:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+        .zny-floating-whatsapp-text {
+            font-size: .73rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
 
         .zny-floating-label {
             position: absolute;
@@ -235,7 +245,8 @@
             .zny-header-logo { height: 44px; }
             .zny-header-brand-title { font-size: .94rem; letter-spacing: .04em; }
             .zny-header-brand-subtitle { font-size: .61rem; }
-            .zny-floating-whatsapp { width: 3.32rem; height: 3.32rem; }
+            .zny-floating-whatsapp { width: 3.32rem; height: 3.32rem; min-width: 3.32rem; padding: 0; }
+            .zny-floating-whatsapp-text { display: none; }
         }
     </style>
 </head>
@@ -262,7 +273,7 @@
             </span>
             <div class="min-w-0 leading-tight">
                 <div class="zny-header-brand-title">{{ $companyName }}</div>
-                <div class="zny-header-brand-subtitle">International Freight Systems</div>
+                <div class="zny-header-brand-subtitle">Enterprise Freight Governance</div>
             </div>
         </a>
 
@@ -304,7 +315,7 @@
                     <p class="text-slate-300 text-xs">{{ site_setting('company_domain', 'znylogistic.com') }}</p>
                 </div>
             </a>
-            <p class="text-slate-300/90 leading-relaxed">Precision-driven multimodal logistics for international supply chains.</p>
+            <p class="text-slate-300/90 leading-relaxed">International logistics engineered for predictable outcomes, strict control, and long-term enterprise trust.</p>
         </div>
         <div>
             <p class="font-semibold text-white mb-3 tracking-wide uppercase text-xs">Direct Lines</p>
@@ -321,8 +332,8 @@
             </div>
         </div>
         <div class="md:text-right">
-            <p class="font-semibold text-white text-base">Trusted by teams that run on certainty.</p>
-            <p class="text-slate-300 mt-2 leading-relaxed">Rapid response, disciplined execution, and clear communication from booking to final delivery.</p>
+            <p class="font-semibold text-white text-base">Enterprise support with accountable execution.</p>
+            <p class="text-slate-300 mt-2 leading-relaxed">From first booking to final delivery, every shipment is managed with milestone discipline and transparent communication.</p>
         </div>
     </div>
 </footer>
@@ -332,6 +343,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
             <path d="M20.5 3.5A11.89 11.89 0 0 0 12.05 0C5.48 0 .14 5.35.14 11.94c0 2.1.55 4.15 1.6 5.96L0 24l6.3-1.66a11.86 11.86 0 0 0 5.73 1.46h.01c6.57 0 11.91-5.35 11.91-11.94 0-3.2-1.24-6.22-3.45-8.36ZM12.04 21.8h-.01a9.86 9.86 0 0 1-5.02-1.37l-.36-.22-3.74.98 1-3.65-.24-.37a9.91 9.91 0 0 1-1.52-5.23c0-5.47 4.44-9.93 9.91-9.93 2.65 0 5.14 1.03 7.01 2.91a9.86 9.86 0 0 1 2.89 7.01c0 5.47-4.44 9.92-9.92 9.92Zm5.44-7.42c-.3-.15-1.76-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.16-.17.2-.35.22-.65.08-.3-.15-1.26-.46-2.4-1.47-.88-.78-1.47-1.75-1.64-2.04-.17-.3-.02-.46.12-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.52.08-.8.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.2 5.1 4.49.72.31 1.28.5 1.72.63.72.23 1.38.2 1.9.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z"/>
         </svg>
+        <span class="zny-floating-whatsapp-text">WhatsApp</span>
         <span class="zny-floating-label">WhatsApp</span>
     </a>
 </div>
