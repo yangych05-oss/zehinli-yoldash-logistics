@@ -202,6 +202,82 @@
             50% { transform: translate3d(0, 16px, 0); }
         }
 
+        @keyframes zny-fade-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .zny-reveal {
+            opacity: 0;
+            animation: zny-fade-up .8s ease forwards;
+        }
+
+        .zny-reveal-delay-1 { animation-delay: .08s; }
+        .zny-reveal-delay-2 { animation-delay: .18s; }
+        .zny-reveal-delay-3 { animation-delay: .28s; }
+
+        .zny-floating-actions {
+            position: fixed;
+            right: 1rem;
+            bottom: 1rem;
+            z-index: 60;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: .7rem;
+        }
+
+        .zny-floating-chat,
+        .zny-floating-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            padding: .72rem .95rem;
+            border-radius: 999px;
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .01em;
+            box-shadow: 0 12px 24px rgba(8, 21, 47, 0.20);
+            transition: transform .24s ease, box-shadow .24s ease, filter .24s ease;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .zny-floating-chat:hover,
+        .zny-floating-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 28px rgba(8, 21, 47, 0.24);
+            filter: brightness(1.03);
+        }
+
+        .zny-floating-chat {
+            background: rgba(255,255,255,.96);
+            color: #0f2f78;
+            border: 1px solid rgba(15,47,120,.16);
+        }
+
+        .zny-floating-chat-note {
+            display: block;
+            margin-top: .12rem;
+            font-size: .66rem;
+            line-height: 1.1;
+            color: #5d6e8f;
+            font-weight: 600;
+        }
+
+        .zny-floating-whatsapp {
+            background: #25D366;
+            color: #fff;
+            border: 1px solid rgba(0,0,0,.06);
+        }
+
         @media (max-width: 768px) {
             .zny-brand-subtitle { display: none; }
             .zny-header-brand { gap: 0.72rem; }
@@ -219,6 +295,19 @@
                 margin-top: 0.14rem;
                 font-size: 0.68rem;
                 letter-spacing: 0.06em;
+            }
+            .zny-floating-actions {
+                right: .75rem;
+                bottom: .75rem;
+                gap: .55rem;
+            }
+            .zny-floating-chat,
+            .zny-floating-whatsapp {
+                padding: .62rem .82rem;
+                font-size: .72rem;
+            }
+            .zny-floating-chat-note {
+                display: none;
             }
         }
     </style>
@@ -297,5 +386,50 @@
         </div>
     </div>
 </footer>
+@php
+    $liveChatEmbedUrl = config('app.live_chat_embed_url');
+    $isLiveChatUrlValid = filled($liveChatEmbedUrl) && filter_var($liveChatEmbedUrl, FILTER_VALIDATE_URL) && str_starts_with($liveChatEmbedUrl, 'https://');
+@endphp
+
+<div class="zny-floating-actions" aria-label="Quick communication shortcuts">
+    @if($isLiveChatUrlValid)
+        <button type="button" id="live-chat-trigger" class="zny-floating-chat text-left" aria-label="Open live chat">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H8l-5 3V11.5A8.5 8.5 0 0 1 11.5 3h1A8.5 8.5 0 0 1 21 11.5Z"/>
+            </svg>
+            <span>Live Chat<span class="zny-floating-chat-note">Online support desk</span></span>
+        </button>
+    @else
+        <button type="button" class="zny-floating-chat text-left cursor-default" aria-label="Live chat coming online shortly">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H8l-5 3V11.5A8.5 8.5 0 0 1 11.5 3h1A8.5 8.5 0 0 1 21 11.5Z"/>
+            </svg>
+            <span>Live Chat<span class="zny-floating-chat-note">Coming online shortly</span></span>
+        </button>
+    @endif
+
+    <a href="https://wa.me/99364918998" target="_blank" rel="noopener noreferrer" class="zny-floating-whatsapp" aria-label="Contact ZNY Logistics via WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.5 3.5A11.89 11.89 0 0 0 12.05 0C5.48 0 .14 5.35.14 11.94c0 2.1.55 4.15 1.6 5.96L0 24l6.3-1.66a11.86 11.86 0 0 0 5.73 1.46h.01c6.57 0 11.91-5.35 11.91-11.94 0-3.2-1.24-6.22-3.45-8.36ZM12.04 21.8h-.01a9.86 9.86 0 0 1-5.02-1.37l-.36-.22-3.74.98 1-3.65-.24-.37a9.91 9.91 0 0 1-1.52-5.23c0-5.47 4.44-9.93 9.91-9.93 2.65 0 5.14 1.03 7.01 2.91a9.86 9.86 0 0 1 2.89 7.01c0 5.47-4.44 9.92-9.92 9.92Zm5.44-7.42c-.3-.15-1.76-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.16-.17.2-.35.22-.65.08-.3-.15-1.26-.46-2.4-1.47-.88-.78-1.47-1.75-1.64-2.04-.17-.3-.02-.46.12-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.52.08-.8.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.2 5.1 4.49.72.31 1.28.5 1.72.63.72.23 1.38.2 1.9.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z"/>
+        </svg>
+        <span>WhatsApp</span>
+    </a>
+</div>
+
+@if($isLiveChatUrlValid)
+    <script src="{{ $liveChatEmbedUrl }}" defer></script>
+    <script>
+        document.getElementById('live-chat-trigger')?.addEventListener('click', function () {
+            window.dispatchEvent(new CustomEvent('zny:live-chat-open'));
+            if (window.$crisp && typeof window.$crisp.push === 'function') {
+                window.$crisp.push(['do', 'chat:open']);
+            } else if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
+                window.Tawk_API.maximize();
+            } else if (window.jivo_api && typeof window.jivo_api.open === 'function') {
+                window.jivo_api.open();
+            }
+        });
+    </script>
+@endif
 </body>
 </html>
