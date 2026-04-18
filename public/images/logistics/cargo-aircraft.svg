@@ -1,0 +1,33 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0B1E46"/>
+      <stop offset="55%" stop-color="#1D4F9E"/>
+      <stop offset="100%" stop-color="#6FA7E8"/>
+    </linearGradient>
+    <linearGradient id="runway" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1C2433"/>
+      <stop offset="100%" stop-color="#2D3B52"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <ellipse cx="1270" cy="180" rx="120" ry="45" fill="#D8E8FF" opacity="0.45"/>
+  <ellipse cx="280" cy="200" rx="170" ry="58" fill="#D8E8FF" opacity="0.35"/>
+  <rect y="640" width="1600" height="260" fill="url(#runway)"/>
+  <rect x="0" y="720" width="1600" height="10" fill="#95A4BE" opacity="0.35"/>
+  <rect x="160" y="762" width="120" height="8" rx="4" fill="#DDE7F7" opacity="0.75"/>
+  <rect x="350" y="762" width="120" height="8" rx="4" fill="#DDE7F7" opacity="0.75"/>
+  <rect x="540" y="762" width="120" height="8" rx="4" fill="#DDE7F7" opacity="0.75"/>
+  <rect x="730" y="762" width="120" height="8" rx="4" fill="#DDE7F7" opacity="0.75"/>
+  <g transform="translate(350 360)">
+    <path d="M0 160C0 106.98 42.98 64 96 64H620C673.02 64 716 106.98 716 160V176H0V160Z" fill="#E5EDF8"/>
+    <rect x="80" y="96" width="560" height="94" rx="42" fill="#F7FAFF"/>
+    <path d="M710 178H756C778.091 178 796 195.909 796 218V236H700L710 178Z" fill="#DCE8F9"/>
+    <path d="M82 128L-110 66L-142 98L30 182L82 172V128Z" fill="#D9E5F6"/>
+    <path d="M620 126L860 36L898 68L690 180L620 170V126Z" fill="#D9E5F6"/>
+    <rect x="204" y="204" width="110" height="18" rx="9" fill="#C6D6EC"/>
+    <rect x="342" y="204" width="110" height="18" rx="9" fill="#C6D6EC"/>
+    <rect x="480" y="204" width="110" height="18" rx="9" fill="#C6D6EC"/>
+  </g>
+  <text x="120" y="130" fill="#EAF2FF" font-size="58" font-family="Arial, sans-serif" font-weight="700" opacity="0.85">ZNY AIR CARGO</text>
+</svg>
