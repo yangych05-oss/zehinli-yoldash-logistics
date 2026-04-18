@@ -13,6 +13,34 @@
         array_shift($segments);
     }
     $localizedPath = implode('/', $segments);
+
+    $uiCopy = [
+        'en' => [
+            'header_subtitle' => 'Enterprise Freight Governance',
+            'quote' => 'Request a Quote',
+            'footer_tagline' => 'International logistics engineered for predictable outcomes, strict control, and long-term enterprise trust.',
+            'direct_lines' => 'Direct Lines',
+            'footer_title' => 'Enterprise support with accountable execution.',
+            'footer_text' => 'From first booking to final delivery, every shipment is managed with milestone discipline and transparent communication.',
+        ],
+        'ru' => [
+            'header_subtitle' => 'Корпоративное управление грузоперевозками',
+            'quote' => 'Запросить расчёт',
+            'footer_tagline' => 'Международная логистика для прогнозируемых результатов, строгого контроля и долгосрочного доверия бизнеса.',
+            'direct_lines' => 'Контакты',
+            'footer_title' => 'Корпоративная поддержка с контролируемым исполнением.',
+            'footer_text' => 'От первой заявки до финальной доставки каждая перевозка ведётся с дисциплиной этапов и прозрачной коммуникацией.',
+        ],
+        'tm' => [
+            'header_subtitle' => 'Korporatiw ýük dolandyryşy',
+            'quote' => 'Bahany soramak',
+            'footer_tagline' => 'Çaklanylýan netijeler, berk gözegçilik we uzak möhletli ynam üçin halkara logistika.',
+            'direct_lines' => 'Göni aragatnaşyk',
+            'footer_title' => 'Jogapkärçilikli ýerine ýetiriliş bilen korporatiw goldaw.',
+            'footer_text' => 'Ilkinji sargytdan ahyrky tabşyryga çenli her daşama tapgyrlaýyn tertip we açyk aragatnaşyk bilen dolandyrylýar.',
+        ],
+    ];
+    $ui = $uiCopy[app()->getLocale()] ?? $uiCopy['en'];
 @endphp
 <head>
     <meta charset="utf-8">
@@ -339,7 +367,7 @@
                 </span>
                 <div class="min-w-0 leading-tight">
                     <div class="zny-header-brand-title">{{ $companyName }}</div>
-                    <div class="zny-header-brand-subtitle">Enterprise Freight Governance</div>
+                    <div class="zny-header-brand-subtitle">{{ $ui['header_subtitle'] }}</div>
                 </div>
             </a>
 
@@ -357,7 +385,7 @@
                         <a href="/{{ $lang }}{{ $localizedPath ? '/' . $localizedPath : '' }}" class="px-2 py-1 rounded-full {{ app()->getLocale() === $lang ? 'bg-slate-900 text-white' : 'text-slate-600 hover:text-slate-900' }}">{{ $lang }}</a>
                     @endforeach
                 </div>
-                <a href="/{{ app()->getLocale() }}/contact" class="zny-primary-btn !px-4 !py-2 !text-xs sm:!text-sm">Request a Quote</a>
+                <a href="/{{ app()->getLocale() }}/contact" class="zny-primary-btn !px-4 !py-2 !text-xs sm:!text-sm">{{ $ui['quote'] }}</a>
             </div>
         </div>
     </header>
@@ -381,11 +409,11 @@
                         <p class="text-slate-300 text-xs">{{ site_setting('company_domain', 'znylogistic.com') }}</p>
                     </div>
                 </a>
-                <p class="text-slate-300/90 leading-relaxed">International logistics engineered for predictable outcomes, strict control, and long-term enterprise trust.</p>
+                <p class="text-slate-300/90 leading-relaxed">{{ $ui['footer_tagline'] }}</p>
             </div>
 
             <div>
-                <p class="font-semibold text-white mb-3 tracking-wide uppercase text-xs">Direct Lines</p>
+                <p class="font-semibold text-white mb-3 tracking-wide uppercase text-xs">{{ $ui['direct_lines'] }}</p>
                 <div class="space-y-2 text-slate-300">
                     <p>{{ site_setting('phone_primary') }}</p>
                     @if(!empty($siteSettings['phone_secondary']))
@@ -400,8 +428,8 @@
             </div>
 
             <div class="md:text-right">
-                <p class="font-semibold text-white text-base">Enterprise support with accountable execution.</p>
-                <p class="text-slate-300 mt-2 leading-relaxed">From first booking to final delivery, every shipment is managed with milestone discipline and transparent communication.</p>
+                <p class="font-semibold text-white text-base">{{ $ui['footer_title'] }}</p>
+                <p class="text-slate-300 mt-2 leading-relaxed">{{ $ui['footer_text'] }}</p>
             </div>
         </div>
     </footer>
@@ -468,6 +496,9 @@
         recalculateOffset();
         window.addEventListener('resize', recalculateOffset);
         setInterval(recalculateOffset, 1400);
+
+        const observer = new MutationObserver(recalculateOffset);
+        observer.observe(document.body, { childList: true, subtree: true });
     })();
 </script>
 
