@@ -2,36 +2,55 @@
 
 @section('content')
     @php
-        $siteSettings = array_merge(
-            site_setting_defaults(),
-            is_array($siteSettings ?? null) ? $siteSettings : []
-        );
+        $siteSettings = array_merge(site_setting_defaults(), is_array($siteSettings ?? null) ? $siteSettings : []);
+        $locale = app()->getLocale();
+        $copy = [
+            'en' => [
+                'intro' => 'Contact our team',
+                'title' => 'Talk to a logistics specialist.',
+                'text' => 'Share your shipment requirement and our team will respond with clear next steps, routing guidance, and operational support.',
+                'wa' => 'Open WhatsApp',
+            ],
+            'ru' => [
+                'intro' => 'Связаться с командой',
+                'title' => 'Обсудите задачу с логистическим специалистом.',
+                'text' => 'Опишите ваш грузовой запрос, и наша команда вернётся с понятными следующими шагами, вариантами маршрута и операционной поддержкой.',
+                'wa' => 'Открыть WhatsApp',
+            ],
+            'tm' => [
+                'intro' => 'Topar bilen habarlaşyň',
+                'title' => 'Logistika hünärmeni bilen gürleşiň.',
+                'text' => 'Ýük islegiňizi iberiň, toparymyz size indiki ädimler, ugur boýunça maslahat we amaly goldaw bilen jogap berer.',
+                'wa' => 'WhatsApp açmak',
+            ],
+        ];
+        $content = $copy[$locale] ?? $copy['en'];
     @endphp
 
     <section class="rounded-[2rem] border border-slate-800 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 p-8 text-white shadow-xl md:p-10">
-        <p class="zny-label text-sky-300">Contact {{ $siteSettings['company_name'] ?? 'ZNY LOGISTICS' }}</p>
-        <h1 class="mt-2 text-4xl font-black">Speak with our freight operations team.</h1>
-        <p class="mt-3 max-w-2xl text-slate-200">Request pricing, route planning, or shipment support through one enterprise contact channel.</p>
+        <p class="zny-label text-sky-300">{{ $content['intro'] }}</p>
+        <h1 class="mt-2 text-4xl font-black">{{ $content['title'] }}</h1>
+        <p class="mt-3 max-w-2xl text-slate-200">{{ $content['text'] }}</p>
     </section>
 
     <section class="mt-10 grid items-start gap-8 lg:grid-cols-[1.1fr_.9fr]">
         <div>
             <div class="mb-6 grid gap-4 sm:grid-cols-2">
                 <div class="zny-card p-5">
-                    <p class="zny-label text-sky-700 mb-1">Phone</p>
+                    <p class="mb-1 zny-label text-sky-700">Phone</p>
                     <p class="text-lg font-bold">{{ site_setting('phone_primary') }}</p>
                 </div>
                 <div class="zny-card p-5">
-                    <p class="zny-label text-sky-700 mb-1">Address</p>
+                    <p class="mb-1 zny-label text-sky-700">Address</p>
                     <p class="text-slate-700">{{ site_setting('address') }}</p>
                 </div>
                 <div class="zny-card p-5">
-                    <p class="zny-label text-sky-700 mb-1">Email</p>
+                    <p class="mb-1 zny-label text-sky-700">Email</p>
                     <p class="text-slate-700">{{ site_setting('email_primary') }}</p>
                 </div>
                 @if(site_setting('email_secondary'))
                     <div class="zny-card p-5">
-                        <p class="zny-label text-sky-700 mb-1">Alternate</p>
+                        <p class="mb-1 zny-label text-sky-700">Alternate</p>
                         <p class="text-slate-700">{{ site_setting('email_secondary') }}</p>
                     </div>
                 @endif
@@ -48,14 +67,14 @@
         </div>
 
         <aside class="zny-card overflow-hidden lg:sticky lg:top-28">
-            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80" alt="Logistics team planning operations" class="h-44 w-full object-cover" loading="lazy" referrerpolicy="no-referrer">
+            <img src="{{ asset('images/premium/warehouse-operations-premium.svg') }}" alt="Logistics operations desk" class="h-44 w-full object-cover" loading="lazy">
             <div class="p-6 text-center">
-                <h2 class="text-2xl font-black mb-2">WhatsApp Priority Line</h2>
-                <p class="text-slate-600 mb-5">Scan the QR code for immediate contact with our operations desk.</p>
-                <div class="rounded-2xl border border-slate-200 p-3 bg-gradient-to-br from-white to-sky-50">
-                    <img src="{{ asset('images/qr_clean.png') }}" alt="WhatsApp QR code for {{ $siteSettings['company_name'] ?? 'ZNY LOGISTICS' }}" class="rounded-xl border border-slate-200 p-3 bg-white w-full max-w-[260px] mx-auto shadow-sm">
+                <h2 class="mb-2 text-2xl font-black">WhatsApp Priority Line</h2>
+                <p class="mb-5 text-slate-600">Scan the QR code for immediate contact with our operations desk.</p>
+                <div class="rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-sky-50 p-3">
+                    <img src="{{ asset('images/qr_clean.png') }}" alt="WhatsApp QR code for {{ $siteSettings['company_name'] ?? 'ZNY LOGISTICS' }}" class="mx-auto w-full max-w-[260px] rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
                 </div>
-                <a href="{{ whatsapp_link() }}" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center justify-center rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(20,90,50,.2)] transition hover:-translate-y-0.5 hover:bg-[#1ebe57]">Open WhatsApp</a>
+                <a href="{{ whatsapp_link() }}" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center justify-center rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(20,90,50,.2)] transition hover:-translate-y-0.5 hover:bg-[#1ebe57]">{{ $content['wa'] }}</a>
             </div>
         </aside>
     </section>
