@@ -1,8 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+    @php
+        $siteSettings = array_merge(
+            site_setting_defaults(),
+            is_array($siteSettings ?? null) ? $siteSettings : []
+        );
+    @endphp
     <section class="rounded-3xl bg-gradient-to-r from-slate-950 to-blue-950 text-white p-8 md:p-10 mb-8">
-        <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-300">Contact {{ site_setting('company_name', 'ZNY LOGISTICS') }}</p>
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-300">Contact {{ $siteSettings['company_name'] ?? 'ZNY LOGISTICS' }}</p>
         <h1 class="text-4xl font-black mt-2 mb-3">Talk to our international freight team.</h1>
         <p class="text-slate-200 max-w-2xl">For quote requests, routing support, and shipment follow-up, contact us through the form or WhatsApp channel.</p>
     </section>
@@ -47,7 +53,7 @@
                 <div class="rounded-2xl border border-slate-200 p-3 bg-gradient-to-br from-white to-sky-50">
                     <img
                         src="{{ asset('images/qr_clean.png') }}"
-                        alt="WhatsApp QR code for {{ site_setting('company_name', 'ZNY LOGISTICS') }}"
+                        alt="WhatsApp QR code for {{ $siteSettings['company_name'] ?? 'ZNY LOGISTICS' }}"
                         class="rounded-xl border border-slate-200 p-3 bg-white w-full max-w-[260px] mx-auto shadow-sm"
                     >
                 </div>

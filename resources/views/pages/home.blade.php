@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    @php
+        $siteSettings = array_merge(
+            site_setting_defaults(),
+            is_array($siteSettings ?? null) ? $siteSettings : []
+        );
+    @endphp
     <section class="zny-surface-glow rounded-3xl bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 text-white p-8 md:p-12 overflow-hidden relative">
         <div class="absolute inset-0 z-0 opacity-50 zny-grid-overlay"></div>
         <div class="pointer-events-none absolute -top-24 -left-8 h-72 w-72 rounded-full bg-sky-400/20 blur-3xl animate-pulse"></div>
@@ -13,7 +19,7 @@
                     Reliable global freight execution for businesses that move fast.
                 </h1>
                 <p class="zny-reveal zny-reveal-delay-2 text-slate-200 text-lg mb-8 max-w-xl">
-                    {{ site_setting('company_name', 'ZNY LOGISTICS') }} orchestrates international cargo programs with transparent milestones, agile routing, and dependable delivery performance across multimodal lanes.
+                    {{ $siteSettings['company_name'] ?? 'ZNY LOGISTICS' }} orchestrates international cargo programs with transparent milestones, agile routing, and dependable delivery performance across multimodal lanes.
                 </p>
                 <div class="zny-reveal zny-reveal-delay-3 flex flex-wrap gap-3">
                     <a href="/{{ app()->getLocale() }}/contact" class="rounded-full bg-sky-400 px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-sky-300 transition">Request a Quote</a>
@@ -155,7 +161,7 @@
             </div>
             <div class="rounded-2xl border border-slate-200 p-4 bg-gradient-to-br from-white to-sky-50 text-center">
                 <img src="{{ asset('images/qr_clean.png') }}" alt="WhatsApp QR code for quick contact" class="mx-auto rounded-xl bg-white p-3 max-w-[190px] shadow-sm">
-                <p class="mt-3 text-xs text-slate-500">Scan to chat with {{ site_setting('company_name', 'ZNY LOGISTICS') }}</p>
+                <p class="mt-3 text-xs text-slate-500">Scan to chat with {{ $siteSettings['company_name'] ?? 'ZNY LOGISTICS' }}</p>
             </div>
         </div>
     </section>
