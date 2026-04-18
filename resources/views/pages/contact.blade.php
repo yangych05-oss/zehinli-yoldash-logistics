@@ -53,7 +53,7 @@
                 </div>
                 <p class="mt-4 text-sm text-slate-500">Fast responses for freight, tracking, and quote requests.</p>
                 <a
-                    href="{{ $whatsAppHref }}"
+                    href="{{ whatsapp_link() }}"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="mt-5 inline-flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold text-white bg-[#25D366] hover:bg-[#1ebe57] transition-colors shadow-sm"
