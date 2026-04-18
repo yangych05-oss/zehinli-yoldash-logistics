@@ -6,7 +6,7 @@
         <div class="relative z-10 grid gap-8 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
             <div>
                 <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-200">About ZNY LOGISTICS</p>
-                <h1 class="mt-3 text-4xl font-black leading-tight">A modern logistics partner built for reliability, precision, and speed.</h1>
+                <h1 class="mt-3 text-4xl font-black leading-tight">A modern logistics partner built for reliability, precision, and global continuity.</h1>
                 <p class="mt-4 max-w-2xl text-slate-200">{{ __('messages.about_text') }}</p>
             </div>
             <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1400&q=80" alt="Modern logistics warehouse and container operations" class="h-64 w-full rounded-2xl object-cover" loading="lazy" referrerpolicy="no-referrer">
@@ -20,11 +20,11 @@
         </article>
         <article class="zny-card p-6">
             <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-700">Approach</p>
-            <p class="mt-3 text-sm text-slate-600">Blend technology, route expertise, and hands-on support into one transparent operating model.</p>
+            <p class="mt-3 text-sm text-slate-600">Blend technology, route expertise, and dedicated support into one transparent operating model.</p>
         </article>
         <article class="zny-card p-6">
             <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-700">Commitment</p>
-            <p class="mt-3 text-sm text-slate-600">Protect service quality with proactive communication and disciplined milestone management.</p>
+            <p class="mt-3 text-sm text-slate-600">Protect service quality with disciplined milestone management and proactive communication.</p>
         </article>
     </section>
 @endsection

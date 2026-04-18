@@ -7,120 +7,70 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
-            --zny-primary: #0a1735;
-            --zny-secondary: #123e95;
-            --zny-accent: #2ca4ff;
-            --zny-light: #f4f8ff;
-            --zny-text: #10203d;
-            --zny-surface: rgba(255, 255, 255, 0.72);
-            --zny-surface-strong: rgba(255, 255, 255, 0.92);
-            --zny-border: rgba(18, 42, 88, 0.12);
-            --zny-shadow: 0 22px 54px rgba(7, 23, 52, 0.10);
-            --zny-floating-right: 1.3rem;
-            --zny-floating-left: auto;
-            --zny-floating-bottom-safe: 8rem;
+            --zny-bg: #f4f7fd;
+            --zny-text: #101a33;
+            --zny-primary: #0f1f42;
+            --zny-secondary: #123f93;
+            --zny-accent: #37a9ff;
+            --zny-card: rgba(255, 255, 255, 0.86);
+            --zny-card-strong: rgba(255, 255, 255, 0.94);
+            --zny-border: rgba(15, 40, 94, 0.12);
+            --zny-shadow: 0 20px 44px rgba(8, 22, 48, 0.10);
         }
 
         * { box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
 
         body {
             font-family: Inter, "SF Pro Display", "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
             background:
-                radial-gradient(circle at 6% 8%, rgba(44,164,255,0.14), transparent 32%),
-                radial-gradient(circle at 92% 2%, rgba(18,62,149,0.08), transparent 30%),
-                linear-gradient(180deg, #f7faff 0%, #eef4ff 48%, #f5f8ff 100%);
+                radial-gradient(circle at 8% 7%, rgba(55,169,255,.18), transparent 35%),
+                radial-gradient(circle at 92% 1%, rgba(19,63,147,.10), transparent 33%),
+                linear-gradient(180deg, #f8fbff 0%, #f1f6ff 48%, #f5f8ff 100%);
             color: var(--zny-text);
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
         }
 
         .zny-glass-nav {
-            border-bottom: 1px solid rgba(10, 23, 53, 0.07);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.83), rgba(255, 255, 255, 0.74));
+            border-bottom: 1px solid rgba(10, 24, 54, .08);
+            background: linear-gradient(120deg, rgba(255,255,255,.84), rgba(255,255,255,.74));
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
         }
 
-        .zny-brand-link, .zny-header-brand {
-            display: inline-flex;
-            align-items: center;
-            gap: .9rem;
-            min-width: 0;
-            text-decoration: none;
-        }
+        .zny-header-brand,
+        .zny-brand-link { display: inline-flex; align-items: center; gap: .85rem; text-decoration: none; min-width: 0; }
 
         .zny-header-logo-wrap,
         .zny-brand-logo-wrap {
             display: grid;
             place-items: center;
-            border-radius: 16px;
-            background: linear-gradient(145deg, rgba(255,255,255,.92), rgba(233,244,255,.75));
-            border: 1px solid rgba(15, 47, 120, 0.14);
-            box-shadow: 0 12px 26px rgba(8,21,47,.12);
-            flex-shrink: 0;
+            border-radius: 15px;
+            border: 1px solid rgba(19,57,130,.14);
+            background: linear-gradient(150deg, rgba(255,255,255,.95), rgba(231,242,255,.82));
+            box-shadow: 0 12px 30px rgba(8,20,43,.12);
             transition: transform .25s ease, box-shadow .25s ease;
+            flex-shrink: 0;
         }
 
-        .zny-header-logo-wrap { width: 64px; height: 64px; }
-        .zny-brand-logo-wrap { width: 52px; height: 52px; }
+        .zny-header-logo-wrap { width: 62px; height: 62px; }
+        .zny-brand-logo-wrap { width: 50px; height: 50px; }
+        .zny-header-logo { height: 54px; width: auto; object-fit: contain; }
+        .zny-brand-logo { max-width: 36px; max-height: 36px; object-fit: contain; }
 
         .zny-header-brand:hover .zny-header-logo-wrap,
         .zny-brand-link:hover .zny-brand-logo-wrap {
             transform: translateY(-2px);
-            box-shadow: 0 16px 32px rgba(8,21,47,.17);
+            box-shadow: 0 15px 34px rgba(8,20,43,.15);
         }
 
-        .zny-header-logo { height: 56px; width: auto; object-fit: contain; }
-        .zny-brand-logo { max-width: 38px; max-height: 38px; object-fit: contain; }
-
-        .zny-header-brand-text, .zny-brand-text {
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-            line-height: 1.05;
-        }
-
-        .zny-header-brand-title {
-            font-size: 1.15rem;
-            letter-spacing: .055em;
-            font-weight: 850;
-            color: #07162f;
-            white-space: nowrap;
-        }
-
+        .zny-header-brand-title { font-size: 1.06rem; font-weight: 860; letter-spacing: .06em; color: #08152d; white-space: nowrap; }
         .zny-header-brand-subtitle,
-        .zny-brand-subtitle {
-            margin-top: .2rem;
-            font-size: .72rem;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            color: #516689;
-            font-weight: 620;
-            white-space: nowrap;
-        }
+        .zny-brand-subtitle { margin-top: .18rem; font-size: .69rem; text-transform: uppercase; letter-spacing: .10em; color: #54688d; font-weight: 620; white-space: nowrap; }
+        .zny-brand-title { font-size: .98rem; letter-spacing: .08em; font-weight: 770; color: #f6f9ff; }
 
-        .zny-brand-title {
-            font-size: 1rem;
-            letter-spacing: .08em;
-            font-weight: 800;
-            color: #f8fbff;
-        }
-
-        .zny-gradient-text {
-            background: linear-gradient(132deg, #1447a2 0%, #18a5ff 78%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .zny-nav-link {
-            position: relative;
-            color: #2a3f63;
-            transition: color .22s ease;
-        }
-
+        .zny-nav-link { position: relative; color: #2b4268; transition: color .22s ease; }
         .zny-nav-link::after {
             content: "";
             position: absolute;
@@ -129,80 +79,95 @@
             bottom: -8px;
             height: 2px;
             border-radius: 999px;
-            background: linear-gradient(90deg, #1447a2, #18a5ff);
-            transition: right .24s ease;
+            background: linear-gradient(90deg, #1346a0, #1aa4ff);
+            transition: right .25s ease;
         }
-
+        .zny-nav-link:hover,
+        .zny-nav-link[aria-current="page"] { color: #123f93; }
         .zny-nav-link:hover::after,
         .zny-nav-link[aria-current="page"]::after { right: 0; }
-        .zny-nav-link:hover,
-        .zny-nav-link[aria-current="page"] { color: #123e95; }
 
         .zny-card {
-            border-radius: 1.35rem;
+            border-radius: 1.45rem;
             border: 1px solid var(--zny-border);
-            background: var(--zny-surface-strong);
+            background: var(--zny-card-strong);
             box-shadow: var(--zny-shadow);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
         }
 
         .zny-soft-card {
-            border-radius: 1.3rem;
-            border: 1px solid rgba(255,255,255,0.54);
-            background: linear-gradient(145deg, rgba(255,255,255,.84), rgba(247,250,255,.65));
-            box-shadow: 0 12px 34px rgba(7, 26, 58, 0.08);
+            border-radius: 1.35rem;
+            border: 1px solid rgba(255,255,255,.48);
+            background: linear-gradient(150deg, rgba(255,255,255,.84), rgba(245,250,255,.68));
+            box-shadow: 0 14px 34px rgba(7,22,49,.09);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
 
         .zny-pill {
             border-radius: 999px;
-            border: 1px solid rgba(255,255,255,.18);
-            background: rgba(255,255,255,.08);
-            padding: .46rem .8rem;
-            font-size: .72rem;
-            letter-spacing: .08em;
+            border: 1px solid rgba(255,255,255,.2);
+            background: rgba(255,255,255,.09);
+            padding: .46rem .84rem;
+            font-size: .69rem;
+            letter-spacing: .10em;
             text-transform: uppercase;
-            font-weight: 680;
-        }
-
-        .zny-primary-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 999px;
-            padding: .86rem 1.4rem;
-            font-size: .9rem;
             font-weight: 700;
-            color: #fff;
-            background: linear-gradient(135deg, #0f3b8f, #1aa4ff);
-            box-shadow: 0 16px 34px rgba(16, 66, 156, 0.28);
-            transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
         }
 
-        .zny-primary-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(16, 66, 156, 0.34);
-            filter: saturate(1.03);
-        }
-
+        .zny-primary-btn,
         .zny-secondary-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             border-radius: 999px;
+            font-weight: 700;
+            transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease, background .24s ease;
+        }
+
+        .zny-primary-btn {
             padding: .86rem 1.4rem;
             font-size: .9rem;
-            font-weight: 650;
-            color: #0d2a61;
-            border: 1px solid rgba(20, 71, 162, 0.20);
-            background: rgba(255,255,255,.74);
-            transition: all .25s ease;
+            color: #fff;
+            background: linear-gradient(132deg, #123f93, #23a8ff);
+            box-shadow: 0 16px 34px rgba(17, 62, 145, 0.29);
+        }
+
+        .zny-primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 21px 42px rgba(17, 62, 145, 0.34);
+        }
+
+        .zny-secondary-btn {
+            padding: .86rem 1.4rem;
+            font-size: .9rem;
+            color: #102a63;
+            border: 1px solid rgba(16, 57, 133, 0.23);
+            background: rgba(255,255,255,.78);
         }
 
         .zny-secondary-btn:hover {
             transform: translateY(-2px);
-            border-color: rgba(20, 71, 162, 0.35);
+            border-color: rgba(16, 57, 133, 0.36);
             background: #fff;
+        }
+
+        .zny-input {
+            width: 100%;
+            border-radius: .85rem;
+            border: 1px solid rgba(16, 45, 102, .16);
+            background: linear-gradient(180deg, rgba(255,255,255,.97), rgba(247,251,255,.95));
+            padding: .72rem .86rem;
+            font-size: .94rem;
+            color: #10203e;
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+
+        .zny-input:focus {
+            outline: none;
+            border-color: rgba(20, 76, 171, .56);
+            box-shadow: 0 0 0 4px rgba(40, 135, 255, .12);
         }
 
         .zny-reveal { opacity: 0; animation: zny-fade-up .8s ease forwards; }
@@ -215,60 +180,57 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        .zny-footer {
+            background: linear-gradient(124deg, #030d23, #071837 48%, #0b2a62 100%);
+            border-top: 1px solid rgba(255,255,255,.09);
+        }
+
         .zny-floating-actions {
             position: fixed;
-            right: var(--zny-floating-right);
-            left: var(--zny-floating-left);
-            bottom: var(--zny-floating-bottom-safe);
-            z-index: 55;
+            right: 1.15rem;
+            bottom: 8.6rem;
+            z-index: 60;
             display: flex;
-            flex-direction: column;
             align-items: flex-end;
+            flex-direction: column;
+            pointer-events: none;
         }
 
         .zny-floating-whatsapp {
+            pointer-events: auto;
             position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
             width: 3.75rem;
             height: 3.75rem;
             border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             color: #fff;
-            background: radial-gradient(circle at 30% 24%, #60f0af 0%, #27cb69 50%, #169c4b 100%);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 18px 34px rgba(10, 30, 56, 0.30), 0 0 0 1px rgba(22, 156, 75, 0.35) inset;
-            transition: transform .28s ease, box-shadow .28s ease, filter .28s ease;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            touch-action: manipulation;
+            background: radial-gradient(circle at 30% 24%, #62f4b1 0%, #27cb69 48%, #149548 100%);
+            border: 1px solid rgba(255,255,255,.56);
+            box-shadow: 0 18px 38px rgba(10, 30, 56, 0.34), 0 0 0 1px rgba(22, 156, 75, 0.42) inset;
+            transition: transform .28s ease, box-shadow .28s ease;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
         .zny-floating-whatsapp::before {
             content: '';
             position: absolute;
-            inset: -7px;
+            inset: -9px;
             border-radius: inherit;
-            background: radial-gradient(circle, rgba(37, 211, 102, 0.30) 0%, rgba(37, 211, 102, 0) 72%);
+            background: radial-gradient(circle, rgba(37, 211, 102, 0.34) 0%, rgba(37, 211, 102, 0) 70%);
             z-index: -1;
-            opacity: .84;
-            transition: opacity .26s ease, transform .26s ease;
+            opacity: .9;
+            transition: transform .24s ease, opacity .24s ease;
         }
 
         .zny-floating-whatsapp:hover {
-            transform: translateY(-4px) scale(1.035);
-            box-shadow: 0 22px 40px rgba(10, 30, 56, 0.34), 0 0 0 1px rgba(74, 222, 128, 0.34) inset;
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 24px 44px rgba(10, 30, 56, 0.38), 0 0 0 1px rgba(101, 238, 157, 0.42) inset;
         }
-
-        .zny-floating-whatsapp:hover::before {
-            opacity: 1;
-            transform: scale(1.02);
-        }
-
-        .zny-floating-whatsapp:focus-visible {
-            outline: 2px solid rgba(255, 255, 255, 0.98);
-            outline-offset: 3px;
-        }
+        .zny-floating-whatsapp:hover::before { transform: scale(1.03); opacity: 1; }
+        .zny-floating-whatsapp:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 
         .zny-floating-label {
             position: absolute;
@@ -277,31 +239,24 @@
             margin: -1px;
             overflow: hidden;
             clip: rect(0,0,0,0);
-            white-space: nowrap;
             border: 0;
         }
 
-        .zny-footer {
-            background: linear-gradient(130deg, #030d22, #05183d 48%, #092559 100%);
-            border-top: 1px solid rgba(255,255,255,.08);
-        }
-
         @media (max-width: 1024px) {
-            :root {
-                --zny-floating-right: auto;
-                --zny-floating-left: 1rem;
-                --zny-floating-bottom-safe: 6rem;
+            .zny-floating-actions {
+                left: 1rem;
+                right: auto;
+                align-items: flex-start;
+                bottom: 6.2rem;
             }
-            .zny-floating-actions { align-items: flex-start; }
         }
 
         @media (max-width: 768px) {
-            .zny-header-brand { gap: .72rem; }
             .zny-header-logo-wrap { width: 52px; height: 52px; border-radius: 13px; }
             .zny-header-logo { height: 44px; }
-            .zny-header-brand-title { font-size: 1rem; letter-spacing: .04em; }
-            .zny-header-brand-subtitle { font-size: .66rem; }
-            .zny-floating-whatsapp { width: 3.3rem; height: 3.3rem; }
+            .zny-header-brand-title { font-size: .95rem; letter-spacing: .04em; }
+            .zny-header-brand-subtitle { font-size: .62rem; }
+            .zny-floating-whatsapp { width: 3.25rem; height: 3.25rem; }
         }
     </style>
 </head>
@@ -325,9 +280,9 @@
             <span class="zny-header-logo-wrap">
                 <img src="{{ asset('images/logo_clean.png') }}" alt="{{ $companyName }}" class="zny-header-logo">
             </span>
-            <div class="zny-header-brand-text">
+            <div class="min-w-0 leading-tight">
                 <div class="zny-header-brand-title">{{ $companyName }}</div>
-                <div class="zny-header-brand-subtitle">Global Logistics</div>
+                <div class="zny-header-brand-subtitle">Global Logistics Network</div>
             </div>
         </a>
 
@@ -364,7 +319,7 @@
                 <span class="zny-brand-logo-wrap !w-11 !h-11 !rounded-xl !bg-white/10 !border-white/10 !shadow-none">
                     <img src="{{ asset('images/logo_clean.png') }}" alt="{{ $companyName }} logo" class="zny-brand-logo">
                 </span>
-                <div class="zny-brand-text">
+                <div>
                     <p class="zny-brand-title">{{ $companyName }}</p>
                     <p class="text-slate-300 text-xs">{{ site_setting('company_domain', 'znylogistic.com') }}</p>
                 </div>
@@ -387,7 +342,7 @@
         </div>
         <div class="md:text-right">
             <p class="font-semibold text-white text-base">Operational clarity. Premium execution.</p>
-            <p class="text-slate-300 mt-2 leading-relaxed">Designed for manufacturers, importers, and distributors who need reliable timelines and proactive logistics communication.</p>
+            <p class="text-slate-300 mt-2 leading-relaxed">Built for importers, manufacturers, and enterprise teams that require dependable timing and proactive communication.</p>
         </div>
     </div>
 </footer>
@@ -408,11 +363,11 @@
 
     const recalculateOffset = function () {
         const isTabletDown = window.matchMedia('(max-width: 1024px)').matches;
-        const baseSpacing = isTabletDown ? 92 : 112;
-        const extraGap = isTabletDown ? 16 : 22;
-        const hardReserve = isTabletDown ? 92 : 86;
+        const baseSpacing = isTabletDown ? 88 : 108;
+        const extraGap = isTabletDown ? 14 : 24;
+        const hardReserve = isTabletDown ? 90 : 92;
         let safeBottom = baseSpacing;
-        let safeRight = isTabletDown ? null : 22;
+        let safeRight = isTabletDown ? null : 20;
 
         const tawkTargets = [
             '#tawkchat-minified-iframe-element',
@@ -430,14 +385,14 @@
             if (rect.width === 0 || rect.height === 0) continue;
 
             const occupiedFromBottom = Math.max(0, window.innerHeight - rect.top);
-            safeBottom = Math.max(safeBottom, occupiedFromBottom + extraGap);
+            safeBottom = Math.max(safeBottom, occupiedFromBottom + extraGap + 8);
 
-            if (!isTabletDown && rect.right > window.innerWidth - 10) {
-                safeRight = Math.max(safeRight, Math.ceil(rect.width + 22));
+            if (!isTabletDown && rect.right >= window.innerWidth - 4) {
+                safeRight = Math.max(safeRight || 20, Math.ceil(rect.width + 24));
             }
         }
 
-        safeBottom = Math.max(safeBottom, hardReserve + extraGap);
+        safeBottom = Math.max(safeBottom, hardReserve);
         actions.style.bottom = safeBottom + 'px';
 
         if (isTabletDown) {
@@ -448,7 +403,7 @@
         }
 
         actions.style.left = 'auto';
-        actions.style.right = (safeRight || 22) + 'px';
+        actions.style.right = (safeRight || 20) + 'px';
         actions.style.alignItems = 'flex-end';
     };
 
