@@ -11,8 +11,8 @@
         <p class="mb-4 text-slate-600">Need immediate support? {{ site_setting('email_primary') }} · {{ site_setting('phone_primary') }}</p>
         <form method="POST" action="/{{ app()->getLocale() }}/tracking" class="grid gap-3 md:grid-cols-2">
             @csrf
-            <input name="tracking_code" class="w-full rounded-xl border border-slate-200 px-3 py-2.5" placeholder="ZYL-2026-0001" required>
-            <input name="public_access_code" class="w-full rounded-xl border border-slate-200 px-3 py-2.5" placeholder="Access code" required>
+            <input name="tracking_code" class="zny-input" placeholder="ZYL-2026-0001" required>
+            <input name="public_access_code" class="zny-input" placeholder="Access code" required>
             <button class="zny-primary-btn md:col-span-2">{{ __('messages.search') }}</button>
         </form>
     </section>

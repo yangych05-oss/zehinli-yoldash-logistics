@@ -27,13 +27,13 @@
         <p class="mb-5 text-slate-600">Share shipment details and our team will provide a tailored routing strategy.</p>
         <form method="POST" action="/{{ app()->getLocale() }}/quote-request" class="grid md:grid-cols-2 gap-4">
             @csrf
-            <input name="name" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5" placeholder="{{ __('messages.name') }}" required>
-            <input name="company" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5" placeholder="{{ __('messages.company') }}">
-            <input name="email" type="email" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5" placeholder="Email" required>
-            <input name="phone" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5" placeholder="Phone" required>
-            <input name="origin" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5" placeholder="Origin" required>
-            <input name="destination" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5" placeholder="Destination" required>
-            <textarea name="cargo_details" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 md:col-span-2" placeholder="Cargo details" required></textarea>
+            <input name="name" class="zny-input" placeholder="{{ __('messages.name') }}" required>
+            <input name="company" class="zny-input" placeholder="{{ __('messages.company') }}">
+            <input name="email" type="email" class="zny-input" placeholder="Email" required>
+            <input name="phone" class="zny-input" placeholder="Phone" required>
+            <input name="origin" class="zny-input" placeholder="Origin" required>
+            <input name="destination" class="zny-input" placeholder="Destination" required>
+            <textarea name="cargo_details" class="zny-input md:col-span-2" placeholder="Cargo details" required></textarea>
             <button class="zny-primary-btn md:col-span-2">{{ __('messages.send') }}</button>
         </form>
     </section>

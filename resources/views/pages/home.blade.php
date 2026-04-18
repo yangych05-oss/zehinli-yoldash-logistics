@@ -9,75 +9,75 @@
 
         $services = [
             [
-                'icon' => '✈️',
                 'title' => 'Air Freight',
-                'text' => 'Priority international and regional air cargo programs with milestone control.',
-                'image' => 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80',
+                'text' => 'Priority international air cargo programs with strict milestone governance and exception response.',
+                'image' => 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1400&q=80',
                 'alt' => 'Cargo aircraft at airport logistics terminal',
+                'badge' => 'Time-critical',
             ],
             [
-                'icon' => '🚚',
                 'title' => 'Road Transport',
-                'text' => 'Cross-border trucking with route optimization, secure handling, and reliable ETA windows.',
-                'image' => 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1200&q=80',
-                'alt' => 'Freight truck on highway',
+                'text' => 'Cross-border trucking with calibrated routing, secured handling, and dependable ETA windows.',
+                'image' => 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1400&q=80',
+                'alt' => 'Freight truck on modern expressway',
+                'badge' => 'Regional depth',
             ],
             [
-                'icon' => '🚢',
                 'title' => 'Ocean Freight',
-                'text' => 'Port-to-port and door-to-door container movement across key international trade lanes.',
-                'image' => 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80',
-                'alt' => 'Container ship at seaport',
+                'text' => 'Containerized maritime execution across major trade lanes from port planning to inland handoff.',
+                'image' => 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1400&q=80',
+                'alt' => 'Container vessel at maritime terminal',
+                'badge' => 'Global lanes',
             ],
         ];
 
         $highlights = [
-            ['value' => '24/7', 'label' => 'Operations Desk'],
-            ['value' => '99.2%', 'label' => 'On-time Milestones'],
-            ['value' => '45+', 'label' => 'Trade Lanes Managed'],
-            ['value' => '1:1', 'label' => 'Dedicated Coordinator'],
+            ['value' => '24/7', 'label' => 'Control desk'],
+            ['value' => '99.2%', 'label' => 'On-time milestones'],
+            ['value' => '45+', 'label' => 'Trade lanes'],
+            ['value' => '1:1', 'label' => 'Dedicated manager'],
         ];
     @endphp
 
-    <section class="relative overflow-hidden rounded-[2rem] border border-slate-800/70 bg-gradient-to-br from-slate-950 via-[#061739] to-[#0b2454] p-8 md:p-12 text-white shadow-2xl shadow-slate-900/40">
-        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 14% 16%, rgba(255,255,255,0.28) 1px, transparent 1px), radial-gradient(circle at 84% 72%, rgba(56,189,248,0.32) 1px, transparent 1px); background-size: 120px 120px, 160px 160px;"></div>
-        <div class="absolute -top-24 right-[-5rem] h-80 w-80 rounded-full bg-cyan-400/20 blur-3xl"></div>
-        <div class="absolute -bottom-24 left-[-4rem] h-72 w-72 rounded-full bg-blue-500/20 blur-3xl"></div>
+    <section class="relative overflow-hidden rounded-[2.2rem] border border-slate-900/70 bg-gradient-to-br from-slate-950 via-[#071b42] to-[#123f93] p-8 text-white shadow-[0_26px_64px_rgba(6,20,45,.42)] md:p-12">
+        <div class="absolute inset-0 opacity-[0.24]" style="background-image: radial-gradient(circle at 15% 18%, rgba(255,255,255,.34) 1px, transparent 1px), radial-gradient(circle at 86% 72%, rgba(55,169,255,.34) 1px, transparent 1px); background-size: 120px 120px, 150px 150px;"></div>
+        <div class="absolute -top-28 right-[-4.8rem] h-[22rem] w-[22rem] rounded-full bg-cyan-400/22 blur-3xl"></div>
+        <div class="absolute -bottom-32 left-[-5rem] h-[20rem] w-[20rem] rounded-full bg-blue-500/20 blur-3xl"></div>
 
-        <div class="relative z-10 grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr]">
+        <div class="relative z-10 grid items-center gap-10 lg:grid-cols-[1.03fr_.97fr]">
             <div class="max-w-2xl">
-                <p class="zny-pill zny-reveal zny-reveal-delay-1 inline-flex text-sky-100">Enterprise Logistics Performance</p>
-                <h1 class="zny-reveal zny-reveal-delay-2 mt-5 text-4xl font-black leading-tight md:text-[3.2rem]">Premium global freight execution for teams that cannot afford uncertainty.</h1>
-                <p class="zny-reveal zny-reveal-delay-2 mt-5 max-w-xl text-base text-slate-200 md:text-lg">{{ $siteSettings['company_name'] ?? 'ZNY LOGISTICS' }} combines cargo aircraft, trucking, ports, and warehousing into one managed operating model with transparent communication and dependable delivery outcomes.</p>
+                <p class="zny-pill zny-reveal zny-reveal-delay-1 inline-flex text-sky-100">Enterprise Logistics, Premium Execution</p>
+                <h1 class="zny-reveal zny-reveal-delay-2 mt-5 text-[2.15rem] font-black leading-tight md:text-[3.2rem]">Global freight orchestration built for teams that run on precision.</h1>
+                <p class="zny-reveal zny-reveal-delay-2 mt-5 max-w-xl text-base text-slate-200 md:text-lg">{{ $siteSettings['company_name'] ?? 'ZNY LOGISTICS' }} integrates air cargo, road freight, maritime shipping, and warehousing into one accountable operating model with clear communication and reliable outcomes.</p>
 
                 <div class="zny-reveal zny-reveal-delay-3 mt-8 flex flex-wrap gap-3">
-                    <a href="/{{ app()->getLocale() }}/contact" class="zny-primary-btn">Request a Strategic Quote</a>
+                    <a href="/{{ app()->getLocale() }}/contact" class="zny-primary-btn">Request Strategic Quote</a>
                     <a href="/{{ app()->getLocale() }}/tracking" class="zny-secondary-btn !text-white !border-white/35 !bg-white/10 hover:!bg-white/16">Track Shipment</a>
                 </div>
 
                 <div class="zny-reveal zny-reveal-delay-3 mt-8 grid gap-3 sm:grid-cols-3">
                     <div class="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-sm">
-                        <p class="text-[11px] uppercase tracking-[0.18em] text-sky-100">Rapid Response</p>
-                        <p class="mt-1 text-sm font-semibold text-white">Expedited operational alignment</p>
-                    </div>
-                    <div class="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-sm">
                         <p class="text-[11px] uppercase tracking-[0.18em] text-sky-100">Visibility</p>
-                        <p class="mt-1 text-sm font-semibold text-white">Milestone-level shipment updates</p>
+                        <p class="mt-1 text-sm font-semibold text-white">Milestone-level updates</p>
                     </div>
                     <div class="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-sm">
-                        <p class="text-[11px] uppercase tracking-[0.18em] text-sky-100">Risk Control</p>
-                        <p class="mt-1 text-sm font-semibold text-white">Proactive exception handling</p>
+                        <p class="text-[11px] uppercase tracking-[0.18em] text-sky-100">Reliability</p>
+                        <p class="mt-1 text-sm font-semibold text-white">Proactive exception control</p>
+                    </div>
+                    <div class="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-sm">
+                        <p class="text-[11px] uppercase tracking-[0.18em] text-sky-100">Scale</p>
+                        <p class="mt-1 text-sm font-semibold text-white">International network coverage</p>
                     </div>
                 </div>
             </div>
 
             <div class="grid gap-4 zny-reveal zny-reveal-delay-3">
                 <article class="zny-soft-card overflow-hidden border-white/20 bg-white/12 p-4 text-white">
-                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1400&q=80" alt="Warehouse logistics operations" class="h-52 w-full rounded-2xl object-cover" loading="lazy" referrerpolicy="no-referrer">
-                    <div class="mt-4 flex items-center justify-between">
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1500&q=80" alt="Warehouse logistics operations" class="h-56 w-full rounded-2xl object-cover" loading="lazy" referrerpolicy="no-referrer">
+                    <div class="mt-4 flex items-center justify-between gap-3">
                         <div>
                             <p class="text-xs uppercase tracking-[0.18em] text-sky-100">Control Tower</p>
-                            <p class="text-sm font-semibold">Unified air, road, and ocean planning</p>
+                            <p class="text-sm font-semibold">Unified planning across air, road, and ocean</p>
                         </div>
                         <span class="rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs">Live</span>
                     </div>
@@ -94,20 +94,21 @@
         </div>
     </section>
 
-    <section class="mt-16">
-        <div class="mb-7 flex items-end justify-between gap-4">
+    <section class="mt-20">
+        <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
             <div>
                 <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-800">Core Services</p>
-                <h2 class="mt-2 text-3xl font-black text-slate-900 md:text-4xl">Integrated logistics, beautifully coordinated.</h2>
+                <h2 class="mt-2 text-3xl font-black text-slate-900 md:text-4xl">Modal expertise, coordinated as one premium workflow.</h2>
             </div>
+            <p class="max-w-xl text-sm text-slate-600">Each movement is engineered around speed, cost discipline, and predictable execution for enterprise supply chains.</p>
         </div>
 
         <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             @foreach($services as $service)
-                <article class="group zny-card overflow-hidden transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_28px_52px_rgba(7,26,58,0.14)]">
-                    <img src="{{ $service['image'] }}" alt="{{ $service['alt'] }}" class="h-44 w-full object-cover transition duration-700 group-hover:scale-[1.03]" loading="lazy" referrerpolicy="no-referrer">
+                <article class="group zny-card overflow-hidden transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_30px_56px_rgba(7,26,58,0.14)]">
+                    <img src="{{ $service['image'] }}" alt="{{ $service['alt'] }}" class="h-48 w-full object-cover transition duration-700 group-hover:scale-[1.03]" loading="lazy" referrerpolicy="no-referrer">
                     <div class="p-6">
-                        <div class="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-sky-100 text-2xl">{{ $service['icon'] }}</div>
+                        <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-sky-700">{{ $service['badge'] }}</p>
                         <h3 class="text-xl font-bold text-slate-900">{{ $service['title'] }}</h3>
                         <p class="mt-2 text-sm leading-relaxed text-slate-600">{{ $service['text'] }}</p>
                     </div>
@@ -118,38 +119,38 @@
 
     <section class="mt-16 grid gap-5 lg:grid-cols-[1.35fr_.65fr]">
         <div class="zny-card p-7 md:p-8">
-            <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-700">Why Teams Choose ZNY</p>
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-700">Why Global Teams Choose ZNY</p>
             <div class="mt-5 grid gap-4 sm:grid-cols-2">
                 <article class="rounded-2xl border border-slate-200/80 bg-white/75 p-5">
-                    <h3 class="text-base font-bold">Single operational view</h3>
-                    <p class="mt-2 text-sm text-slate-600">From booking to final-mile handoff, all milestones and risks are managed through one accountable workflow.</p>
+                    <h3 class="text-base font-bold">Single operational layer</h3>
+                    <p class="mt-2 text-sm text-slate-600">From booking through final delivery, milestones and risks stay inside one accountable command structure.</p>
                 </article>
                 <article class="rounded-2xl border border-slate-200/80 bg-white/75 p-5">
-                    <h3 class="text-base font-bold">Corporate-grade communication</h3>
-                    <p class="mt-2 text-sm text-slate-600">Decision-ready updates for procurement, supply chain, and finance teams who need confidence under pressure.</p>
+                    <h3 class="text-base font-bold">Executive-ready communication</h3>
+                    <p class="mt-2 text-sm text-slate-600">Clarity for procurement, finance, and supply chain leaders who need confidence at every decision point.</p>
                 </article>
                 <article class="rounded-2xl border border-slate-200/80 bg-white/75 p-5 sm:col-span-2">
-                    <h3 class="text-base font-bold">Cost, speed, and reliability balance</h3>
-                    <p class="mt-2 text-sm text-slate-600">We tailor modal mix and lane strategy to your commercial priorities—without compromising on execution quality.</p>
+                    <h3 class="text-base font-bold">Performance-calibrated routing</h3>
+                    <p class="mt-2 text-sm text-slate-600">We tune transport mix around your timing, budget, and reliability goals without compromising service quality.</p>
                 </article>
             </div>
         </div>
 
         <aside class="zny-card overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1616432043562-3671ea2e5242?auto=format&fit=crop&w=1200&q=80" alt="Shipping containers at port terminal" class="h-56 w-full object-cover" loading="lazy" referrerpolicy="no-referrer">
+            <img src="https://images.unsplash.com/photo-1616432043562-3671ea2e5242?auto=format&fit=crop&w=1400&q=80" alt="Shipping containers at port terminal" class="h-60 w-full object-cover" loading="lazy" referrerpolicy="no-referrer">
             <div class="p-6">
                 <p class="text-xs font-bold uppercase tracking-[0.18em] text-sky-700">Trusted Infrastructure</p>
-                <p class="mt-2 text-sm text-slate-600">Premium partner network across major ports, airports, and inland hubs.</p>
+                <p class="mt-2 text-sm text-slate-600">Strong partner ecosystem across airports, ports, and inland transfer points.</p>
             </div>
         </aside>
     </section>
 
-    <section class="mt-16 rounded-[1.8rem] border border-slate-800 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 p-8 text-white shadow-xl shadow-slate-900/35 md:p-10">
+    <section class="mt-16 rounded-[1.8rem] border border-slate-800 bg-gradient-to-r from-slate-950 via-[#102b5d] to-slate-900 p-8 text-white shadow-xl shadow-slate-900/35 md:p-10">
         <div class="grid items-center gap-6 lg:grid-cols-[1.2fr_.8fr]">
             <div>
                 <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-300">Tracking Portal</p>
                 <h3 class="mt-2 text-3xl font-black">{{ site_setting('tracking_cta_text') }}</h3>
-                <p class="mt-3 max-w-2xl text-slate-200">Access secure shipment visibility with current location, milestone timestamps, and operational notes in one dashboard.</p>
+                <p class="mt-3 max-w-2xl text-slate-200">Monitor current location, milestone timestamps, and operational notes in a secure visibility environment.</p>
             </div>
             <div class="flex lg:justify-end">
                 <a href="/{{ app()->getLocale() }}/tracking" class="zny-primary-btn">Open Tracking Portal</a>
@@ -159,16 +160,16 @@
 
     <section class="mt-16 grid gap-5 lg:grid-cols-2">
         <article class="zny-card p-7 md:p-8">
-            <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-700">WhatsApp Support</p>
-            <h2 class="mt-2 text-3xl font-black text-slate-900">Instant access to our freight team.</h2>
-            <p class="mt-3 text-slate-600">For urgent routing questions, quote updates, and live shipment support, connect directly with our operations desk.</p>
-            <a href="{{ whatsapp_link() }}" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center justify-center rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_30px_rgba(20,90,50,.22)] transition hover:-translate-y-0.5 hover:bg-[#1ebe57]">Open WhatsApp</a>
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-700">WhatsApp Priority Desk</p>
+            <h2 class="mt-2 text-3xl font-black text-slate-900">Rapid support from logistics specialists.</h2>
+            <p class="mt-3 text-slate-600">For urgent route questions, live shipment updates, and quote coordination, connect instantly with operations.</p>
+            <a href="{{ whatsapp_link() }}" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center justify-center rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-[0_20px_36px_rgba(20,90,50,.26)] transition hover:-translate-y-0.5 hover:bg-[#1ebe57]">Open WhatsApp</a>
         </article>
 
         <article class="zny-card overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80" alt="Logistics planning and operations analytics" class="h-44 w-full object-cover" loading="lazy" referrerpolicy="no-referrer">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80" alt="Logistics planning and operations analytics" class="h-48 w-full object-cover" loading="lazy" referrerpolicy="no-referrer">
             <div class="p-7">
-                <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-700">Contact</p>
+                <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-700">Direct Contact</p>
                 <h2 class="mt-2 text-3xl font-black text-slate-900">{{ site_setting('contact_cta_text') }}</h2>
                 <ul class="mt-4 space-y-2 text-sm text-slate-700">
                     <li>📞 {{ site_setting('phone_primary') }}</li>

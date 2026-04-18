@@ -39,10 +39,10 @@
 
             <form method="POST" action="/{{ app()->getLocale() }}/contact" class="zny-card grid gap-4 p-6 md:grid-cols-2">
                 @csrf
-                <input name="name" class="rounded-xl border border-slate-200 px-3 py-2.5" placeholder="{{ __('messages.name') }}" required>
-                <input name="email" type="email" class="rounded-xl border border-slate-200 px-3 py-2.5" placeholder="Email" required>
-                <input name="phone" class="rounded-xl border border-slate-200 px-3 py-2.5 md:col-span-2" placeholder="Phone">
-                <textarea name="message" rows="5" class="rounded-xl border border-slate-200 px-3 py-2.5 md:col-span-2" placeholder="{{ __('messages.message') }}" required></textarea>
+                <input name="name" class="zny-input" placeholder="{{ __('messages.name') }}" required>
+                <input name="email" type="email" class="zny-input" placeholder="Email" required>
+                <input name="phone" class="zny-input md:col-span-2" placeholder="Phone">
+                <textarea name="message" rows="5" class="zny-input md:col-span-2" placeholder="{{ __('messages.message') }}" required></textarea>
                 <button class="zny-primary-btn md:col-span-2">{{ __('messages.send') }}</button>
             </form>
         </div>
