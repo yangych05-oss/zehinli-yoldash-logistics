@@ -222,11 +222,17 @@
         .zny-reveal-delay-2 { animation-delay: .18s; }
         .zny-reveal-delay-3 { animation-delay: .28s; }
 
+        :root {
+            --zny-floating-right: 1rem;
+            --zny-floating-bottom-base: 1rem;
+            --zny-floating-bottom-safe: 1rem;
+        }
+
         .zny-floating-actions {
             position: fixed;
-            right: 1rem;
-            bottom: 1rem;
-            z-index: 60;
+            right: var(--zny-floating-right);
+            bottom: var(--zny-floating-bottom-safe);
+            z-index: 65;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
@@ -279,9 +285,12 @@
                 font-size: 0.68rem;
                 letter-spacing: 0.06em;
             }
+            :root {
+                --zny-floating-right: .75rem;
+                --zny-floating-bottom-base: .75rem;
+                --zny-floating-bottom-safe: .75rem;
+            }
             .zny-floating-actions {
-                right: .75rem;
-                bottom: .75rem;
                 gap: .55rem;
             }
             .zny-floating-whatsapp {
@@ -304,10 +313,10 @@
     <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-wrap items-center justify-between gap-4">
         <a href="/" class="zny-header-brand">
             <span class="zny-header-logo-wrap">
-                <img src="{{ asset('images/logo_clean.png') }}" alt="{{ $siteSettings['company_name'] }}" class="zny-header-logo">
+                <img src="{{ asset('images/logo_clean.png') }}" alt="{{ site_setting('company_name', 'ZNY LOGISTICS') }}" class="zny-header-logo">
             </span>
             <div class="zny-header-brand-text">
-                <div class="zny-header-brand-title">{{ $siteSettings['company_name'] }}</div>
+                <div class="zny-header-brand-title">{{ site_setting('company_name', 'ZNY LOGISTICS') }}</div>
                 <div class="zny-header-brand-subtitle">Global Logistics</div>
             </div>
         </a>
@@ -343,26 +352,26 @@
         <div>
             <div class="flex items-center gap-3 mb-4">
                 <span class="zny-brand-logo-wrap !w-11 !h-11 !rounded-xl !bg-white/10 !border-white/10 !shadow-none">
-                    <img src="{{ asset('images/logo_clean.png') }}" alt="{{ $siteSettings['company_name'] }} logo" class="zny-brand-logo">
+                    <img src="{{ asset('images/logo_clean.png') }}" alt="{{ site_setting('company_name', 'ZNY LOGISTICS') }} logo" class="zny-brand-logo">
                 </span>
                 <div>
-                    <p class="font-bold tracking-[0.12em] text-white text-xs">{{ $siteSettings['company_name'] }}</p>
-                    <p class="text-slate-400 text-xs">{{ $siteSettings['company_domain'] }}</p>
+                    <p class="font-bold tracking-[0.12em] text-white text-xs">{{ site_setting('company_name', 'ZNY LOGISTICS') }}</p>
+                    <p class="text-slate-400 text-xs">{{ site_setting('company_domain', 'znylogistic.com') }}</p>
                 </div>
             </div>
-            <p class="text-slate-400">{{ $siteSettings['footer_text'] }}</p>
+            <p class="text-slate-400">{{ site_setting('footer_text') }}</p>
         </div>
         <div>
             <p class="font-semibold text-white mb-2">Direct Contact</p>
-            <p class="text-slate-300">{{ $siteSettings['phone_primary'] }}</p>
-            @if($siteSettings['phone_secondary'])
-                <p class="text-slate-300">{{ $siteSettings['phone_secondary'] }}</p>
+            <p class="text-slate-300">{{ site_setting('phone_primary') }}</p>
+            @if(site_setting('phone_secondary'))
+                <p class="text-slate-300">{{ site_setting('phone_secondary') }}</p>
             @endif
-            <p class="text-slate-300">{{ $siteSettings['email_primary'] }}</p>
-            @if($siteSettings['email_secondary'])
-            <p class="text-slate-300">{{ $siteSettings['email_secondary'] }}</p>
+            <p class="text-slate-300">{{ site_setting('email_primary') }}</p>
+            @if(site_setting('email_secondary'))
+            <p class="text-slate-300">{{ site_setting('email_secondary') }}</p>
             @endif
-            <p class="text-slate-400 mt-3">{{ $siteSettings['address'] }}</p>
+            <p class="text-slate-400 mt-3">{{ site_setting('address') }}</p>
         </div>
         <div class="md:text-right">
             <p class="font-semibold text-white">Operational Clarity, Premium Service</p>
@@ -378,13 +387,58 @@
         <span>WhatsApp</span>
     </a>
 </div>
-@if($siteSettings['live_chat_enabled'] && $siteSettings['live_chat_src'])
+
+<script>
+(function () {
+    const actions = document.querySelector('.zny-floating-actions');
+    if (!actions) {
+        return;
+    }
+
+    const recalculateOffset = function () {
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
+        const baseSpacing = isMobile ? 12 : 16;
+        const extraGap = isMobile ? 12 : 16;
+        let safeBottom = baseSpacing;
+
+        const tawkTargets = [
+            '#tawkchat-minified-iframe-element',
+            '#tawkchat-container iframe',
+            'iframe[title*="chat"]',
+            'iframe[title*="Chat"]'
+        ];
+
+        for (const selector of tawkTargets) {
+            const chatEl = document.querySelector(selector);
+            if (!chatEl) {
+                continue;
+            }
+
+            const rect = chatEl.getBoundingClientRect();
+            if (rect.width === 0 || rect.height === 0) {
+                continue;
+            }
+
+            const occupiedFromBottom = Math.max(0, window.innerHeight - rect.top);
+            safeBottom = Math.max(safeBottom, occupiedFromBottom + extraGap);
+        }
+
+        actions.style.bottom = safeBottom + 'px';
+    };
+
+    recalculateOffset();
+    window.addEventListener('resize', recalculateOffset);
+    setInterval(recalculateOffset, 1500);
+})();
+</script>
+
+@if(site_setting('live_chat_enabled', false) && site_setting('live_chat_src'))
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
 s1.async=true;
-s1.src='{{ $siteSettings['live_chat_src'] }}';
+s1.src='{{ site_setting('live_chat_src') }}';
 s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);

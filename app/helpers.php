@@ -1,17 +1,24 @@
 <?php
 
+use App\Support\SiteSettings;
+
+if (!function_exists('site_setting')) {
+    function site_setting(string $key, mixed $default = null): mixed
+    {
+        return SiteSettings::data()[$key] ?? $default;
+    }
+}
+
 if (!function_exists('whatsapp_link')) {
-    function whatsapp_link() {
-        try {
-            $settings = \App\Models\SiteSetting::first();
+    function whatsapp_link(): string
+    {
+        $rawNumber = (string) site_setting('whatsapp_number', '');
+        $sanitizedNumber = preg_replace('/\D+/', '', $rawNumber) ?? '';
 
-            if (!$settings || !$settings->whatsapp_number) {
-                return '#';
-            }
-
-            return 'https://wa.me/' . preg_replace('/\D/', '', $settings->whatsapp_number);
-        } catch (\Throwable $e) {
+        if ($sanitizedNumber === '') {
             return '#';
         }
+
+        return 'https://wa.me/'.$sanitizedNumber;
     }
 }

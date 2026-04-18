@@ -13,7 +13,11 @@ class SiteSettings
     public static function data(): array
     {
         return Cache::rememberForever('site_settings.payload', function (): array {
-            $record = SiteSetting::query()->first();
+            try {
+                $record = SiteSetting::query()->first();
+            } catch (\Throwable) {
+                $record = null;
+            }
 
             return [
                 'company_name' => $record?->company_name ?: 'ZNY LOGISTICS',
