@@ -7,18 +7,19 @@
             is_array($siteSettings ?? null) ? $siteSettings : []
         );
     @endphp
-    <section class="rounded-3xl bg-gradient-to-r from-slate-950 to-blue-950 text-white p-8 md:p-10 mb-8">
+
+    <section class="rounded-[2rem] border border-slate-800 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 p-8 text-white shadow-xl md:p-10">
         <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-300">Contact {{ $siteSettings['company_name'] ?? 'ZNY LOGISTICS' }}</p>
-        <h1 class="text-4xl font-black mt-2 mb-3">Talk to our international freight team.</h1>
-        <p class="text-slate-200 max-w-2xl">For quote requests, routing support, and shipment follow-up, contact us through the form or WhatsApp channel.</p>
+        <h1 class="mt-2 text-4xl font-black">Talk directly with our international freight specialists.</h1>
+        <p class="mt-3 max-w-2xl text-slate-200">Request pricing, routing support, or shipment updates through a premium support experience.</p>
     </section>
 
-    <section class="grid lg:grid-cols-[1.1fr_.9fr] gap-8 items-start">
+    <section class="mt-10 grid items-start gap-8 lg:grid-cols-[1.1fr_.9fr]">
         <div>
-            <div class="grid sm:grid-cols-2 gap-4 mb-6">
+            <div class="mb-6 grid gap-4 sm:grid-cols-2">
                 <div class="zny-card p-5">
                     <p class="text-xs uppercase tracking-[0.2em] text-sky-700 font-semibold mb-1">Phone</p>
-                    <p class="font-bold text-lg">{{ site_setting('phone_primary') }}</p>
+                    <p class="text-lg font-bold">{{ site_setting('phone_primary') }}</p>
                 </div>
                 <div class="zny-card p-5">
                     <p class="text-xs uppercase tracking-[0.2em] text-sky-700 font-semibold mb-1">Address</p>
@@ -36,36 +37,25 @@
                 @endif
             </div>
 
-            <form method="POST" action="/{{ app()->getLocale() }}/contact" class="grid md:grid-cols-2 gap-4 zny-card p-6">
+            <form method="POST" action="/{{ app()->getLocale() }}/contact" class="zny-card grid gap-4 p-6 md:grid-cols-2">
                 @csrf
                 <input name="name" class="rounded-xl border border-slate-200 px-3 py-2.5" placeholder="{{ __('messages.name') }}" required>
                 <input name="email" type="email" class="rounded-xl border border-slate-200 px-3 py-2.5" placeholder="Email" required>
                 <input name="phone" class="rounded-xl border border-slate-200 px-3 py-2.5 md:col-span-2" placeholder="Phone">
-                <textarea name="message" class="rounded-xl border border-slate-200 px-3 py-2.5 md:col-span-2" rows="5" placeholder="{{ __('messages.message') }}" required></textarea>
-                <button class="rounded-xl bg-slate-900 px-4 py-2.5 text-white md:col-span-2 font-semibold hover:bg-blue-900 transition">{{ __('messages.send') }}</button>
+                <textarea name="message" rows="5" class="rounded-xl border border-slate-200 px-3 py-2.5 md:col-span-2" placeholder="{{ __('messages.message') }}" required></textarea>
+                <button class="zny-primary-btn md:col-span-2">{{ __('messages.send') }}</button>
             </form>
         </div>
 
-        <aside class="zny-card p-6 lg:sticky lg:top-28">
-            <div class="text-center">
-                <h2 class="text-2xl font-bold mb-2">Contact us instantly via WhatsApp</h2>
-                <p class="text-slate-600 mb-5">Scan the QR to open chat instantly with our logistics support desk.</p>
+        <aside class="zny-card overflow-hidden lg:sticky lg:top-28">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80" alt="Logistics team planning operations" class="h-44 w-full object-cover" loading="lazy" referrerpolicy="no-referrer">
+            <div class="p-6 text-center">
+                <h2 class="text-2xl font-black mb-2">WhatsApp Priority Line</h2>
+                <p class="text-slate-600 mb-5">Scan the QR code to open direct chat with our logistics support desk.</p>
                 <div class="rounded-2xl border border-slate-200 p-3 bg-gradient-to-br from-white to-sky-50">
-                    <img
-                        src="{{ asset('images/qr_clean.png') }}"
-                        alt="WhatsApp QR code for {{ $siteSettings['company_name'] ?? 'ZNY LOGISTICS' }}"
-                        class="rounded-xl border border-slate-200 p-3 bg-white w-full max-w-[260px] mx-auto shadow-sm"
-                    >
+                    <img src="{{ asset('images/qr_clean.png') }}" alt="WhatsApp QR code for {{ $siteSettings['company_name'] ?? 'ZNY LOGISTICS' }}" class="rounded-xl border border-slate-200 p-3 bg-white w-full max-w-[260px] mx-auto shadow-sm">
                 </div>
-                <p class="mt-4 text-sm text-slate-500">Fast responses for freight, tracking, and quote requests.</p>
-                <a
-                    href="{{ whatsapp_link() }}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="mt-5 inline-flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold text-white bg-[#25D366] hover:bg-[#1ebe57] transition-colors shadow-sm"
-                >
-                    Open WhatsApp
-                </a>
+                <a href="{{ whatsapp_link() }}" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center justify-center rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(20,90,50,.2)] transition hover:-translate-y-0.5 hover:bg-[#1ebe57]">Open WhatsApp</a>
             </div>
         </aside>
     </section>

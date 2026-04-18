@@ -1,25 +1,40 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="text-3xl font-bold mb-4">{{ __('messages.nav_services') }}</h1>
-    <ul class="list-disc pl-5 space-y-2 text-slate-700 mb-8">
-        <li>{{ __('messages.service_1') }}</li>
-        <li>{{ __('messages.service_2') }}</li>
-        <li>{{ __('messages.service_3') }}</li>
-    </ul>
+    <section class="rounded-[2rem] border border-slate-800 bg-gradient-to-br from-slate-950 via-[#071a3f] to-[#0f2e67] p-8 text-white shadow-xl md:p-10">
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-sky-200">{{ __('messages.nav_services') }}</p>
+        <h1 class="mt-2 text-4xl font-black">Premium logistics capability across every key transport mode.</h1>
+        <p class="mt-4 max-w-2xl text-slate-200">Designed for international shippers that need trustworthy execution, responsive communication, and scalable support.</p>
+    </section>
 
-    <section class="bg-white rounded-xl shadow p-6">
-        <h2 class="text-2xl font-semibold mb-4">{{ __('messages.request_quote') }}</h2>
+    <section class="mt-12 grid gap-5 md:grid-cols-3">
+        <article class="zny-card overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80" alt="Cargo aircraft logistics" class="h-40 w-full object-cover" loading="lazy" referrerpolicy="no-referrer">
+            <div class="p-5"><p class="font-semibold">{{ __('messages.service_1') }}</p></div>
+        </article>
+        <article class="zny-card overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=900&q=80" alt="Freight truck logistics" class="h-40 w-full object-cover" loading="lazy" referrerpolicy="no-referrer">
+            <div class="p-5"><p class="font-semibold">{{ __('messages.service_2') }}</p></div>
+        </article>
+        <article class="zny-card overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80" alt="Container ship logistics" class="h-40 w-full object-cover" loading="lazy" referrerpolicy="no-referrer">
+            <div class="p-5"><p class="font-semibold">{{ __('messages.service_3') }}</p></div>
+        </article>
+    </section>
+
+    <section class="mt-12 zny-card p-6 md:p-8">
+        <h2 class="text-3xl font-black mb-2">{{ __('messages.request_quote') }}</h2>
+        <p class="mb-5 text-slate-600">Share shipment details and our team will provide a tailored routing strategy.</p>
         <form method="POST" action="/{{ app()->getLocale() }}/quote-request" class="grid md:grid-cols-2 gap-4">
             @csrf
-            <input name="name" class="rounded border px-3 py-2" placeholder="{{ __('messages.name') }}" required>
-            <input name="company" class="rounded border px-3 py-2" placeholder="{{ __('messages.company') }}">
-            <input name="email" type="email" class="rounded border px-3 py-2" placeholder="Email" required>
-            <input name="phone" class="rounded border px-3 py-2" placeholder="Phone" required>
-            <input name="origin" class="rounded border px-3 py-2" placeholder="Origin" required>
-            <input name="destination" class="rounded border px-3 py-2" placeholder="Destination" required>
-            <textarea name="cargo_details" class="rounded border px-3 py-2 md:col-span-2" placeholder="Cargo details" required></textarea>
-            <button class="rounded bg-blue-600 px-4 py-2 text-white md:col-span-2">{{ __('messages.send') }}</button>
+            <input name="name" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5" placeholder="{{ __('messages.name') }}" required>
+            <input name="company" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5" placeholder="{{ __('messages.company') }}">
+            <input name="email" type="email" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5" placeholder="Email" required>
+            <input name="phone" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5" placeholder="Phone" required>
+            <input name="origin" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5" placeholder="Origin" required>
+            <input name="destination" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5" placeholder="Destination" required>
+            <textarea name="cargo_details" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 md:col-span-2" placeholder="Cargo details" required></textarea>
+            <button class="zny-primary-btn md:col-span-2">{{ __('messages.send') }}</button>
         </form>
     </section>
 @endsection
