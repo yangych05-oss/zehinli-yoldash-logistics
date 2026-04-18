@@ -302,6 +302,11 @@
 </head>
 @php
     $supportedLocales = ['en', 'ru', 'tm'];
+    $siteSettings = array_merge(
+        site_setting_defaults(),
+        is_array($siteSettings ?? null) ? $siteSettings : []
+    );
+    $companyName = $siteSettings['company_name'] ?? 'ZNY LOGISTICS';
     $segments = request()->segments();
     if (isset($segments[0]) && in_array($segments[0], $supportedLocales, true)) {
         array_shift($segments);
@@ -313,10 +318,10 @@
     <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-wrap items-center justify-between gap-4">
         <a href="/" class="zny-header-brand">
             <span class="zny-header-logo-wrap">
-                <img src="{{ asset('images/logo_clean.png') }}" alt="{{ site_setting('company_name', 'ZNY LOGISTICS') }}" class="zny-header-logo">
+                <img src="{{ asset('images/logo_clean.png') }}" alt="{{ $companyName }}" class="zny-header-logo">
             </span>
             <div class="zny-header-brand-text">
-                <div class="zny-header-brand-title">{{ site_setting('company_name', 'ZNY LOGISTICS') }}</div>
+                <div class="zny-header-brand-title">{{ $companyName }}</div>
                 <div class="zny-header-brand-subtitle">Global Logistics</div>
             </div>
         </a>
@@ -352,10 +357,10 @@
         <div>
             <div class="flex items-center gap-3 mb-4">
                 <span class="zny-brand-logo-wrap !w-11 !h-11 !rounded-xl !bg-white/10 !border-white/10 !shadow-none">
-                    <img src="{{ asset('images/logo_clean.png') }}" alt="{{ site_setting('company_name', 'ZNY LOGISTICS') }} logo" class="zny-brand-logo">
+                    <img src="{{ asset('images/logo_clean.png') }}" alt="{{ $companyName }} logo" class="zny-brand-logo">
                 </span>
                 <div>
-                    <p class="font-bold tracking-[0.12em] text-white text-xs">{{ site_setting('company_name', 'ZNY LOGISTICS') }}</p>
+                    <p class="font-bold tracking-[0.12em] text-white text-xs">{{ $companyName }}</p>
                     <p class="text-slate-400 text-xs">{{ site_setting('company_domain', 'znylogistic.com') }}</p>
                 </div>
             </div>
@@ -364,8 +369,8 @@
         <div>
             <p class="font-semibold text-white mb-2">Direct Contact</p>
             <p class="text-slate-300">{{ site_setting('phone_primary') }}</p>
-            @if(site_setting('phone_secondary'))
-                <p class="text-slate-300">{{ site_setting('phone_secondary') }}</p>
+            @if(!empty($siteSettings['phone_secondary']))
+                <p class="text-slate-300">{{ $siteSettings['phone_secondary'] }}</p>
             @endif
             <p class="text-slate-300">{{ site_setting('email_primary') }}</p>
             @if(site_setting('email_secondary'))
@@ -435,13 +440,13 @@
 })();
 </script>
 
-@if(site_setting('live_chat_enabled', false) && site_setting('live_chat_src'))
+@if(!empty($siteSettings['live_chat_enabled']) && !empty($siteSettings['live_chat_src']))
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
 s1.async=true;
-s1.src='{{ site_setting('live_chat_src') }}';
+s1.src='{{ $siteSettings['live_chat_src'] ?? '' }}';
 s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
