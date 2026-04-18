@@ -1,37 +1,57 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="zny-surface-glow rounded-3xl bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 text-white p-8 md:p-12 overflow-hidden">
-        <div class="absolute inset-0 z-0 opacity-60 zny-grid-overlay"></div>
+    <section class="zny-surface-glow rounded-3xl bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 text-white p-8 md:p-12 overflow-hidden relative">
+        <div class="absolute inset-0 z-0 opacity-50 zny-grid-overlay"></div>
+        <div class="pointer-events-none absolute -top-24 -left-8 h-72 w-72 rounded-full bg-sky-400/20 blur-3xl animate-pulse"></div>
+        <div class="pointer-events-none absolute -bottom-28 right-[-4rem] h-80 w-80 rounded-full bg-indigo-500/20 blur-3xl animate-pulse [animation-delay:600ms]"></div>
+        <div class="pointer-events-none absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 16% 26%, rgba(255,255,255,.22) 1px, transparent 1px), radial-gradient(circle at 78% 68%, rgba(125,211,252,.32) 1px, transparent 1px); background-size: 130px 130px, 160px 160px;"></div>
         <div class="relative z-10 grid lg:grid-cols-[1.02fr_.98fr] gap-10 items-center">
-            <div>
-                <p class="text-sky-300 font-semibold tracking-[0.24em] uppercase text-xs mb-5">Premium International Logistics</p>
-                <h1 class="text-4xl md:text-5xl font-black leading-tight mb-5">
-                    Moving global cargo with precision, speed, and confidence.
+            <div class="max-w-2xl">
+                <p class="zny-reveal zny-reveal-delay-1 text-sky-300 font-semibold tracking-[0.24em] uppercase text-xs mb-5">Premium International Logistics</p>
+                <h1 class="zny-reveal zny-reveal-delay-2 text-4xl md:text-5xl font-black leading-tight mb-5">
+                    Reliable global freight execution for businesses that move fast.
                 </h1>
-                <p class="text-slate-200 text-lg mb-8 max-w-xl">
-                    ZNY LOGISTICS delivers premium freight coordination for enterprises that demand operational control across air, road, and multimodal routes.
+                <p class="zny-reveal zny-reveal-delay-2 text-slate-200 text-lg mb-8 max-w-xl">
+                    ZNY LOGISTICS orchestrates international cargo programs with transparent milestones, agile routing, and dependable delivery performance across multimodal lanes.
                 </p>
-                <div class="flex flex-wrap gap-3">
+                <div class="zny-reveal zny-reveal-delay-3 flex flex-wrap gap-3">
                     <a href="/{{ app()->getLocale() }}/contact" class="rounded-full bg-sky-400 px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-sky-300 transition">Request a Quote</a>
                     <a href="/{{ app()->getLocale() }}/tracking" class="rounded-full border border-slate-400 px-6 py-3 text-sm font-semibold hover:border-sky-300 hover:text-sky-300 transition">Track Shipment</a>
                 </div>
-                <div class="mt-8 flex flex-wrap gap-6 text-sm text-slate-300">
-                    <span>🌍 Global lane planning</span>
-                    <span>🛰️ Real-time visibility</span>
-                    <span>🛡️ Secure cargo handling</span>
+                <div class="zny-reveal zny-reveal-delay-3 mt-8 grid sm:grid-cols-3 gap-3 text-sm">
+                    <div class="rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-slate-200">
+                        <p class="text-[11px] uppercase tracking-[0.16em] text-sky-200">Reliability</p>
+                        <p class="mt-1 font-semibold">Stable lane performance</p>
+                    </div>
+                    <div class="rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-slate-200">
+                        <p class="text-[11px] uppercase tracking-[0.16em] text-sky-200">Speed</p>
+                        <p class="mt-1 font-semibold">Rapid response operations</p>
+                    </div>
+                    <div class="rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-slate-200">
+                        <p class="text-[11px] uppercase tracking-[0.16em] text-sky-200">Transparency</p>
+                        <p class="mt-1 font-semibold">Live milestone visibility</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="grid gap-4">
+            <div class="grid gap-4 zny-reveal zny-reveal-delay-2">
                 <div class="rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur">
-                    <p class="text-xs uppercase tracking-[0.18em] text-sky-200 mb-2">Hero Visual Placeholder</p>
+                    <p class="text-xs uppercase tracking-[0.18em] text-sky-200 mb-2">Operations Control Tower</p>
                     <div class="rounded-xl min-h-[220px] border border-white/10 bg-gradient-to-br from-slate-700/30 via-blue-800/20 to-slate-900/40 p-5 flex flex-col justify-between">
                         <div class="flex items-center justify-between text-xs text-slate-300">
-                            <span>Ship · Truck · Cargo Plane</span>
-                            <span>Replaceable</span>
+                            <span>Air · Road · Integrated Freight</span>
+                            <span>24/7</span>
                         </div>
-                        <p class="text-sm text-slate-200/95 max-w-sm">Use this area for your premium logistics montage image. Replace `background-image` or insert an `<img>` without changing section structure.</p>
+                        <div class="space-y-2">
+                            <div class="h-2.5 rounded-full bg-white/15 overflow-hidden">
+                                <div class="h-full w-4/5 bg-gradient-to-r from-sky-300 to-sky-500"></div>
+                            </div>
+                            <div class="h-2.5 rounded-full bg-white/15 overflow-hidden">
+                                <div class="h-full w-2/3 bg-gradient-to-r from-indigo-300 to-sky-300"></div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-200/95 max-w-sm">Premium network planning and proactive communication keep your cargo moving with predictable timelines.</p>
                     </div>
                 </div>
                 <div class="zny-card p-6 md:p-7 text-slate-900">
