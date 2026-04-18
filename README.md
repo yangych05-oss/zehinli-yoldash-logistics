@@ -40,6 +40,30 @@ Production-ready scaffold for:
    php artisan serve
    ```
 
+## Deployment architecture (recommended)
+- Use Laravel standard web root: **`/public`**.
+- Frontend and Filament assets are resolved from `public/` using Laravel conventions.
+- Avoid manual copying of CSS/JS/vendor files into a separate `public_html` directory.
+
+### Beget-friendly notes
+- Preferred: point the domain document root directly to `project/public`.
+- If hosting UI requires `public_html`, create a symlink so `public_html -> project/public` instead of copying files.
+
+## Site settings in admin
+A new **Site Settings** page is available in Filament admin for editing public company/contact values.
+
+### Seeded defaults
+- company_name: `ZNY LOGISTICS`
+- company_domain: `znylogistic.com`
+- phone_primary: `+99364918998`
+- email_primary: `info@znylogistics.com`
+- email_secondary: `akja@znylogistics.com`
+- address: `Rysgal BC, 917, Ashgabat, Turkmenistan`
+- whatsapp_number: `99364918998`
+- live_chat_enabled: `true`
+- live_chat_provider: `tawk`
+- live_chat_src: sourced from `LIVE_CHAT_SRC` when available
+
 ## Default seeded admin
 - Email: `admin@znylogistics.com`
 - Password: `password`

@@ -298,16 +298,17 @@
         array_shift($segments);
     }
     $localizedPath = implode('/', $segments);
+    $whatsAppHref = 'https://wa.me/' . preg_replace('/\D+/', '', $siteSettings['whatsapp_number']);
 @endphp
 <body>
 <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
     <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-wrap items-center justify-between gap-4">
         <a href="/" class="zny-header-brand">
             <span class="zny-header-logo-wrap">
-                <img src="/images/logo_clean.png" alt="ZNY LOGISTICS" class="zny-header-logo">
+                <img src="{{ asset('images/logo_clean.png') }}" alt="{{ $siteSettings['company_name'] }}" class="zny-header-logo">
             </span>
             <div class="zny-header-brand-text">
-                <div class="zny-header-brand-title">ZNY LOGISTICS</div>
+                <div class="zny-header-brand-title">{{ $siteSettings['company_name'] }}</div>
                 <div class="zny-header-brand-subtitle">Global Logistics</div>
             </div>
         </a>
@@ -343,21 +344,26 @@
         <div>
             <div class="flex items-center gap-3 mb-4">
                 <span class="zny-brand-logo-wrap !w-11 !h-11 !rounded-xl !bg-white/10 !border-white/10 !shadow-none">
-                    <img src="/images/logo_clean.png" alt="ZNY LOGISTICS logo" class="zny-brand-logo">
+                    <img src="{{ asset('images/logo_clean.png') }}" alt="{{ $siteSettings['company_name'] }} logo" class="zny-brand-logo">
                 </span>
                 <div>
-                    <p class="font-bold tracking-[0.12em] text-white text-xs">ZNY LOGISTICS</p>
-                    <p class="text-slate-400 text-xs">znylogistic.com</p>
+                    <p class="font-bold tracking-[0.12em] text-white text-xs">{{ $siteSettings['company_name'] }}</p>
+                    <p class="text-slate-400 text-xs">{{ $siteSettings['company_domain'] }}</p>
                 </div>
             </div>
-            <p class="text-slate-400">Strategic freight partner for air, road, and integrated cargo programs across global supply chains.</p>
+            <p class="text-slate-400">{{ $siteSettings['footer_text'] }}</p>
         </div>
         <div>
             <p class="font-semibold text-white mb-2">Direct Contact</p>
-            <p class="text-slate-300">+99364918998</p>
-            <p class="text-slate-300">info@znylogistics.com</p>
-            <p class="text-slate-300">akja@znylogistics.com</p>
-            <p class="text-slate-400 mt-3">Rysgal BC, 917, Ashgabat, Turkmenistan</p>
+            <p class="text-slate-300">{{ $siteSettings['phone_primary'] }}</p>
+            @if($siteSettings['phone_secondary'])
+                <p class="text-slate-300">{{ $siteSettings['phone_secondary'] }}</p>
+            @endif
+            <p class="text-slate-300">{{ $siteSettings['email_primary'] }}</p>
+            @if($siteSettings['email_secondary'])
+            <p class="text-slate-300">{{ $siteSettings['email_secondary'] }}</p>
+            @endif
+            <p class="text-slate-400 mt-3">{{ $siteSettings['address'] }}</p>
         </div>
         <div class="md:text-right">
             <p class="font-semibold text-white">Operational Clarity, Premium Service</p>
@@ -366,20 +372,20 @@
     </div>
 </footer>
 <div class="zny-floating-actions" aria-label="Quick communication shortcuts">
-    <a href="https://wa.me/99364918998" target="_blank" rel="noopener noreferrer" class="zny-floating-whatsapp" aria-label="Contact ZNY Logistics via WhatsApp">
+    <a href="{{ $whatsAppHref }}" target="_blank" rel="noopener noreferrer" class="zny-floating-whatsapp" aria-label="Contact ZNY Logistics via WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
             <path d="M20.5 3.5A11.89 11.89 0 0 0 12.05 0C5.48 0 .14 5.35.14 11.94c0 2.1.55 4.15 1.6 5.96L0 24l6.3-1.66a11.86 11.86 0 0 0 5.73 1.46h.01c6.57 0 11.91-5.35 11.91-11.94 0-3.2-1.24-6.22-3.45-8.36ZM12.04 21.8h-.01a9.86 9.86 0 0 1-5.02-1.37l-.36-.22-3.74.98 1-3.65-.24-.37a9.91 9.91 0 0 1-1.52-5.23c0-5.47 4.44-9.93 9.91-9.93 2.65 0 5.14 1.03 7.01 2.91a9.86 9.86 0 0 1 2.89 7.01c0 5.47-4.44 9.92-9.92 9.92Zm5.44-7.42c-.3-.15-1.76-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.16-.17.2-.35.22-.65.08-.3-.15-1.26-.46-2.4-1.47-.88-.78-1.47-1.75-1.64-2.04-.17-.3-.02-.46.12-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.52.08-.8.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.2 5.1 4.49.72.31 1.28.5 1.72.63.72.23 1.38.2 1.9.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z"/>
         </svg>
         <span>WhatsApp</span>
     </a>
 </div>
-@if(env('LIVE_CHAT_ENABLED') && env('LIVE_CHAT_SRC'))
+@if($siteSettings['live_chat_enabled'] && $siteSettings['live_chat_src'])
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
 s1.async=true;
-s1.src='{{ env("LIVE_CHAT_SRC") }}';
+s1.src='{{ $siteSettings['live_chat_src'] }}';
 s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
