@@ -11,21 +11,21 @@
             [
                 'title' => 'Air Freight',
                 'text' => 'Priority uplift for time-critical cargo with strict handover control and milestone visibility.',
-                'image' => 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80',
+                'image' => asset('images/logistics/cargo-aircraft.svg'),
                 'alt' => 'Cargo aircraft at airport logistics terminal',
                 'badge' => 'Time critical',
             ],
             [
                 'title' => 'Road Freight',
                 'text' => 'Cross-border trucking with secure handling, calibrated route design, and disciplined ETA performance.',
-                'image' => 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1600&q=80',
+                'image' => asset('images/logistics/freight-truck.svg'),
                 'alt' => 'Freight truck on modern expressway',
                 'badge' => 'Regional precision',
             ],
             [
                 'title' => 'Ocean Freight',
                 'text' => 'Container shipping across major lanes from booking through port execution and inland transfer.',
-                'image' => 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1600&q=80',
+                'image' => asset('images/logistics/cargo-port.svg'),
                 'alt' => 'Container vessel at maritime terminal',
                 'badge' => 'Global lanes',
             ],
@@ -73,7 +73,7 @@
 
             <div class="grid gap-4">
                 <article class="zny-soft-card overflow-hidden border-white/20 bg-white/12 p-4 text-white">
-                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80" alt="Warehouse logistics operations" class="h-60 w-full rounded-2xl object-cover" loading="lazy" referrerpolicy="no-referrer">
+                    <img src="{{ asset('images/logistics/control-tower.svg') }}" alt="Warehouse logistics operations" class="h-60 w-full rounded-2xl object-cover" loading="lazy" referrerpolicy="no-referrer">
                     <div class="mt-4 flex items-center justify-between gap-3">
                         <div>
                             <p class="text-xs uppercase tracking-[0.18em] text-sky-100">Integrated Control Tower</p>
@@ -137,7 +137,7 @@
         </div>
 
         <aside class="zny-card overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1616432043562-3671ea2e5242?auto=format&fit=crop&w=1500&q=80" alt="Shipping containers at port terminal" class="h-60 w-full object-cover" loading="lazy" referrerpolicy="no-referrer">
+            <img src="{{ asset('images/logistics/cargo-port.svg') }}" alt="Shipping containers at port terminal" class="h-60 w-full object-cover" loading="lazy" referrerpolicy="no-referrer">
             <div class="p-6">
                 <p class="zny-label text-sky-700">Trusted infrastructure</p>
                 <p class="mt-2 text-sm text-slate-600">Strong execution ecosystem across airports, ports, and inland logistics gateways.</p>
@@ -167,7 +167,7 @@
         </article>
 
         <article class="zny-card overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1500&q=80" alt="Logistics planning and operations analytics" class="h-48 w-full object-cover" loading="lazy" referrerpolicy="no-referrer">
+            <img src="{{ asset('images/logistics/warehouse-operations.svg') }}" alt="Logistics planning and operations analytics" class="h-48 w-full object-cover" loading="lazy" referrerpolicy="no-referrer">
             <div class="p-7">
                 <p class="zny-label text-sky-700">Direct contact</p>
                 <h2 class="mt-2 text-3xl font-black text-slate-900">{{ site_setting('contact_cta_text') }}</h2>

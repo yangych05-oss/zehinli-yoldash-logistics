@@ -1,0 +1,36 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A1C43"/>
+      <stop offset="100%" stop-color="#295FB4"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1A4F8B"/>
+      <stop offset="100%" stop-color="#113763"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <rect y="570" width="1600" height="330" fill="url(#water)"/>
+  <rect y="530" width="1600" height="46" fill="#263C60"/>
+  <g transform="translate(120 300)">
+    <rect x="0" y="230" width="1200" height="170" rx="16" fill="#1A2942"/>
+    <rect x="80" y="188" width="220" height="42" fill="#D55D3D"/>
+    <rect x="80" y="146" width="220" height="42" fill="#E17B47"/>
+    <rect x="320" y="188" width="220" height="42" fill="#5A93D7"/>
+    <rect x="320" y="146" width="220" height="42" fill="#7DB2EE"/>
+    <rect x="560" y="188" width="220" height="42" fill="#7CB058"/>
+    <rect x="560" y="146" width="220" height="42" fill="#9EC977"/>
+    <rect x="800" y="188" width="220" height="42" fill="#D8A044"/>
+    <rect x="800" y="146" width="220" height="42" fill="#E7BA64"/>
+    <rect x="1060" y="120" width="80" height="110" fill="#DCE6F6"/>
+  </g>
+  <g transform="translate(250 150)" fill="#DCE7F8">
+    <rect x="0" y="90" width="16" height="300"/>
+    <rect x="16" y="90" width="220" height="14"/>
+    <path d="M236 104L340 220L328 230L224 114L236 104Z"/>
+    <rect x="420" y="30" width="16" height="360"/>
+    <rect x="436" y="30" width="240" height="14"/>
+    <path d="M676 44L808 188L796 200L664 58L676 44Z"/>
+  </g>
+  <text x="92" y="118" fill="#EAF2FF" font-size="56" font-family="Arial, sans-serif" font-weight="700" opacity="0.92">ZNY OCEAN LOGISTICS HUB</text>
+</svg>
