@@ -117,11 +117,11 @@
 
         .zny-header-brand, .zny-brand-link { display: inline-flex; align-items: center; gap: 1.05rem; min-width: 0; text-decoration: none; }
         .zny-header-brand {
-            padding: 0.34rem 0.5rem 0.34rem 0.34rem;
+            padding: 0.3rem 0.42rem 0.3rem 0.12rem;
             border-radius: 1.15rem;
-            border: 1px solid rgba(12, 44, 97, 0.1);
-            background: linear-gradient(130deg, rgba(255, 255, 255, 0.88), rgba(247, 251, 255, 0.7));
-            box-shadow: 0 12px 28px rgba(9, 24, 53, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(12, 44, 97, 0.06);
+            background: linear-gradient(130deg, rgba(255, 255, 255, 0.74), rgba(247, 251, 255, 0.5));
+            box-shadow: 0 10px 24px rgba(9, 24, 53, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.75);
             transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
         }
         .zny-header-brand:hover {
@@ -132,16 +132,20 @@
         .zny-header-brand-text { padding-right: 0.2rem; }
         .zny-header-logo-wrap, .zny-brand-logo-wrap {
             display: grid; place-items: center; flex-shrink: 0; border-radius: 14px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .zny-header-logo-wrap { width: 82px; height: 82px; border-radius: 22px; padding: 0; }
+        .zny-brand-logo-wrap {
+            width: 56px; height: 56px; border-radius: 15px; padding: 5px;
             border: 1px solid rgba(16, 53, 124, 0.18);
             background: linear-gradient(155deg, rgba(255, 255, 255, 0.96), rgba(232, 243, 255, 0.86));
             box-shadow: var(--zny-shadow-md);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
-        .zny-header-logo-wrap { width: 80px; height: 80px; border-radius: 22px; padding: 8px; }
-        .zny-brand-logo-wrap { width: 56px; height: 56px; border-radius: 15px; padding: 5px; }
         .zny-header-logo { width: 100%; height: 100%; object-fit: contain; }
         .zny-brand-logo { width: 100%; height: 100%; object-fit: contain; }
-        .zny-header-brand:hover .zny-header-logo-wrap, .zny-brand-link:hover .zny-brand-logo-wrap { transform: translateY(-2px); box-shadow: 0 18px 36px rgba(8, 26, 56, 0.18); }
+        .zny-header-brand:hover .zny-header-logo-wrap { transform: translateY(-1px) scale(1.01); }
+        .zny-brand-link:hover .zny-brand-logo-wrap { transform: translateY(-2px); box-shadow: 0 18px 36px rgba(8, 26, 56, 0.18); }
+        .zny-header-logo { filter: saturate(1.04) contrast(1.02) drop-shadow(0 10px 20px rgba(8, 26, 56, 0.16)); }
 
         .zny-header-brand-title { font-size: 1.12rem; font-weight: 830; letter-spacing: 0.06em; color: #081a37; white-space: nowrap; }
         .zny-header-brand-subtitle, .zny-brand-subtitle { margin-top: 0.15rem; font-size: 0.66rem; font-weight: 680; letter-spacing: 0.13em; text-transform: uppercase; color: #607191; white-space: nowrap; }
@@ -186,7 +190,7 @@
 
         .zny-floating-actions {
             --zny-float-right: 1.25rem;
-            --zny-float-bottom: calc(max(1.2rem, env(safe-area-inset-bottom)) + 7.4rem);
+            --zny-float-bottom: calc(max(1.2rem, env(safe-area-inset-bottom)) + 8rem);
             position: fixed;
             right: var(--zny-float-right);
             bottom: var(--zny-float-bottom);
@@ -217,13 +221,13 @@
         @media (max-width: 1100px) {
             .zny-floating-actions {
                 --zny-float-right: 0.88rem;
-                --zny-float-bottom: calc(max(0.8rem, env(safe-area-inset-bottom)) + 9.6rem);
+                --zny-float-bottom: calc(max(0.8rem, env(safe-area-inset-bottom)) + 10.2rem);
             }
         }
         @media (max-width: 768px) {
-            .zny-header-brand { gap: 0.72rem; padding: 0.25rem 0.36rem 0.25rem 0.25rem; border-radius: 0.95rem; }
+            .zny-header-brand { gap: 0.7rem; padding: 0.24rem 0.32rem 0.24rem 0.06rem; border-radius: 0.95rem; }
             .zny-header-brand-text { padding-right: 0; }
-            .zny-header-logo-wrap { width: 58px; height: 58px; border-radius: 15px; padding: 6px; }
+            .zny-header-logo-wrap { width: 60px; height: 60px; border-radius: 15px; padding: 0; }
             .zny-header-logo { width: 100%; height: 100%; }
             .zny-header-brand-title { font-size: 0.94rem; letter-spacing: 0.04em; }
             .zny-header-brand-subtitle { font-size: 0.61rem; }
