@@ -1,27 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="ZNY Logistics logo">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="ZNY Logistics brand mark">
   <defs>
-    <linearGradient id="bg" x1="84" y1="56" x2="430" y2="454" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#06193B"/>
-      <stop offset="0.52" stop-color="#0E3E93"/>
-      <stop offset="1" stop-color="#21A8FF"/>
+    <linearGradient id="zny-bg" x1="76" y1="56" x2="438" y2="458" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#061A3C"/>
+      <stop offset="0.56" stop-color="#0F3F97"/>
+      <stop offset="1" stop-color="#24AAFF"/>
     </linearGradient>
-    <linearGradient id="mark" x1="128" y1="132" x2="368" y2="374" gradientUnits="userSpaceOnUse">
+    <linearGradient id="zny-stroke" x1="130" y1="128" x2="380" y2="386" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#FFFFFF"/>
-      <stop offset="1" stop-color="#CAE1FF"/>
+      <stop offset="1" stop-color="#D3E8FF"/>
     </linearGradient>
-    <filter id="shadow" x="34" y="34" width="444" height="444" color-interpolation-filters="sRGB">
-      <feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#021024" flood-opacity="0.5"/>
+    <linearGradient id="zny-highlight" x1="164" y1="180" x2="356" y2="354" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.94"/>
+      <stop offset="1" stop-color="#E6F3FF" stop-opacity="0.55"/>
+    </linearGradient>
+    <filter id="zny-shadow" x="32" y="32" width="448" height="448" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#021129" flood-opacity="0.5"/>
     </filter>
   </defs>
 
-  <rect x="56" y="56" width="400" height="400" rx="112" fill="url(#bg)"/>
-  <rect x="56" y="56" width="400" height="400" rx="112" fill="none" stroke="#F3F8FF" stroke-opacity="0.32" stroke-width="4"/>
+  <rect x="56" y="56" width="400" height="400" rx="106" fill="url(#zny-bg)"/>
+  <rect x="56" y="56" width="400" height="400" rx="106" fill="none" stroke="#EEF6FF" stroke-opacity="0.34" stroke-width="4"/>
 
-  <g filter="url(#shadow)">
-    <path d="M126 146H386L190 366H126L322 146H126Z" fill="url(#mark)"/>
-    <path d="M204 146H272L390 366H324L204 146Z" fill="#EDF4FF" fill-opacity="0.96"/>
-    <path d="M126 366L202 261H276L202 366H126Z" fill="#BCD7FF"/>
+  <g filter="url(#zny-shadow)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M138 158H374L162 354H374" stroke="url(#zny-stroke)" stroke-width="44"/>
+    <path d="M230 158L290 254L352 158V354" stroke="#F3F9FF" stroke-width="32"/>
   </g>
 
-  <path d="M130 408H382" stroke="#EAF4FF" stroke-opacity="0.9" stroke-width="14" stroke-linecap="round"/>
+  <path d="M158 128H354" stroke="url(#zny-highlight)" stroke-width="16" stroke-linecap="round" opacity="0.72"/>
+  <path d="M160 390H352" stroke="#EAF4FF" stroke-opacity="0.9" stroke-width="12" stroke-linecap="round"/>
 </svg>
