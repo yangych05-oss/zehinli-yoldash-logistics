@@ -61,6 +61,7 @@
             --zny-accent: #22a6fb;
             --zny-shadow-lg: 0 24px 56px rgba(9, 26, 60, 0.14);
             --zny-shadow-md: 0 16px 38px rgba(9, 24, 53, 0.11);
+            --zny-container-max: min(94vw, 1460px);
         }
 
         *, *::before, *::after { box-sizing: border-box; }
@@ -334,8 +335,8 @@
 
         @media (max-width: 1024px) {
             .zny-floating-actions {
-                left: 1rem;
-                right: auto;
+                left: auto;
+                right: 1rem;
                 bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 5rem);
             }
         }
@@ -360,7 +361,7 @@
 <body>
 <div class="zny-shell">
     <header class="sticky top-0 z-40 zny-glass-nav">
-        <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-wrap items-center justify-between gap-4">
+        <div class="mx-auto w-[var(--zny-container-max)] px-5 py-3.5 flex flex-wrap items-center justify-between gap-4 xl:px-6">
             <a href="/{{ app()->getLocale() }}" class="zny-header-brand">
                 <span class="zny-header-logo-wrap">
                     <img src="{{ asset('images/logo_clean.png') }}" alt="{{ $companyName }}" class="zny-header-logo">
@@ -390,7 +391,7 @@
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 py-10 relative z-10">
+    <main class="mx-auto w-[var(--zny-container-max)] px-5 py-12 relative z-10 xl:px-6">
         @if(session('status'))
             <div class="mb-6 rounded-xl border border-emerald-300 bg-emerald-50 p-4 text-emerald-800">{{ session('status') }}</div>
         @endif
@@ -398,7 +399,7 @@
     </main>
 
     <footer class="mt-20 zny-footer text-slate-200">
-        <div class="max-w-7xl mx-auto px-4 py-14 grid md:grid-cols-3 gap-9 text-sm">
+        <div class="mx-auto w-[var(--zny-container-max)] px-5 py-16 grid md:grid-cols-3 gap-10 text-sm xl:px-6">
             <div>
                 <a href="/{{ app()->getLocale() }}" class="zny-brand-link mb-4">
                     <span class="zny-brand-logo-wrap !w-11 !h-11 !rounded-xl !bg-white/10 !border-white/10 !shadow-none">
@@ -459,11 +460,14 @@
             let safeRight = isTabletDown ? null : 20;
 
             const tawkTargets = [
-                '#tawkchat-minified-iframe-element',
-                '#tawkchat-container iframe',
-                'iframe[title*="tawk"]',
-                'iframe[title*="chat"]',
-                'iframe[title*="Chat"]'
+                "#tawkchat-minified-iframe-element",
+                "#tawkchat-container iframe",
+                "#tawk-bubble-container",
+                ".tawk-min-container",
+                "[class*=\"tawk\"] iframe",
+                "iframe[title*=\"tawk\"]",
+                "iframe[title*=\"chat\"]",
+                "iframe[title*=\"Chat\"]"
             ];
 
             for (const selector of tawkTargets) {
@@ -484,8 +488,8 @@
             actions.style.bottom = `${Math.ceil(safeBottom)}px`;
 
             if (isTabletDown) {
-                actions.style.left = '1rem';
-                actions.style.right = 'auto';
+                actions.style.left = 'auto';
+                actions.style.right = '1rem';
                 return;
             }
 

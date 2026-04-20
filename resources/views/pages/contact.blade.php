@@ -16,6 +16,8 @@
                 'alternate' => 'Alternate',
                 'priority_title' => 'WhatsApp Priority Line',
                 'priority_text' => 'Scan the QR code for immediate contact with our operations desk.',
+                'placeholder_email' => 'Email',
+                'placeholder_phone' => 'Phone',
             ],
             'ru' => [
                 'intro' => 'Связаться с командой',
@@ -24,10 +26,12 @@
                 'wa' => 'Открыть WhatsApp',
                 'phone' => 'Телефон',
                 'address' => 'Адрес',
-                'email' => 'Email',
+                'email' => 'Электронная почта',
                 'alternate' => 'Дополнительно',
                 'priority_title' => 'Приоритетная линия WhatsApp',
                 'priority_text' => 'Сканируйте QR-код для быстрого контакта с операционной командой.',
+                'placeholder_email' => 'Электронная почта',
+                'placeholder_phone' => 'Телефон',
             ],
             'tm' => [
                 'intro' => 'Topar bilen habarlaşyň',
@@ -36,26 +40,28 @@
                 'wa' => 'WhatsApp açmak',
                 'phone' => 'Telefon',
                 'address' => 'Salgy',
-                'email' => 'Email',
+                'email' => 'E-poçta',
                 'alternate' => 'Goşmaça',
                 'priority_title' => 'WhatsApp ileri tutulýan aragatnaşyk',
                 'priority_text' => 'Operasion topar bilen tiz habarlaşmak üçin QR kody skanirläň.',
+                'placeholder_email' => 'E-poçta',
+                'placeholder_phone' => 'Telefon',
             ],
         ];
         $content = $copy[$locale] ?? $copy['en'];
     @endphp
 
-    <section class="relative overflow-hidden rounded-[2rem] border border-slate-800 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 p-8 text-white shadow-xl md:p-10">
+    <section class="relative overflow-hidden rounded-[2rem] border border-slate-800 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 p-8 text-white shadow-xl md:p-11">
         <img src="{{ asset('images/premium/cargo-port-premium.svg') }}" alt="International cargo operations" class="absolute inset-0 h-full w-full object-cover opacity-20" loading="lazy">
         <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-blue-950/85 to-slate-900/90"></div>
-        <div class="relative z-10">
+        <div class="relative z-10 max-w-3xl">
             <p class="zny-label text-sky-300">{{ $content['intro'] }}</p>
-            <h1 class="mt-2 text-4xl font-black">{{ $content['title'] }}</h1>
-            <p class="mt-3 max-w-2xl text-slate-200">{{ $content['text'] }}</p>
+            <h1 class="mt-3 text-4xl font-black md:text-5xl">{{ $content['title'] }}</h1>
+            <p class="mt-4 text-slate-200 md:text-lg">{{ $content['text'] }}</p>
         </div>
     </section>
 
-    <section class="mt-10 grid items-start gap-8 lg:grid-cols-[1.1fr_.9fr]">
+    <section class="mt-12 grid items-start gap-8 lg:grid-cols-[1.15fr_.85fr]">
         <div>
             <div class="mb-6 grid gap-4 sm:grid-cols-2">
                 <div class="zny-card p-5">
@@ -78,19 +84,19 @@
                 @endif
             </div>
 
-            <form method="POST" action="/{{ app()->getLocale() }}/contact" class="zny-card grid gap-4 p-6 md:grid-cols-2">
+            <form method="POST" action="/{{ app()->getLocale() }}/contact" class="zny-card grid gap-4 p-6 md:grid-cols-2 md:p-8">
                 @csrf
                 <input name="name" class="zny-input" placeholder="{{ __('messages.name') }}" required>
-                <input name="email" type="email" class="zny-input" placeholder="Email" required>
-                <input name="phone" class="zny-input md:col-span-2" placeholder="Phone">
+                <input name="email" type="email" class="zny-input" placeholder="{{ $content['placeholder_email'] }}" required>
+                <input name="phone" class="zny-input md:col-span-2" placeholder="{{ $content['placeholder_phone'] }}">
                 <textarea name="message" rows="5" class="zny-input md:col-span-2" placeholder="{{ __('messages.message') }}" required></textarea>
                 <button class="zny-primary-btn md:col-span-2">{{ __('messages.send') }}</button>
             </form>
         </div>
 
         <aside class="zny-card overflow-hidden lg:sticky lg:top-28">
-            <img src="{{ asset('images/premium/warehouse-operations-premium.svg') }}" alt="Logistics operations desk" class="h-44 w-full object-cover" loading="lazy">
-            <div class="p-6 text-center">
+            <img src="{{ asset('images/premium/warehouse-operations-premium.svg') }}" alt="Logistics operations desk" class="h-48 w-full object-cover" loading="lazy">
+            <div class="p-6 text-center md:p-7">
                 <h2 class="mb-2 text-2xl font-black">{{ $content['priority_title'] }}</h2>
                 <p class="mb-5 text-slate-600">{{ $content['priority_text'] }}</p>
                 <div class="rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-sky-50 p-3">
