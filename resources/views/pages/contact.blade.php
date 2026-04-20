@@ -83,18 +83,18 @@
             <div class="p-6 md:p-8">
                 <h2 class="text-2xl font-black text-slate-900">{{ $content['priority_title'] }}</h2>
                 <p class="mt-2 text-slate-600">{{ $content['priority_text'] }}</p>
-                <div class="mt-6 rounded-[1.7rem] border border-emerald-200/80 bg-gradient-to-br from-[#ecfdf3] via-white to-[#eef8ff] p-6 shadow-[0_24px_48px_rgba(15,65,35,.14)]">
-                    <div class="mb-4 flex items-center justify-between gap-3 rounded-2xl border border-emerald-200/70 bg-white/85 px-4 py-2.5">
-                        <p class="text-[0.68rem] font-bold uppercase tracking-[0.2em] text-emerald-700/95">Secure Support Scan</p>
-                        <span class="rounded-full border border-emerald-300/80 bg-emerald-50 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-emerald-700">Live</span>
+                <div class="mt-5 rounded-[1.65rem] border border-emerald-200/75 bg-gradient-to-br from-[#eefdf4] via-white to-[#eff8ff] p-5 shadow-[0_22px_44px_rgba(15,65,35,.13)] md:mt-6 md:p-6">
+                    <div class="mb-3.5 flex items-center justify-between gap-3 rounded-2xl border border-emerald-200/65 bg-white/88 px-4 py-2.5">
+                        <p class="text-[0.67rem] font-semibold uppercase tracking-[0.19em] text-emerald-700/95">Secure Support Scan</p>
+                        <span class="rounded-full border border-emerald-300/80 bg-emerald-50 px-3 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-emerald-700">Live</span>
                     </div>
-                    <div class="rounded-[1.35rem] border border-emerald-100/90 bg-white p-4 shadow-[inset_0_1px_0_rgba(255,255,255,.85),0_14px_30px_rgba(6,44,22,.1)]">
-                        <div class="rounded-xl border border-slate-200/70 bg-gradient-to-b from-slate-50 to-white p-3.5">
-                            <img src="{{ asset('images/whatsapp-qr-final.png') }}" alt="WhatsApp QR" class="mx-auto w-full max-w-[320px] rounded-lg border border-emerald-100 object-contain shadow-[0_10px_26px_rgba(15,70,40,.14)]" loading="lazy">
+                    <div class="rounded-[1.3rem] border border-emerald-100/90 bg-white p-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,.85),0_12px_28px_rgba(6,44,22,.1)] md:p-4">
+                        <div class="rounded-xl border border-slate-200/65 bg-gradient-to-b from-slate-50 to-white p-3">
+                            <img src="{{ asset('images/whatsapp-qr-final.png') }}" alt="WhatsApp QR" class="mx-auto w-full max-w-[312px] rounded-lg border border-emerald-100 object-contain shadow-[0_10px_24px_rgba(15,70,40,.13)]" loading="lazy">
                         </div>
                     </div>
                 </div>
-                <a href="{{ whatsapp_link() }}" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex w-full items-center justify-center rounded-full border border-emerald-300/90 bg-gradient-to-r from-[#1fa554] via-[#25D366] to-[#1ab75a] px-5 py-3 text-sm font-semibold tracking-[0.04em] text-white shadow-[0_18px_30px_rgba(17,95,55,.26)] transition hover:-translate-y-0.5 hover:shadow-[0_22px_34px_rgba(17,95,55,.3)]">{{ $content['wa'] }}</a>
+                <a href="{{ whatsapp_link() }}" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex w-full items-center justify-center rounded-full border border-emerald-300/90 bg-gradient-to-r from-[#1f9d51] via-[#25D366] to-[#1ab75a] px-5 py-3 text-sm font-semibold tracking-[0.045em] text-white shadow-[0_16px_28px_rgba(17,95,55,.24)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_32px_rgba(17,95,55,.28)]">{{ $content['wa'] }}</a>
             </div>
         </aside>
     </section>
