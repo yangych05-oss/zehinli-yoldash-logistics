@@ -3,6 +3,10 @@
 @section('content')
     @php
         $locale = app()->getLocale();
+        $premiumPhotos = [
+            'air' => 'https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1100&w=1600',
+            'road' => 'https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1100&w=1600',
+        ];
         $copy = [
             'en' => [
                 'eyebrow' => 'Shipment Intelligence',
@@ -42,7 +46,7 @@
     @endphp
 
     <section class="relative overflow-hidden rounded-[2.2rem] border border-slate-800 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 p-8 text-white shadow-[0_40px_95px_rgba(5,18,46,.44)] md:p-12">
-        <img src="{{ asset('images/premium/cargo-aircraft-premium.svg') }}" alt="Air freight route planning" class="absolute inset-0 h-full w-full object-cover contrast-[1.08] saturate-[1.1] opacity-24" loading="lazy">
+        <img src="{{ $premiumPhotos['air'] }}" alt="Air freight route planning" class="absolute inset-0 h-full w-full object-cover contrast-[1.08] saturate-[1.1] opacity-24" loading="lazy">
         <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-blue-950/85 to-slate-900/90"></div>
         <div class="relative z-10 max-w-3xl">
             <p class="zny-label text-sky-300">{{ $content['eyebrow'] }}</p>
@@ -65,7 +69,7 @@
         </div>
 
         <aside class="zny-card overflow-hidden">
-            <img src="{{ asset('images/premium/freight-truck-premium.svg') }}" alt="Road transport operations" class="h-full min-h-[270px] w-full object-cover contrast-[1.05] saturate-[1.08]" loading="lazy">
+            <img src="{{ $premiumPhotos['road'] }}" alt="Road transport operations" class="h-full min-h-[270px] w-full object-cover contrast-[1.05] saturate-[1.08]" loading="lazy">
         </aside>
     </section>
 

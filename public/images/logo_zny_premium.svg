@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img" aria-label="ZNY Logistics premium brand mark">
+  <defs>
+    <linearGradient id="znyBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0C2B5F"/>
+      <stop offset="0.45" stop-color="#0F4B9D"/>
+      <stop offset="1" stop-color="#24A5F3"/>
+    </linearGradient>
+    <linearGradient id="znySilver" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#DFF3FF"/>
+      <stop offset="1" stop-color="#8DCBFF"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="24" y="24" width="592" height="592" rx="138" fill="url(#znyBlue)"/>
+  <path d="M58 186C58 128 105 81 163 81h314c58 0 105 47 105 105v32H58v-32Z" fill="rgba(255,255,255,.08)"/>
+
+  <path d="M122 180h170v42L186 420h115v42H108v-42l106-198H122z" fill="#F6FBFF"/>
+  <path d="M280 180h54l82 130 82-130h53v282h-46V257l-89 138-90-138v205h-46z" fill="#EAF6FF"/>
+  <path d="M290 495h66l-24 65h-18z" fill="url(#znySilver)"/>
+
+  <circle cx="512" cy="495" r="42" fill="#EAF6FF"/>
+  <path d="M489 495h46" stroke="#0B336F" stroke-width="12" stroke-linecap="round"/>
+  <path d="M512 472v46" stroke="#0B336F" stroke-width="12" stroke-linecap="round"/>
+
+  <text x="320" y="573" text-anchor="middle" fill="#DBF0FF" font-size="34" font-family="Inter,Segoe UI,Arial,sans-serif" font-weight="700" letter-spacing="9">LOGISTICS</text>
+</svg>

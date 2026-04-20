@@ -3,6 +3,13 @@
 @section('content')
     @php
         $locale = app()->getLocale();
+        $premiumPhotos = [
+            'hero' => 'https://images.pexels.com/photos/6169668/pexels-photo-6169668.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1400&w=2200',
+            'air' => 'https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1100&w=1600',
+            'road' => 'https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1100&w=1600',
+            'sea' => 'https://images.pexels.com/photos/262353/pexels-photo-262353.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1100&w=1600',
+            'warehouse' => 'https://images.pexels.com/photos/4481324/pexels-photo-4481324.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1100&w=1600',
+        ];
         $copy = [
             'en' => [
                 'hero_eyebrow' => 'International Freight Infrastructure',
@@ -18,10 +25,10 @@
                 'services_intro' => 'Core capabilities',
                 'services_title' => 'Integrated services for mission-critical cargo programs.',
                 'services' => [
-                    ['title' => 'Air Freight', 'text' => 'Priority-lane handling and tight transit control for urgent cargo.', 'image' => asset('images/premium/cargo-aircraft-premium.svg'), 'alt' => 'Cargo aircraft'],
-                    ['title' => 'Road Freight', 'text' => 'Cross-border surface delivery with stable routing and milestone reporting.', 'image' => asset('images/premium/freight-truck-premium.svg'), 'alt' => 'Freight truck'],
-                    ['title' => 'Port & Terminal Coordination', 'text' => 'Reliable handover management across customs, terminals, and carriers.', 'image' => asset('images/premium/cargo-port-premium.svg'), 'alt' => 'Cargo port'],
-                    ['title' => 'Warehouse & Consolidation', 'text' => 'Secure staging, controlled handling, and efficient dispatch preparation.', 'image' => asset('images/premium/warehouse-operations-premium.svg'), 'alt' => 'Warehouse operations'],
+                    ['title' => 'Air Freight', 'text' => 'Priority-lane handling and tight transit control for urgent cargo.', 'image' => $premiumPhotos['air'], 'alt' => 'Cargo aircraft'],
+                    ['title' => 'Road Freight', 'text' => 'Cross-border surface delivery with stable routing and milestone reporting.', 'image' => $premiumPhotos['road'], 'alt' => 'Freight truck'],
+                    ['title' => 'Port & Terminal Coordination', 'text' => 'Reliable handover management across customs, terminals, and carriers.', 'image' => $premiumPhotos['sea'], 'alt' => 'Cargo port'],
+                    ['title' => 'Warehouse & Consolidation', 'text' => 'Secure staging, controlled handling, and efficient dispatch preparation.', 'image' => $premiumPhotos['warehouse'], 'alt' => 'Warehouse operations'],
                 ],
                 'value_intro' => 'Why enterprise teams choose us',
                 'value_title' => 'Predictable logistics outcomes through disciplined execution.',
@@ -45,10 +52,10 @@
                 'services_intro' => 'Ключевые возможности',
                 'services_title' => 'Интегрированные услуги для критически важных грузовых программ.',
                 'services' => [
-                    ['title' => 'Авиаперевозки', 'text' => 'Приоритетная обработка и строгий контроль транзита для срочных грузов.', 'image' => asset('images/premium/cargo-aircraft-premium.svg'), 'alt' => 'Грузовой самолёт'],
-                    ['title' => 'Автоперевозки', 'text' => 'Стабильная международная доставка по суше с отчётностью по этапам.', 'image' => asset('images/premium/freight-truck-premium.svg'), 'alt' => 'Грузовой автомобиль'],
-                    ['title' => 'Координация портов и терминалов', 'text' => 'Надёжное управление передачей груза между таможней, терминалами и перевозчиками.', 'image' => asset('images/premium/cargo-port-premium.svg'), 'alt' => 'Грузовой порт'],
-                    ['title' => 'Склад и консолидация', 'text' => 'Безопасное хранение, контролируемая обработка и точная подготовка к отгрузке.', 'image' => asset('images/premium/warehouse-operations-premium.svg'), 'alt' => 'Складские операции'],
+                    ['title' => 'Авиаперевозки', 'text' => 'Приоритетная обработка и строгий контроль транзита для срочных грузов.', 'image' => $premiumPhotos['air'], 'alt' => 'Грузовой самолёт'],
+                    ['title' => 'Автоперевозки', 'text' => 'Стабильная международная доставка по суше с отчётностью по этапам.', 'image' => $premiumPhotos['road'], 'alt' => 'Грузовой автомобиль'],
+                    ['title' => 'Координация портов и терминалов', 'text' => 'Надёжное управление передачей груза между таможней, терминалами и перевозчиками.', 'image' => $premiumPhotos['sea'], 'alt' => 'Грузовой порт'],
+                    ['title' => 'Склад и консолидация', 'text' => 'Безопасное хранение, контролируемая обработка и точная подготовка к отгрузке.', 'image' => $premiumPhotos['warehouse'], 'alt' => 'Складские операции'],
                 ],
                 'value_intro' => 'Почему нас выбирает бизнес',
                 'value_title' => 'Прогнозируемый результат за счёт дисциплины исполнения.',
@@ -72,10 +79,10 @@
                 'services_intro' => 'Esasy mümkinçilikler',
                 'services_title' => 'Möhüm ýük programmalary üçin bitewi hyzmatlar.',
                 'services' => [
-                    ['title' => 'Howa daşamasy', 'text' => 'Tiz ýükler üçin ileri tutulýan hyzmat we berk tranzit gözegçiligi.', 'image' => asset('images/premium/cargo-aircraft-premium.svg'), 'alt' => 'Ýük uçary'],
-                    ['title' => 'Awtoulag daşamasy', 'text' => 'Serhetara ugralarda yzygiderli ýerüsti eltme we tapgyrlaýyn hasabat.', 'image' => asset('images/premium/freight-truck-premium.svg'), 'alt' => 'Ýük awtoulagy'],
-                    ['title' => 'Port we terminal utgaşdyrylyşy', 'text' => 'Gümrük, terminal we daşaýjy arasynda ygtybarly tabşyryş dolandyryşy.', 'image' => asset('images/premium/cargo-port-premium.svg'), 'alt' => 'Ýük porty'],
-                    ['title' => 'Ammar we konsolidasiýa', 'text' => 'Howpsuz saklama, gözegçilikli hyzmat we takyk ugradyş taýýarlygy.', 'image' => asset('images/premium/warehouse-operations-premium.svg'), 'alt' => 'Ammar işleri'],
+                    ['title' => 'Howa daşamasy', 'text' => 'Tiz ýükler üçin ileri tutulýan hyzmat we berk tranzit gözegçiligi.', 'image' => $premiumPhotos['air'], 'alt' => 'Ýük uçary'],
+                    ['title' => 'Awtoulag daşamasy', 'text' => 'Serhetara ugralarda yzygiderli ýerüsti eltme we tapgyrlaýyn hasabat.', 'image' => $premiumPhotos['road'], 'alt' => 'Ýük awtoulagy'],
+                    ['title' => 'Port we terminal utgaşdyrylyşy', 'text' => 'Gümrük, terminal we daşaýjy arasynda ygtybarly tabşyryş dolandyryşy.', 'image' => $premiumPhotos['sea'], 'alt' => 'Ýük porty'],
+                    ['title' => 'Ammar we konsolidasiýa', 'text' => 'Howpsuz saklama, gözegçilikli hyzmat we takyk ugradyş taýýarlygy.', 'image' => $premiumPhotos['warehouse'], 'alt' => 'Ammar işleri'],
                 ],
                 'value_intro' => 'Näme üçin iri müşderiler bizi saýlaýar',
                 'value_title' => 'Tertipli ýerine ýetiriliş bilen çaklanylýan logistika netijesi.',
@@ -90,7 +97,7 @@
     @endphp
 
     <section class="relative overflow-hidden rounded-[2.35rem] border border-slate-900/75 bg-[#031634] p-8 text-white shadow-[0_45px_110px_rgba(3,15,38,.56)] md:p-12 lg:p-14">
-        <img src="{{ asset('images/premium/hero-logistics.svg') }}" alt="Global logistics network" class="absolute inset-0 h-full w-full object-cover contrast-[1.08] saturate-[1.1] opacity-40" loading="eager">
+        <img src="{{ $premiumPhotos['hero'] }}" alt="Global logistics network" class="absolute inset-0 h-full w-full object-cover contrast-[1.08] saturate-[1.1] opacity-40" loading="eager">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_12%_22%,rgba(85,192,255,.28),transparent_38%),linear-gradient(122deg,rgba(2,11,28,.88),rgba(7,32,79,.76)_46%,rgba(4,15,40,.95))]"></div>
         <div class="relative z-10 grid gap-10 lg:grid-cols-[1.15fr_.85fr] lg:items-end">
             <div class="max-w-3xl">
@@ -140,7 +147,7 @@
             </ul>
         </article>
         <aside class="zny-card overflow-hidden">
-            <img src="{{ asset('images/premium/warehouse-operations-premium.svg') }}" alt="Warehouse logistics operations" class="h-full min-h-[290px] w-full object-cover contrast-[1.04] saturate-[1.06]" loading="lazy">
+            <img src="{{ $premiumPhotos['warehouse'] }}" alt="Warehouse logistics operations" class="h-full min-h-[290px] w-full object-cover contrast-[1.04] saturate-[1.06]" loading="lazy">
         </aside>
     </section>
 @endsection

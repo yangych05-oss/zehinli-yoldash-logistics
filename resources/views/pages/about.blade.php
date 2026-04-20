@@ -3,6 +3,10 @@
 @section('content')
     @php
         $locale = app()->getLocale();
+        $premiumPhotos = [
+            'sea' => 'https://images.pexels.com/photos/262353/pexels-photo-262353.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1100&w=1600',
+            'warehouse' => 'https://images.pexels.com/photos/4481324/pexels-photo-4481324.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1100&w=1600',
+        ];
         $copy = [
             'en' => [
                 'eyebrow' => 'About ZNY LOGISTICS',
@@ -39,7 +43,7 @@
     @endphp
 
     <section class="relative overflow-hidden rounded-[2.2rem] border border-slate-800 bg-gradient-to-br from-slate-950 via-[#071a3f] to-[#123874] p-8 text-white shadow-[0_40px_95px_rgba(5,18,46,.44)] md:p-12">
-        <img src="{{ asset('images/premium/cargo-port-premium.svg') }}" alt="International logistics operations" class="absolute inset-0 h-full w-full object-cover contrast-[1.08] saturate-[1.1] opacity-24" loading="lazy">
+        <img src="{{ $premiumPhotos['sea'] }}" alt="International logistics operations" class="absolute inset-0 h-full w-full object-cover contrast-[1.08] saturate-[1.1] opacity-24" loading="lazy">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_14%_18%,rgba(86,188,255,.25),transparent_38%),linear-gradient(126deg,rgba(2,11,28,.82),rgba(7,25,61,.76)_48%,rgba(12,40,90,.9))]"></div>
         <div class="relative z-10 grid gap-9 lg:grid-cols-[1.1fr_.9fr] lg:items-center">
             <div>
@@ -47,7 +51,7 @@
                 <h1 class="mt-3 text-4xl font-black leading-tight md:text-5xl">{{ $content['title'] }}</h1>
                 <p class="mt-5 max-w-2xl text-slate-200 md:text-lg">{{ $content['intro'] }}</p>
             </div>
-            <img src="{{ asset('images/premium/warehouse-operations-premium.svg') }}" alt="Warehouse and freight operations" class="h-64 w-full rounded-2xl border border-white/15 object-cover contrast-[1.04] saturate-[1.06] shadow-[0_18px_40px_rgba(5,16,40,.45)]" loading="lazy">
+            <img src="{{ $premiumPhotos['warehouse'] }}" alt="Warehouse and freight operations" class="h-64 w-full rounded-2xl border border-white/15 object-cover contrast-[1.04] saturate-[1.06] shadow-[0_18px_40px_rgba(5,16,40,.45)]" loading="lazy">
         </div>
     </section>
 

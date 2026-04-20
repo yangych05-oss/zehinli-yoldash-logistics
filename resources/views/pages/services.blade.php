@@ -3,15 +3,20 @@
 @section('content')
     @php
         $locale = app()->getLocale();
+        $premiumPhotos = [
+            'air' => 'https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1100&w=1600',
+            'road' => 'https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1100&w=1600',
+            'sea' => 'https://images.pexels.com/photos/262353/pexels-photo-262353.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1100&w=1600',
+        ];
         $copy = [
             'en' => [
                 'eyebrow' => 'Service Portfolio',
                 'title' => 'Enterprise logistics services coordinated as one high-performance system.',
                 'text' => 'From urgent air cargo to multimodal route design, every service is aligned to give your operations speed, control, and predictable delivery outcomes.',
                 'cards' => [
-                    ['label' => 'Air network', 'title' => 'Air Freight', 'text' => 'Priority uplift, carrier coordination, and strict transit control for time-sensitive cargo.', 'image' => asset('images/premium/cargo-aircraft-premium.svg'), 'alt' => 'Cargo aircraft logistics'],
-                    ['label' => 'Road network', 'title' => 'Road Freight', 'text' => 'Reliable regional and cross-border linehaul with secure handling standards.', 'image' => asset('images/premium/freight-truck-premium.svg'), 'alt' => 'Freight truck logistics'],
-                    ['label' => 'Ocean network', 'title' => 'Ocean Freight', 'text' => 'Containerized maritime solutions across major trade corridors with clear milestones.', 'image' => asset('images/premium/cargo-port-premium.svg'), 'alt' => 'Container port logistics'],
+                    ['label' => 'Air network', 'title' => 'Air Freight', 'text' => 'Priority uplift, carrier coordination, and strict transit control for time-sensitive cargo.', 'image' => $premiumPhotos['air'], 'alt' => 'Cargo aircraft logistics'],
+                    ['label' => 'Road network', 'title' => 'Road Freight', 'text' => 'Reliable regional and cross-border linehaul with secure handling standards.', 'image' => $premiumPhotos['road'], 'alt' => 'Freight truck logistics'],
+                    ['label' => 'Ocean network', 'title' => 'Ocean Freight', 'text' => 'Containerized maritime solutions across major trade corridors with clear milestones.', 'image' => $premiumPhotos['sea'], 'alt' => 'Container port logistics'],
                 ],
                 'quote_title' => 'Request structured routing proposal',
                 'quote_text' => 'Share your shipment profile and receive a practical service recommendation from our operations team.',
@@ -22,9 +27,9 @@
                 'title' => 'Логистические услуги корпоративного уровня, объединённые в высокоэффективную систему.',
                 'text' => 'От срочных авиаперевозок до мультимодального проектирования маршрута — каждый сервис даёт вашему бизнесу скорость, контроль и прогнозируемый результат.',
                 'cards' => [
-                    ['label' => 'Авиационная сеть', 'title' => 'Авиаперевозки', 'text' => 'Приоритетная отправка, координация с перевозчиками и строгий контроль транзита.', 'image' => asset('images/premium/cargo-aircraft-premium.svg'), 'alt' => 'Авиалогистика'],
-                    ['label' => 'Автодорожная сеть', 'title' => 'Автоперевозки', 'text' => 'Надёжные региональные и международные перевозки с безопасной обработкой груза.', 'image' => asset('images/premium/freight-truck-premium.svg'), 'alt' => 'Автологистика'],
-                    ['label' => 'Морская сеть', 'title' => 'Морские перевозки', 'text' => 'Контейнерные решения по ключевым торговым коридорам с прозрачными этапами.', 'image' => asset('images/premium/cargo-port-premium.svg'), 'alt' => 'Морская логистика'],
+                    ['label' => 'Авиационная сеть', 'title' => 'Авиаперевозки', 'text' => 'Приоритетная отправка, координация с перевозчиками и строгий контроль транзита.', 'image' => $premiumPhotos['air'], 'alt' => 'Авиалогистика'],
+                    ['label' => 'Автодорожная сеть', 'title' => 'Автоперевозки', 'text' => 'Надёжные региональные и международные перевозки с безопасной обработкой груза.', 'image' => $premiumPhotos['road'], 'alt' => 'Автологистика'],
+                    ['label' => 'Морская сеть', 'title' => 'Морские перевозки', 'text' => 'Контейнерные решения по ключевым торговым коридорам с прозрачными этапами.', 'image' => $premiumPhotos['sea'], 'alt' => 'Морская логистика'],
                 ],
                 'quote_title' => 'Запросить структурированное предложение по маршруту',
                 'quote_text' => 'Опишите параметры груза и получите практическую сервисную рекомендацию от нашей операционной команды.',
@@ -35,9 +40,9 @@
                 'title' => 'Korporatiw derejedäki logistika hyzmatlary ýokary öndürijilikli bitewi ulgamda birleşdirildi.',
                 'text' => 'Tiz howa daşamasyndan multimodal ugur taslamasyna çenli her hyzmat işiňize tizlik, gözegçilik we çaklanylýan netijäni berýär.',
                 'cards' => [
-                    ['label' => 'Howa ulgamy', 'title' => 'Howa daşamasy', 'text' => 'Tiz ýükler üçin ileri tutulýan ugradyş, daşaýjy utgaşdyrylyşy we berk tranzit gözegçiligi.', 'image' => asset('images/premium/cargo-aircraft-premium.svg'), 'alt' => 'Howa logistika'],
-                    ['label' => 'Awtoulag ulgamy', 'title' => 'Awtoulag daşamasy', 'text' => 'Howpsuz hyzmat standarty bilen sebit we serhetara ygtybarly ulag.', 'image' => asset('images/premium/freight-truck-premium.svg'), 'alt' => 'Awtoulag logistika'],
-                    ['label' => 'Deňiz ulgamy', 'title' => 'Deňiz daşamasy', 'text' => 'Esasy söwda geçelgelerinde açyk tapgyrlar bilen konteýner çözgütleri.', 'image' => asset('images/premium/cargo-port-premium.svg'), 'alt' => 'Deňiz logistika'],
+                    ['label' => 'Howa ulgamy', 'title' => 'Howa daşamasy', 'text' => 'Tiz ýükler üçin ileri tutulýan ugradyş, daşaýjy utgaşdyrylyşy we berk tranzit gözegçiligi.', 'image' => $premiumPhotos['air'], 'alt' => 'Howa logistika'],
+                    ['label' => 'Awtoulag ulgamy', 'title' => 'Awtoulag daşamasy', 'text' => 'Howpsuz hyzmat standarty bilen sebit we serhetara ygtybarly ulag.', 'image' => $premiumPhotos['road'], 'alt' => 'Awtoulag logistika'],
+                    ['label' => 'Deňiz ulgamy', 'title' => 'Deňiz daşamasy', 'text' => 'Esasy söwda geçelgelerinde açyk tapgyrlar bilen konteýner çözgütleri.', 'image' => $premiumPhotos['sea'], 'alt' => 'Deňiz logistika'],
                 ],
                 'quote_title' => 'Gurluşly ugur teklibini soramak',
                 'quote_text' => 'Ýük maglumatlaryňyzy paýlaşyň we operasion toparymyzdan amaly hyzmat teklibini alyň.',
