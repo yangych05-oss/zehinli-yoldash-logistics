@@ -1,0 +1,27 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ZNY Logistics logo">
+  <defs>
+    <linearGradient id="logoBg" x1="74" y1="54" x2="430" y2="462" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0A2A62"/>
+      <stop offset="0.52" stop-color="#0F4BA2"/>
+      <stop offset="1" stop-color="#21A8FF"/>
+    </linearGradient>
+    <linearGradient id="logoStroke" x1="116" y1="126" x2="380" y2="382" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D6E8FF"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <filter id="softShadow" x="58" y="38" width="396" height="436" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#041226" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <rect x="56" y="56" width="400" height="400" rx="108" fill="url(#logoBg)"/>
+  <rect x="56" y="56" width="400" height="400" rx="108" stroke="rgba(255,255,255,.4)" stroke-width="4"/>
+
+  <g filter="url(#softShadow)">
+    <path d="M126 146H384L186 366H126L324 146H126Z" fill="url(#logoStroke)"/>
+    <path d="M200 146H268L388 366H322L200 146Z" fill="#E8F1FF" fill-opacity="0.95"/>
+    <path d="M126 366L200 262H276L202 366H126Z" fill="#BDDBFF"/>
+  </g>
+
+  <path d="M118 413H394" stroke="rgba(236,245,255,.9)" stroke-width="18" stroke-linecap="round"/>
+</svg>

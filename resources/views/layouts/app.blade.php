@@ -123,13 +123,13 @@
             box-shadow: var(--zny-shadow-md);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
-        .zny-header-logo-wrap { width: 60px; height: 60px; }
-        .zny-brand-logo-wrap { width: 48px; height: 48px; }
-        .zny-header-logo { width: auto; height: 52px; object-fit: contain; }
-        .zny-brand-logo { max-width: 34px; max-height: 34px; object-fit: contain; }
+        .zny-header-logo-wrap { width: 68px; height: 68px; border-radius: 18px; }
+        .zny-brand-logo-wrap { width: 52px; height: 52px; border-radius: 14px; }
+        .zny-header-logo { width: 52px; height: 52px; object-fit: contain; }
+        .zny-brand-logo { max-width: 36px; max-height: 36px; object-fit: contain; }
         .zny-header-brand:hover .zny-header-logo-wrap, .zny-brand-link:hover .zny-brand-logo-wrap { transform: translateY(-2px); box-shadow: 0 18px 36px rgba(8, 26, 56, 0.18); }
 
-        .zny-header-brand-title { font-size: 1.05rem; font-weight: 800; letter-spacing: 0.06em; color: #081a37; white-space: nowrap; }
+        .zny-header-brand-title { font-size: 1.08rem; font-weight: 800; letter-spacing: 0.055em; color: #081a37; white-space: nowrap; }
         .zny-header-brand-subtitle, .zny-brand-subtitle { margin-top: 0.14rem; font-size: 0.68rem; font-weight: 640; letter-spacing: 0.11em; text-transform: uppercase; color: #607191; white-space: nowrap; }
         .zny-brand-title { font-size: 0.95rem; font-weight: 760; letter-spacing: 0.07em; color: #f5f8ff; }
 
@@ -197,11 +197,11 @@
         .zny-floating-label { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
 
         @media (max-width: 1100px) {
-            .zny-floating-actions { right: 1rem; bottom: calc(max(0.9rem, env(safe-area-inset-bottom)) + 6rem); }
+            .zny-floating-actions { right: 1rem; bottom: calc(max(0.9rem, env(safe-area-inset-bottom)) + 7.5rem); }
         }
         @media (max-width: 768px) {
-            .zny-header-logo-wrap { width: 52px; height: 52px; border-radius: 13px; }
-            .zny-header-logo { height: 44px; }
+            .zny-header-logo-wrap { width: 56px; height: 56px; border-radius: 14px; }
+            .zny-header-logo { width: 42px; height: 42px; }
             .zny-header-brand-title { font-size: 0.94rem; letter-spacing: 0.04em; }
             .zny-header-brand-subtitle { font-size: 0.61rem; }
             .zny-floating-whatsapp { width: 3.32rem; height: 3.32rem; min-width: 3.32rem; padding: 0; }
@@ -215,7 +215,7 @@
         <div class="zny-wrap py-3.5 flex flex-wrap items-center justify-between gap-4">
             <a href="/{{ app()->getLocale() }}" class="zny-header-brand">
                 <span class="zny-header-logo-wrap">
-                    <img src="{{ asset('images/logo_clean.png') }}" alt="{{ $companyName }}" class="zny-header-logo">
+                    <img src="{{ asset('images/logo_clean.svg') }}" alt="{{ $companyName }}" class="zny-header-logo">
                 </span>
                 <div class="min-w-0 leading-tight">
                     <div class="zny-header-brand-title">{{ $companyName }}</div>
@@ -255,7 +255,7 @@
                 <div>
                     <a href="/{{ app()->getLocale() }}" class="zny-brand-link mb-4">
                         <span class="zny-brand-logo-wrap !w-11 !h-11 !rounded-xl !bg-white/10 !border-white/10 !shadow-none">
-                            <img src="{{ asset('images/logo_clean.png') }}" alt="{{ $companyName }} logo" class="zny-brand-logo">
+                            <img src="{{ asset('images/logo_clean.svg') }}" alt="{{ $companyName }} logo" class="zny-brand-logo">
                         </span>
                         <div>
                             <p class="zny-brand-title">{{ $companyName }}</p>
@@ -319,8 +319,8 @@
 
         const recalculateOffset = function () {
             const isTabletDown = window.matchMedia('(max-width: 1100px)').matches;
-            const baseSpacing = isTabletDown ? 128 : 44;
-            const extraGap = isTabletDown ? 20 : 32;
+            const baseSpacing = isTabletDown ? 156 : 78;
+            const extraGap = isTabletDown ? 28 : 36;
 
             let safeBottom = baseSpacing;
             let safeRight = isTabletDown ? null : 20;
@@ -351,7 +351,7 @@
             }
 
             actions.style.bottom = `${Math.ceil(safeBottom)}px`;
-            actions.style.right = isTabletDown ? '1rem' : `${safeRight || 20}px`;
+            actions.style.right = isTabletDown ? '1rem' : `${safeRight || 24}px`;
             actions.style.left = 'auto';
         };
 

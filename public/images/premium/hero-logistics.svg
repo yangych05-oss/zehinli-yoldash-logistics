@@ -1,41 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1000" role="img" aria-label="Premium logistics montage visual">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1000" role="img" aria-label="ZNY Logistics premium enterprise operations montage">
   <defs>
-    <linearGradient id="heroBg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#061933"/>
-      <stop offset="1" stop-color="#1a4d93"/>
+    <linearGradient id="heroBase" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06172F"/>
+      <stop offset="0.5" stop-color="#0D3B78"/>
+      <stop offset="1" stop-color="#1F6DB8"/>
     </linearGradient>
-    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#92d5ff" stop-opacity="0"/>
-      <stop offset="0.5" stop-color="#92d5ff" stop-opacity="0.5"/>
-      <stop offset="1" stop-color="#92d5ff" stop-opacity="0"/>
-    </linearGradient>
+    <radialGradient id="heroLight" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1380 180) rotate(130) scale(520 360)">
+      <stop stop-color="#DFF0FF" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#DFF0FF" stop-opacity="0"/>
+    </radialGradient>
   </defs>
-  <rect width="1800" height="1000" fill="url(#heroBg)"/>
-  <circle cx="1380" cy="220" r="180" fill="#8fd3ff" opacity=".18"/>
-  <circle cx="360" cy="170" r="110" fill="#5cc0ff" opacity=".17"/>
+  <rect width="1800" height="1000" fill="url(#heroBase)"/>
+  <rect width="1800" height="1000" fill="url(#heroLight)"/>
 
-  <rect x="0" y="640" width="1800" height="360" fill="#10243f"/>
-  <rect x="0" y="585" width="1800" height="70" fill="#204d85" opacity=".6"/>
+  <path d="M0 702L204 650C409 598 818 494 1120 503C1421 513 1615 638 1710 703L1800 764V1000H0V702Z" fill="#0B1D38" fill-opacity="0.66"/>
 
-  <g opacity=".95">
-    <rect x="210" y="518" width="500" height="68" rx="14" fill="#dcefff"/>
-    <polygon points="258,514 678,514 620,470 300,470" fill="#c5e2ff"/>
-    <rect x="780" y="550" width="360" height="56" rx="16" fill="#dcefff"/>
-    <rect x="1180" y="468" width="420" height="90" rx="16" fill="#e3f2ff"/>
-    <polygon points="1230,468 1528,468 1468,422 1286,422" fill="#c6ddff"/>
+  <g opacity="0.96">
+    <rect x="116" y="560" width="430" height="90" rx="16" fill="#E4F2FF"/>
+    <polygon points="168,560 478,560 422,510 214,510" fill="#C8DEFA"/>
+
+    <rect x="604" y="586" width="324" height="64" rx="16" fill="#EAF4FF"/>
+    <rect x="972" y="540" width="370" height="98" rx="18" fill="#EAF4FF"/>
+    <polygon points="1008,540 1275,540 1225,486 1046,486" fill="#C4DCF8"/>
   </g>
 
-  <g fill="#eaf4ff">
-    <rect x="760" y="320" width="520" height="68" rx="28"/>
-    <polygon points="956,292 1118,292 1198,380 882,380"/>
-    <polygon points="846,318 748,220 928,312"/>
-    <polygon points="1168,318 1326,280 1190,368"/>
+  <g opacity="0.93">
+    <path d="M680 372L1190 296C1230 290 1265 319 1267 359L1269 390L695 454L680 372Z" fill="#F5FAFF"/>
+    <path d="M1132 308L1338 226L1373 258L1211 364L1132 308Z" fill="#CFDEF3"/>
+    <path d="M845 345L670 258L626 290L790 398L845 345Z" fill="#CFDEF3"/>
   </g>
 
-  <g fill="url(#beam)">
-    <rect x="120" y="0" width="760" height="1000"/>
-    <rect x="840" y="0" width="760" height="1000"/>
-  </g>
-
-  <text x="120" y="140" fill="#eaf5ff" font-size="56" font-family="Inter, Arial, sans-serif" font-weight="800" letter-spacing="2">ZNY LOGISTICS • PRECISION. RELIABILITY. INTERNATIONAL REACH.</text>
+  <text x="120" y="132" fill="#EAF5FF" font-size="50" font-family="Inter, Arial, sans-serif" font-weight="800" letter-spacing="2">ZNY LOGISTICS • ENTERPRISE GLOBAL FREIGHT OPERATIONS</text>
 </svg>
