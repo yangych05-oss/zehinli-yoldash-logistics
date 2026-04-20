@@ -123,10 +123,10 @@
             box-shadow: var(--zny-shadow-md);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
-        .zny-header-logo-wrap { width: 68px; height: 68px; border-radius: 18px; }
-        .zny-brand-logo-wrap { width: 52px; height: 52px; border-radius: 14px; }
-        .zny-header-logo { width: 52px; height: 52px; object-fit: contain; }
-        .zny-brand-logo { max-width: 36px; max-height: 36px; object-fit: contain; }
+        .zny-header-logo-wrap { width: 74px; height: 74px; border-radius: 20px; padding: 7px; }
+        .zny-brand-logo-wrap { width: 56px; height: 56px; border-radius: 15px; padding: 5px; }
+        .zny-header-logo { width: 100%; height: 100%; object-fit: contain; }
+        .zny-brand-logo { width: 100%; height: 100%; object-fit: contain; }
         .zny-header-brand:hover .zny-header-logo-wrap, .zny-brand-link:hover .zny-brand-logo-wrap { transform: translateY(-2px); box-shadow: 0 18px 36px rgba(8, 26, 56, 0.18); }
 
         .zny-header-brand-title { font-size: 1.08rem; font-weight: 800; letter-spacing: 0.055em; color: #081a37; white-space: nowrap; }
@@ -173,7 +173,7 @@
         .zny-floating-actions {
             position: fixed;
             right: 1.25rem;
-            bottom: max(1.2rem, env(safe-area-inset-bottom));
+            bottom: calc(max(1.2rem, env(safe-area-inset-bottom)) + 6.25rem);
             z-index: 60;
             pointer-events: none;
         }
@@ -197,14 +197,14 @@
         .zny-floating-label { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
 
         @media (max-width: 1100px) {
-            .zny-floating-actions { right: 1rem; bottom: calc(max(0.9rem, env(safe-area-inset-bottom)) + 7.5rem); }
+            .zny-floating-actions { right: 0.9rem; bottom: calc(max(0.9rem, env(safe-area-inset-bottom)) + 8.8rem); }
         }
         @media (max-width: 768px) {
             .zny-header-logo-wrap { width: 56px; height: 56px; border-radius: 14px; }
-            .zny-header-logo { width: 42px; height: 42px; }
+            .zny-header-logo { width: 100%; height: 100%; }
             .zny-header-brand-title { font-size: 0.94rem; letter-spacing: 0.04em; }
             .zny-header-brand-subtitle { font-size: 0.61rem; }
-            .zny-floating-whatsapp { width: 3.32rem; height: 3.32rem; min-width: 3.32rem; padding: 0; }
+            .zny-floating-whatsapp { width: 3.32rem; height: 3.32rem; min-width: 3.32rem; padding: 0; box-shadow: 0 18px 28px rgba(8, 26, 52, 0.36), 0 0 0 1px rgba(22, 156, 75, 0.46) inset; }
             .zny-floating-whatsapp-text { display: none; }
         }
     </style>
@@ -319,11 +319,11 @@
 
         const recalculateOffset = function () {
             const isTabletDown = window.matchMedia('(max-width: 1100px)').matches;
-            const baseSpacing = isTabletDown ? 156 : 78;
-            const extraGap = isTabletDown ? 28 : 36;
+            const baseSpacing = isTabletDown ? 176 : 102;
+            const extraGap = isTabletDown ? 34 : 42;
 
             let safeBottom = baseSpacing;
-            let safeRight = isTabletDown ? null : 20;
+            let safeRight = isTabletDown ? null : 24;
 
             const tawkTargets = [
                 "#tawkchat-minified-iframe-element",
@@ -345,19 +345,19 @@
                 const occupiedFromBottom = Math.max(0, window.innerHeight - rect.top);
                 safeBottom = Math.max(safeBottom, occupiedFromBottom + extraGap);
 
-                if (!isTabletDown && rect.right >= window.innerWidth - 8) {
-                    safeRight = Math.max(safeRight || 20, Math.ceil(rect.width + 34));
+                if (!isTabletDown && rect.right >= window.innerWidth - 10) {
+                    safeRight = Math.max(safeRight || 24, Math.ceil(rect.width + 46));
                 }
             }
 
             actions.style.bottom = `${Math.ceil(safeBottom)}px`;
-            actions.style.right = isTabletDown ? '1rem' : `${safeRight || 24}px`;
+            actions.style.right = isTabletDown ? '0.9rem' : `${safeRight || 26}px`;
             actions.style.left = 'auto';
         };
 
         recalculateOffset();
         window.addEventListener('resize', recalculateOffset);
-        setInterval(recalculateOffset, 1400);
+        setInterval(recalculateOffset, 1200);
         const observer = new MutationObserver(recalculateOffset);
         observer.observe(document.body, { childList: true, subtree: true });
     })();

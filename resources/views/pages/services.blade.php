@@ -56,7 +56,7 @@
     <section class="grid gap-5 md:grid-cols-3">
         @foreach($content['cards'] as $card)
             <article class="zny-card overflow-hidden">
-                <img src="{{ $card['image'] }}" alt="{{ $card['alt'] }}" class="h-48 w-full object-cover" loading="lazy">
+                <img src="{{ $card['image'] }}" alt="{{ $card['alt'] }}" class="h-48 w-full object-cover contrast-[1.05] saturate-[1.07]" loading="lazy">
                 <div class="p-6 md:p-7">
                     <p class="zny-label text-sky-700">{{ $card['label'] }}</p>
                     <p class="mt-2 text-xl font-bold text-slate-900">{{ $card['title'] }}</p>
