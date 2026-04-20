@@ -1,36 +1,29 @@
 <svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0A1C43"/>
-      <stop offset="100%" stop-color="#295FB4"/>
+    <linearGradient id="portSky" x1="800" y1="0" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#081A3A"/>
+      <stop offset="0.55" stop-color="#1E4C8C"/>
+      <stop offset="1" stop-color="#8EB9EC"/>
     </linearGradient>
-    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1A4F8B"/>
-      <stop offset="100%" stop-color="#113763"/>
+    <linearGradient id="water" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#0D2D57"/>
+      <stop offset="1" stop-color="#1C4C83"/>
     </linearGradient>
   </defs>
-  <rect width="1600" height="900" fill="url(#sky)"/>
-  <rect y="570" width="1600" height="330" fill="url(#water)"/>
-  <rect y="530" width="1600" height="46" fill="#263C60"/>
-  <g transform="translate(120 300)">
-    <rect x="0" y="230" width="1200" height="170" rx="16" fill="#1A2942"/>
-    <rect x="80" y="188" width="220" height="42" fill="#D55D3D"/>
-    <rect x="80" y="146" width="220" height="42" fill="#E17B47"/>
-    <rect x="320" y="188" width="220" height="42" fill="#5A93D7"/>
-    <rect x="320" y="146" width="220" height="42" fill="#7DB2EE"/>
-    <rect x="560" y="188" width="220" height="42" fill="#7CB058"/>
-    <rect x="560" y="146" width="220" height="42" fill="#9EC977"/>
-    <rect x="800" y="188" width="220" height="42" fill="#D8A044"/>
-    <rect x="800" y="146" width="220" height="42" fill="#E7BA64"/>
-    <rect x="1060" y="120" width="80" height="110" fill="#DCE6F6"/>
-  </g>
-  <g transform="translate(250 150)" fill="#DCE7F8">
-    <rect x="0" y="90" width="16" height="300"/>
-    <rect x="16" y="90" width="220" height="14"/>
-    <path d="M236 104L340 220L328 230L224 114L236 104Z"/>
-    <rect x="420" y="30" width="16" height="360"/>
-    <rect x="436" y="30" width="240" height="14"/>
-    <path d="M676 44L808 188L796 200L664 58L676 44Z"/>
-  </g>
-  <text x="92" y="118" fill="#EAF2FF" font-size="56" font-family="Arial, sans-serif" font-weight="700" opacity="0.92">ZNY OCEAN LOGISTICS HUB</text>
+  <rect width="1600" height="900" fill="url(#portSky)"/>
+  <rect x="0" y="628" width="1600" height="272" fill="url(#water)"/>
+  <rect x="114" y="366" width="226" height="262" fill="#142744"/>
+  <rect x="360" y="406" width="208" height="222" fill="#19345A"/>
+  <rect x="586" y="334" width="254" height="294" fill="#11203B"/>
+  <rect x="868" y="378" width="214" height="250" fill="#19345A"/>
+  <rect x="1106" y="418" width="194" height="210" fill="#142744"/>
+  <rect x="286" y="524" width="122" height="44" fill="#F97316"/>
+  <rect x="418" y="524" width="122" height="44" fill="#2563EB"/>
+  <rect x="552" y="524" width="122" height="44" fill="#14B8A6"/>
+  <rect x="684" y="524" width="122" height="44" fill="#EF4444"/>
+  <rect x="816" y="524" width="122" height="44" fill="#0EA5E9"/>
+  <path d="M1246 290V626" stroke="#CADBF5" stroke-width="11"/>
+  <path d="M1246 320L1380 260" stroke="#CADBF5" stroke-width="9"/>
+  <path d="M1246 372L1368 322" stroke="#CADBF5" stroke-width="9"/>
+  <circle cx="1362" cy="322" r="14" fill="#E4EEFB"/>
 </svg>

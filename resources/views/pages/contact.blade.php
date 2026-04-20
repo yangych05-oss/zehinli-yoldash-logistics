@@ -79,10 +79,18 @@
             <div class="p-6 md:p-8">
                 <h2 class="text-2xl font-black text-slate-900">{{ $content['priority_title'] }}</h2>
                 <p class="mt-2 text-slate-600">{{ $content['priority_text'] }}</p>
-                <div class="mt-5 rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-sky-50 p-3">
-                    <img src="{{ asset('images/qr_clean.png') }}" alt="WhatsApp QR code for {{ $siteSettings['company_name'] ?? 'ZNY LOGISTICS' }}" class="mx-auto w-full max-w-[260px] rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
+                <div class="mt-5 rounded-2xl border border-emerald-200/80 bg-gradient-to-br from-emerald-50 via-white to-sky-50 p-5 shadow-[0_16px_35px_rgba(22,101,52,.12)]">
+                    <div class="mx-auto flex max-w-[270px] items-start gap-3 rounded-xl border border-white/70 bg-white/85 p-4">
+                        <div class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6"><path d="M20.5 3.5A11.89 11.89 0 0 0 12.05 0C5.48 0 .14 5.35.14 11.94c0 2.1.55 4.15 1.6 5.96L0 24l6.3-1.66a11.86 11.86 0 0 0 5.73 1.46h.01c6.57 0 11.91-5.35 11.91-11.94 0-3.2-1.24-6.22-3.45-8.36Z"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">WhatsApp</p>
+                            <p class="mt-1 text-sm leading-relaxed text-slate-600">Open the secure channel instantly for shipment updates and urgent operations support.</p>
+                        </div>
+                    </div>
                 </div>
-                <a href="{{ whatsapp_link() }}" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center justify-center rounded-full border border-emerald-300 bg-gradient-to-r from-[#20bd5d] to-[#25D366] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(20,90,50,.2)] transition hover:-translate-y-0.5">{{ $content['wa'] }}</a>
+                <a href="{{ whatsapp_link() }}" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex w-full items-center justify-center rounded-full border border-emerald-300 bg-gradient-to-r from-[#20bd5d] to-[#25D366] px-5 py-3 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(20,90,50,.2)] transition hover:-translate-y-0.5">{{ $content['wa'] }}</a>
             </div>
         </aside>
     </section>
