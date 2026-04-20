@@ -4,6 +4,10 @@
     @php
         $siteSettings = array_merge(site_setting_defaults(), is_array($siteSettings ?? null) ? $siteSettings : []);
         $locale = app()->getLocale();
+        $premiumPhotos = [
+            'sea' => 'https://images.pexels.com/photos/262353/pexels-photo-262353.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1100&w=1600',
+            'warehouse' => 'https://images.pexels.com/photos/4481324/pexels-photo-4481324.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1100&w=1600',
+        ];
         $copy = [
             'en' => [
                 'intro' => 'Client Operations Desk',
@@ -43,7 +47,7 @@
     @endphp
 
     <section class="relative overflow-hidden rounded-[2.2rem] border border-slate-800 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 p-8 text-white shadow-[0_40px_95px_rgba(5,18,46,.44)] md:p-12">
-        <img src="{{ asset('images/premium/cargo-port-premium.svg') }}" alt="International cargo operations" class="absolute inset-0 h-full w-full object-cover opacity-20" loading="lazy">
+        <img src="{{ $premiumPhotos['sea'] }}" alt="International cargo operations" class="absolute inset-0 h-full w-full object-cover opacity-20" loading="lazy">
         <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-blue-950/85 to-slate-900/90"></div>
         <div class="relative z-10 max-w-3xl">
             <p class="zny-label text-sky-300">{{ $content['intro'] }}</p>
@@ -75,7 +79,7 @@
         </div>
 
         <aside class="zny-card overflow-hidden lg:sticky lg:top-28">
-            <img src="{{ asset('images/premium/warehouse-operations-premium.svg') }}" alt="Logistics operations desk" class="h-52 w-full object-cover" loading="lazy">
+            <img src="{{ $premiumPhotos['warehouse'] }}" alt="Logistics operations desk" class="h-52 w-full object-cover" loading="lazy">
             <div class="p-6 md:p-8">
                 <h2 class="text-2xl font-black text-slate-900">{{ $content['priority_title'] }}</h2>
                 <p class="mt-2 text-slate-600">{{ $content['priority_text'] }}</p>

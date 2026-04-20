@@ -171,15 +171,17 @@
         }
 
         .zny-floating-actions {
+            --zny-float-right: 1.25rem;
+            --zny-float-bottom: calc(max(1.2rem, env(safe-area-inset-bottom)) + 7.4rem);
             position: fixed;
-            right: 1.25rem;
-            bottom: calc(max(1.2rem, env(safe-area-inset-bottom)) + 6.25rem);
+            right: var(--zny-float-right);
+            bottom: var(--zny-float-bottom);
             z-index: 60;
             pointer-events: none;
         }
         .zny-floating-whatsapp {
-            position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
-            pointer-events: auto; min-width: 4rem; height: 4rem; padding: 0 1rem; border-radius: 999px; color: #fff;
+            position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 0.65rem;
+            pointer-events: auto; min-width: 4rem; height: 4.25rem; padding: 0 1.2rem; border-radius: 999px; color: #fff;
             border: 1px solid rgba(255, 255, 255, 0.62);
             background: radial-gradient(circle at 30% 24%, #67f6b4 0%, #27cb69 52%, #129248 100%);
             box-shadow: 0 22px 46px rgba(8, 26, 52, 0.36), 0 0 0 1px rgba(22, 156, 75, 0.46) inset, 0 0 30px rgba(37, 211, 102, 0.22);
@@ -193,19 +195,28 @@
         .zny-floating-whatsapp:hover { transform: translateY(-4px) scale(1.02); filter: saturate(1.05); }
         .zny-floating-whatsapp:hover::before { transform: scale(1.05); opacity: 1; }
         .zny-floating-whatsapp:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
-        .zny-floating-whatsapp-text { font-size: 0.73rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+        .zny-floating-whatsapp-copy { display: grid; line-height: 1.05; text-align: left; }
+        .zny-floating-whatsapp-meta { font-size: 0.56rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.94; white-space: nowrap; }
+        .zny-floating-whatsapp-text { font-size: 0.78rem; font-weight: 760; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
         .zny-floating-label { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
 
         @media (max-width: 1100px) {
-            .zny-floating-actions { right: 0.9rem; bottom: calc(max(0.9rem, env(safe-area-inset-bottom)) + 8.8rem); }
+            .zny-floating-actions {
+                --zny-float-right: 0.88rem;
+                --zny-float-bottom: calc(max(0.8rem, env(safe-area-inset-bottom)) + 9.6rem);
+            }
         }
         @media (max-width: 768px) {
             .zny-header-logo-wrap { width: 56px; height: 56px; border-radius: 14px; }
             .zny-header-logo { width: 100%; height: 100%; }
             .zny-header-brand-title { font-size: 0.94rem; letter-spacing: 0.04em; }
             .zny-header-brand-subtitle { font-size: 0.61rem; }
-            .zny-floating-whatsapp { width: 3.32rem; height: 3.32rem; min-width: 3.32rem; padding: 0; box-shadow: 0 18px 28px rgba(8, 26, 52, 0.36), 0 0 0 1px rgba(22, 156, 75, 0.46) inset; }
-            .zny-floating-whatsapp-text { display: none; }
+            .zny-floating-actions {
+                --zny-float-right: 0.7rem;
+                --zny-float-bottom: calc(max(0.72rem, env(safe-area-inset-bottom)) + 11.2rem);
+            }
+            .zny-floating-whatsapp { width: 3.4rem; height: 3.4rem; min-width: 3.4rem; padding: 0; box-shadow: 0 18px 28px rgba(8, 26, 52, 0.36), 0 0 0 1px rgba(22, 156, 75, 0.46) inset; }
+            .zny-floating-whatsapp-copy { display: none; }
         }
     </style>
 </head>
@@ -215,7 +226,7 @@
         <div class="zny-wrap py-3.5 flex flex-wrap items-center justify-between gap-4">
             <a href="/{{ app()->getLocale() }}" class="zny-header-brand">
                 <span class="zny-header-logo-wrap">
-                    <img src="{{ asset('images/logo_clean.svg') }}" alt="{{ $companyName }}" class="zny-header-logo">
+                    <img src="{{ asset('images/logo_zny_premium.svg') }}" alt="{{ $companyName }}" class="zny-header-logo">
                 </span>
                 <div class="min-w-0 leading-tight">
                     <div class="zny-header-brand-title">{{ $companyName }}</div>
@@ -255,7 +266,7 @@
                 <div>
                     <a href="/{{ app()->getLocale() }}" class="zny-brand-link mb-4">
                         <span class="zny-brand-logo-wrap !w-11 !h-11 !rounded-xl !bg-white/10 !border-white/10 !shadow-none">
-                            <img src="{{ asset('images/logo_clean.svg') }}" alt="{{ $companyName }} logo" class="zny-brand-logo">
+                            <img src="{{ asset('images/logo_zny_premium.svg') }}" alt="{{ $companyName }} logo" class="zny-brand-logo">
                         </span>
                         <div>
                             <p class="zny-brand-title">{{ $companyName }}</p>
@@ -306,7 +317,10 @@
     <div class="zny-floating-actions" aria-label="Quick communication shortcuts">
         <a href="{{ whatsapp_link() }}" target="_blank" rel="noopener noreferrer" class="zny-floating-whatsapp" aria-label="Contact ZNY Logistics via WhatsApp">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.89 11.89 0 0 0 12.05 0C5.48 0 .14 5.35.14 11.94c0 2.1.55 4.15 1.6 5.96L0 24l6.3-1.66a11.86 11.86 0 0 0 5.73 1.46h.01c6.57 0 11.91-5.35 11.91-11.94 0-3.2-1.24-6.22-3.45-8.36ZM12.04 21.8h-.01a9.86 9.86 0 0 1-5.02-1.37l-.36-.22-3.74.98 1-3.65-.24-.37a9.91 9.91 0 0 1-1.52-5.23c0-5.47 4.44-9.93 9.91-9.93 2.65 0 5.14 1.03 7.01 2.91a9.86 9.86 0 0 1 2.89 7.01c0 5.47-4.44 9.92-9.92 9.92Zm5.44-7.42c-.3-.15-1.76-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.16-.17.2-.35.22-.65.08-.3-.15-1.26-.46-2.4-1.47-.88-.78-1.47-1.75-1.64-2.04-.17-.3-.02-.46.12-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.52.08-.8.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.2 5.1 4.49.72.31 1.28.5 1.72.63.72.23 1.38.2 1.9.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z"/></svg>
-            <span class="zny-floating-whatsapp-text">WhatsApp</span>
+            <span class="zny-floating-whatsapp-copy">
+                <span class="zny-floating-whatsapp-meta">Premium Support</span>
+                <span class="zny-floating-whatsapp-text">WhatsApp</span>
+            </span>
             <span class="zny-floating-label">WhatsApp</span>
         </a>
     </div>
@@ -319,11 +333,12 @@
 
         const recalculateOffset = function () {
             const isTabletDown = window.matchMedia('(max-width: 1100px)').matches;
-            const baseSpacing = isTabletDown ? 176 : 102;
-            const extraGap = isTabletDown ? 34 : 42;
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            const baseSpacing = isMobile ? 184 : (isTabletDown ? 166 : 114);
+            const extraGap = isMobile ? 56 : (isTabletDown ? 44 : 54);
 
             let safeBottom = baseSpacing;
-            let safeRight = isTabletDown ? null : 24;
+            let safeRight = isMobile ? 11 : (isTabletDown ? 15 : 24);
 
             const tawkTargets = [
                 "#tawkchat-minified-iframe-element",
@@ -345,13 +360,13 @@
                 const occupiedFromBottom = Math.max(0, window.innerHeight - rect.top);
                 safeBottom = Math.max(safeBottom, occupiedFromBottom + extraGap);
 
-                if (!isTabletDown && rect.right >= window.innerWidth - 10) {
-                    safeRight = Math.max(safeRight || 24, Math.ceil(rect.width + 46));
+                if (rect.right >= window.innerWidth - 10) {
+                    safeRight = Math.max(safeRight || 24, Math.ceil(rect.width + (isMobile ? 16 : 48)));
                 }
             }
 
-            actions.style.bottom = `${Math.ceil(safeBottom)}px`;
-            actions.style.right = isTabletDown ? '0.9rem' : `${safeRight || 26}px`;
+            actions.style.setProperty('--zny-float-bottom', `${Math.ceil(safeBottom)}px`);
+            actions.style.setProperty('--zny-float-right', `${Math.ceil(safeRight || 24)}px`);
             actions.style.left = 'auto';
         };
 
