@@ -12,7 +12,7 @@
                 'wa' => 'Open WhatsApp',
                 'phone' => 'Phone', 'address' => 'Address', 'email' => 'Email', 'alternate' => 'Secondary email',
                 'priority_title' => 'Priority WhatsApp channel',
-                'priority_text' => 'Scan the secure QR code to connect with our operations desk immediately.',
+                'priority_text' => 'Use our direct WhatsApp channel for instant shipment updates and urgent operations support.',
                 'placeholder_email' => 'Email', 'placeholder_phone' => 'Phone',
                 'form_title' => 'Send request to operations team',
             ],
@@ -23,7 +23,7 @@
                 'wa' => 'Открыть WhatsApp',
                 'phone' => 'Телефон', 'address' => 'Адрес', 'email' => 'Электронная почта', 'alternate' => 'Дополнительная почта',
                 'priority_title' => 'Приоритетный канал WhatsApp',
-                'priority_text' => 'Сканируйте защищённый QR-код, чтобы сразу связаться с операционной командой.',
+                'priority_text' => 'Используйте прямой канал WhatsApp для мгновенных обновлений по грузу и приоритетной поддержки.',
                 'placeholder_email' => 'Электронная почта', 'placeholder_phone' => 'Телефон',
                 'form_title' => 'Отправить запрос операционной команде',
             ],
@@ -34,7 +34,7 @@
                 'wa' => 'WhatsApp açmak',
                 'phone' => 'Telefon', 'address' => 'Salgy', 'email' => 'E-poçta', 'alternate' => 'Goşmaça poçta',
                 'priority_title' => 'WhatsApp ileri tutulýan kanal',
-                'priority_text' => 'Operasion topar bilen derrew baglanyşmak üçin goragly QR kody skanirläň.',
+                'priority_text' => 'Ýük täzelikleri we gyssagly goldaw üçin göni WhatsApp kanalymyzy ulanyň.',
                 'placeholder_email' => 'E-poçta', 'placeholder_phone' => 'Telefon',
                 'form_title' => 'Operasion topara sorag ibermek',
             ],
@@ -80,13 +80,23 @@
                 <h2 class="text-2xl font-black text-slate-900">{{ $content['priority_title'] }}</h2>
                 <p class="mt-2 text-slate-600">{{ $content['priority_text'] }}</p>
                 <div class="mt-5 rounded-2xl border border-emerald-200/80 bg-gradient-to-br from-emerald-50 via-white to-sky-50 p-5 shadow-[0_16px_35px_rgba(22,101,52,.12)]">
-                    <div class="mx-auto flex max-w-[270px] items-start gap-3 rounded-xl border border-white/70 bg-white/85 p-4">
-                        <div class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white shadow-md">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6"><path d="M20.5 3.5A11.89 11.89 0 0 0 12.05 0C5.48 0 .14 5.35.14 11.94c0 2.1.55 4.15 1.6 5.96L0 24l6.3-1.66a11.86 11.86 0 0 0 5.73 1.46h.01c6.57 0 11.91-5.35 11.91-11.94 0-3.2-1.24-6.22-3.45-8.36Z"/></svg>
+                    <div class="mx-auto max-w-[300px] rounded-2xl border border-white/80 bg-white/90 p-4">
+                        <div class="flex items-center gap-3">
+                            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white shadow-md">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6"><path d="M20.5 3.5A11.89 11.89 0 0 0 12.05 0C5.48 0 .14 5.35.14 11.94c0 2.1.55 4.15 1.6 5.96L0 24l6.3-1.66a11.86 11.86 0 0 0 5.73 1.46h.01c6.57 0 11.91-5.35 11.91-11.94 0-3.2-1.24-6.22-3.45-8.36Z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">WhatsApp</p>
+                                <p class="mt-0.5 text-sm leading-relaxed text-slate-600">Always-on operations desk for urgent cargo support.</p>
+                            </div>
                         </div>
-                        <div>
-                            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">WhatsApp</p>
-                            <p class="mt-1 text-sm leading-relaxed text-slate-600">Open the secure channel instantly for shipment updates and urgent operations support.</p>
+                        <div class="mt-4 grid grid-cols-3 gap-2">
+                            <span class="h-6 rounded bg-emerald-700/90"></span>
+                            <span class="h-6 rounded bg-emerald-500/85"></span>
+                            <span class="h-6 rounded bg-emerald-700/90"></span>
+                            <span class="h-6 rounded bg-emerald-500/85"></span>
+                            <span class="h-6 rounded bg-emerald-800/95"></span>
+                            <span class="h-6 rounded bg-emerald-500/85"></span>
                         </div>
                     </div>
                 </div>

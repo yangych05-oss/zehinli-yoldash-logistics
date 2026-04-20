@@ -90,7 +90,7 @@
     @endphp
 
     <section class="relative overflow-hidden rounded-[2.35rem] border border-slate-900/75 bg-[#031634] p-8 text-white shadow-[0_45px_110px_rgba(3,15,38,.56)] md:p-12 lg:p-14">
-        <img src="{{ asset('images/premium/hero-logistics.svg') }}" alt="Global logistics network" class="absolute inset-0 h-full w-full object-cover opacity-35" loading="eager">
+        <img src="{{ asset('images/premium/hero-logistics.svg') }}" alt="Global logistics network" class="absolute inset-0 h-full w-full object-cover contrast-[1.08] saturate-[1.1] opacity-40" loading="eager">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_12%_22%,rgba(85,192,255,.28),transparent_38%),linear-gradient(122deg,rgba(2,11,28,.88),rgba(7,32,79,.76)_46%,rgba(4,15,40,.95))]"></div>
         <div class="relative z-10 grid gap-10 lg:grid-cols-[1.15fr_.85fr] lg:items-end">
             <div class="max-w-3xl">
@@ -119,7 +119,7 @@
         <div class="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             @foreach($content['services'] as $service)
                 <article class="group zny-card overflow-hidden transition duration-300 hover:-translate-y-1.5">
-                    <img src="{{ $service['image'] }}" alt="{{ $service['alt'] }}" class="h-44 w-full object-cover transition duration-700 group-hover:scale-[1.03]" loading="lazy">
+                    <img src="{{ $service['image'] }}" alt="{{ $service['alt'] }}" class="h-44 w-full object-cover contrast-[1.05] saturate-[1.07] transition duration-700 group-hover:scale-[1.03]" loading="lazy">
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-slate-900">{{ $service['title'] }}</h3>
                         <p class="mt-2 text-sm leading-relaxed text-slate-600">{{ $service['text'] }}</p>
@@ -140,7 +140,7 @@
             </ul>
         </article>
         <aside class="zny-card overflow-hidden">
-            <img src="{{ asset('images/premium/warehouse-operations-premium.svg') }}" alt="Warehouse logistics operations" class="h-full min-h-[290px] w-full object-cover" loading="lazy">
+            <img src="{{ asset('images/premium/warehouse-operations-premium.svg') }}" alt="Warehouse logistics operations" class="h-full min-h-[290px] w-full object-cover contrast-[1.04] saturate-[1.06]" loading="lazy">
         </aside>
     </section>
 @endsection
