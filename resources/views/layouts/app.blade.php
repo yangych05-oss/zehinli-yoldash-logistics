@@ -226,7 +226,7 @@
         <div class="zny-wrap py-3.5 flex flex-wrap items-center justify-between gap-4">
             <a href="/{{ app()->getLocale() }}" class="zny-header-brand">
                 <span class="zny-header-logo-wrap">
-                    <img src="{{ asset('images/logo_clean.svg') }}" alt="{{ $companyName }}" class="zny-header-logo">
+                    <img src="{{ asset('images/logo-final.png') }}" alt="{{ $companyName }}" class="zny-header-logo">
                 </span>
                 <div class="min-w-0 leading-tight">
                     <div class="zny-header-brand-title">{{ $companyName }}</div>
@@ -266,7 +266,7 @@
                 <div>
                     <a href="/{{ app()->getLocale() }}" class="zny-brand-link mb-4">
                         <span class="zny-brand-logo-wrap !w-11 !h-11 !rounded-xl !bg-white/10 !border-white/10 !shadow-none">
-                            <img src="{{ asset('images/logo_clean.svg') }}" alt="{{ $companyName }} logo" class="zny-brand-logo">
+                            <img src="{{ asset('images/logo-final.png') }}" alt="{{ $companyName }} logo" class="zny-brand-logo">
                         </span>
                         <div>
                             <p class="zny-brand-title">{{ $companyName }}</p>
