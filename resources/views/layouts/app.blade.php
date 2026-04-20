@@ -339,16 +339,19 @@
 
             let safeBottom = baseSpacing;
             let safeRight = isMobile ? 11 : (isTabletDown ? 15 : 24);
+            const tawkRects = [];
 
             const tawkTargets = [
                 "#tawkchat-minified-iframe-element",
                 "#tawkchat-container iframe",
                 "#tawk-bubble-container",
+                "#tawkchat-minified-wrapper",
                 ".tawk-min-container",
+                "[id*=\"tawk\"]",
+                "[class*=\"tawk\"]",
                 "[class*=\"tawk\"] iframe",
-                "iframe[title*=\"tawk\"]",
-                "iframe[title*=\"chat\"]",
-                "iframe[title*=\"Chat\"]"
+                "iframe[title*=\"tawk\" i]",
+                "iframe[src*=\"tawk.to\"]"
             ];
 
             for (const selector of tawkTargets) {
@@ -356,6 +359,7 @@
                 if (!chatEl) continue;
                 const rect = chatEl.getBoundingClientRect();
                 if (rect.width === 0 || rect.height === 0) continue;
+                tawkRects.push(rect);
 
                 const occupiedFromBottom = Math.max(0, window.innerHeight - rect.top);
                 safeBottom = Math.max(safeBottom, occupiedFromBottom + extraGap);
@@ -368,6 +372,22 @@
             actions.style.setProperty('--zny-float-bottom', `${Math.ceil(safeBottom)}px`);
             actions.style.setProperty('--zny-float-right', `${Math.ceil(safeRight || 24)}px`);
             actions.style.left = 'auto';
+
+            const whatsappBtn = actions.querySelector('.zny-floating-whatsapp');
+            if (!whatsappBtn || !tawkRects.length) return;
+
+            const waRect = whatsappBtn.getBoundingClientRect();
+            const isOverlappingTawk = tawkRects.some((rect) => !(
+                waRect.right < rect.left ||
+                waRect.left > rect.right ||
+                waRect.bottom < rect.top ||
+                waRect.top > rect.bottom
+            ));
+
+            if (!isOverlappingTawk) return;
+
+            actions.style.setProperty('--zny-float-bottom', `${Math.ceil(safeBottom + extraGap)}px`);
+            actions.style.setProperty('--zny-float-right', `${Math.ceil((safeRight || 24) + (isMobile ? 10 : 16))}px`);
         };
 
         recalculateOffset();
