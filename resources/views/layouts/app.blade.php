@@ -131,14 +131,30 @@
     $seo = $seoPages[$requestPath] ?? $seoPages['/ru'];
 @endphp
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $seo['title'] ?? $companyName }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @php
+        $path = '/' . ltrim(request()->path(), '/');
+        $seoMap = [
+            '/ru' => ['title' => 'ZNY LOGISTICS — международная логистика и грузоперевозки','description' => 'ZNY LOGISTICS предоставляет корпоративные логистические решения, международные перевозки, сопровождение грузов и прозрачную коммуникацию для торговых направлений.','canonical' => 'https://znylogistic.com/ru','alt_ru' => 'https://znylogistic.com/ru','alt_tm' => 'https://znylogistic.com/tm','x_default' => 'https://znylogistic.com/ru'],
+            '/tm' => ['title' => 'ZNY LOGISTICS — halkara logistika we ýük daşamak','description' => 'ZNY LOGISTICS halkara ýük daşamalary, korporatiw logistika çözgütleri, ýük gözegçiligi we ygtybarly hyzmatlary hödürleýär.','canonical' => 'https://znylogistic.com/tm','alt_ru' => 'https://znylogistic.com/ru','alt_tm' => 'https://znylogistic.com/tm','x_default' => 'https://znylogistic.com/ru'],
+            '/ru/about' => ['title' => 'О компании — ZNY LOGISTICS','description' => 'Узнайте о ZNY LOGISTICS: логистическом партнёре для точности, контроля и долгосрочного доверия в международных перевозках.','canonical' => 'https://znylogistic.com/ru/about','alt_ru' => 'https://znylogistic.com/ru/about','alt_tm' => 'https://znylogistic.com/tm/about','x_default' => 'https://znylogistic.com/ru/about'],
+            '/tm/about' => ['title' => 'Kompaniýa barada — ZNY LOGISTICS','description' => 'ZNY LOGISTICS barada maglumat: halkara logistika ugurlarynda takyklyk, gözegçilik we uzak möhletli ynam üçin hyzmatdaş.','canonical' => 'https://znylogistic.com/tm/about','alt_ru' => 'https://znylogistic.com/ru/about','alt_tm' => 'https://znylogistic.com/tm/about','x_default' => 'https://znylogistic.com/ru/about'],
+            '/ru/services' => ['title' => 'Логистические услуги — ZNY LOGISTICS','description' => 'Международные логистические услуги ZNY LOGISTICS: сопровождение грузов, перевозки, координация маршрутов и корпоративная поддержка.','canonical' => 'https://znylogistic.com/ru/services','alt_ru' => 'https://znylogistic.com/ru/services','alt_tm' => 'https://znylogistic.com/tm/services','x_default' => 'https://znylogistic.com/ru/services'],
+            '/tm/services' => ['title' => 'Logistika hyzmatlary — ZNY LOGISTICS','description' => 'ZNY LOGISTICS halkara logistika hyzmatlaryny, ýük daşamagy, ugur utgaşdyrmagy we korporatiw goldawy hödürleýär.','canonical' => 'https://znylogistic.com/tm/services','alt_ru' => 'https://znylogistic.com/ru/services','alt_tm' => 'https://znylogistic.com/tm/services','x_default' => 'https://znylogistic.com/ru/services'],
+            '/ru/contact' => ['title' => 'Контакты — ZNY LOGISTICS','description' => 'Свяжитесь с ZNY LOGISTICS для консультации по логистике, перевозкам, сопровождению грузов и корпоративной поддержке.','canonical' => 'https://znylogistic.com/ru/contact','alt_ru' => 'https://znylogistic.com/ru/contact','alt_tm' => 'https://znylogistic.com/tm/contact','x_default' => 'https://znylogistic.com/ru/contact'],
+            '/tm/contact' => ['title' => 'Habarlaşmak — ZNY LOGISTICS','description' => 'Logistika, ýük daşamak, ýük gözegçiligi we korporatiw goldaw boýunça ZNY LOGISTICS bilen habarlaşyň.','canonical' => 'https://znylogistic.com/tm/contact','alt_ru' => 'https://znylogistic.com/ru/contact','alt_tm' => 'https://znylogistic.com/tm/contact','x_default' => 'https://znylogistic.com/ru/contact'],
+            '/ru/tracking' => ['title' => 'Отслеживание груза — ZNY LOGISTICS','description' => 'Отслеживайте груз через защищённый корпоративный доступ ZNY LOGISTICS и получайте актуальную информацию по перевозке.','canonical' => 'https://znylogistic.com/ru/tracking','alt_ru' => 'https://znylogistic.com/ru/tracking','alt_tm' => 'https://znylogistic.com/tm/tracking','x_default' => 'https://znylogistic.com/ru/tracking'],
+            '/tm/tracking' => ['title' => 'Ýüki yzarlamak — ZNY LOGISTICS','description' => 'ZNY LOGISTICS arkaly ýüküňizi ygtybarly korporatiw giriş bilen yzarlaň we daşama barada täzelikleri görüň.','canonical' => 'https://znylogistic.com/tm/tracking','alt_ru' => 'https://znylogistic.com/ru/tracking','alt_tm' => 'https://znylogistic.com/tm/tracking','x_default' => 'https://znylogistic.com/ru/tracking'],
+        ];
+        $seo = $seoMap[$path] ?? $seoMap['/ru'];
+    @endphp
+    <title>{{ $seo['title'] }}</title>
     <meta name="description" content="{{ $seo['description'] }}">
     <link rel="canonical" href="{{ $seo['canonical'] }}">
-    <link rel="alternate" hreflang="ru" href="{{ $seo['hreflang']['ru'] }}">
-    <link rel="alternate" hreflang="tm" href="{{ $seo['hreflang']['tm'] }}">
-    <link rel="alternate" hreflang="x-default" href="{{ $seo['hreflang']['x-default'] }}">
+    <link rel="alternate" hreflang="ru" href="{{ $seo['alt_ru'] }}">
+    <link rel="alternate" hreflang="tm" href="{{ $seo['alt_tm'] }}">
+    <link rel="alternate" hreflang="x-default" href="{{ $seo['x_default'] }}">
     <meta property="og:title" content="{{ $seo['title'] }}">
     <meta property="og:description" content="{{ $seo['description'] }}">
     <meta property="og:url" content="{{ $seo['canonical'] }}">
@@ -146,193 +162,7 @@
     <meta property="og:site_name" content="ZNY LOGISTICS">
     <meta property="og:image" content="https://znylogistic.com/images/logo-final.png">
     <meta name="twitter:card" content="summary_large_image">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        :root {
-            --zny-bg-start: #f7faff;
-            --zny-bg-mid: #f1f5fc;
-            --zny-bg-end: #eef3fb;
-            --zny-surface-strong: rgba(255, 255, 255, 0.96);
-            --zny-border: rgba(17, 45, 95, 0.12);
-            --zny-ink: #0b1d3c;
-            --zny-muted: #5b6d8d;
-            --zny-primary: #0f3d96;
-            --zny-accent: #22a6fb;
-            --zny-shadow-lg: 0 24px 56px rgba(9, 26, 60, 0.14);
-            --zny-shadow-md: 0 16px 38px rgba(9, 24, 53, 0.11);
-            --zny-container-max: 1580px;
-            --zny-container-pad: clamp(1rem, 2.2vw, 2.6rem);
-            --zny-section-gap: clamp(3.2rem, 6vw, 6rem);
-        }
-
-        *, *::before, *::after { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-
-        body {
-            margin: 0;
-            font-family: Inter, "SF Pro Display", "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
-            color: var(--zny-ink);
-            line-height: 1.5;
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-            background:
-                radial-gradient(circle at 10% 0%, rgba(34, 166, 251, 0.14), transparent 34%),
-                radial-gradient(circle at 90% 2%, rgba(15, 61, 150, 0.12), transparent 38%),
-                linear-gradient(180deg, var(--zny-bg-start) 0%, var(--zny-bg-mid) 44%, var(--zny-bg-end) 100%);
-        }
-
-        .zny-shell {
-            min-height: 100vh;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.3));
-        }
-
-        .zny-wrap {
-            width: min(100%, var(--zny-container-max));
-            margin-inline: auto;
-            padding-inline: var(--zny-container-pad);
-        }
-
-        .zny-main {
-            padding-block: clamp(2.4rem, 4.2vw, 4.4rem) clamp(4.4rem, 7vw, 6.4rem);
-        }
-
-        .zny-main > section + section,
-        .zny-main > div + section,
-        .zny-main > section + div {
-            margin-top: var(--zny-section-gap);
-        }
-
-        .zny-glass-nav {
-            border-bottom: 1px solid rgba(8, 26, 56, 0.1);
-            background: linear-gradient(128deg, rgba(255, 255, 255, 0.93), rgba(255, 255, 255, 0.77));
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-        }
-
-        .zny-header-brand, .zny-brand-link { display: inline-flex; align-items: center; gap: 1.05rem; min-width: 0; text-decoration: none; }
-        .zny-header-brand {
-            padding: 0.3rem 0.42rem 0.3rem 0.12rem;
-            border-radius: 1.15rem;
-            border: 1px solid rgba(12, 44, 97, 0.06);
-            background: linear-gradient(130deg, rgba(255, 255, 255, 0.74), rgba(247, 251, 255, 0.5));
-            box-shadow: 0 10px 24px rgba(9, 24, 53, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.75);
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-        }
-        .zny-header-brand:hover {
-            transform: translateY(-1px);
-            border-color: rgba(15, 63, 147, 0.24);
-            box-shadow: 0 18px 34px rgba(9, 24, 53, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.95);
-        }
-        .zny-header-brand-text { padding-right: 0.2rem; }
-        .zny-header-logo-wrap, .zny-brand-logo-wrap {
-            display: grid; place-items: center; flex-shrink: 0; border-radius: 14px;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-        .zny-header-logo-wrap { width: 82px; height: 82px; border-radius: 22px; padding: 0; }
-        .zny-brand-logo-wrap {
-            width: 56px; height: 56px; border-radius: 15px; padding: 5px;
-            border: 1px solid rgba(16, 53, 124, 0.18);
-            background: linear-gradient(155deg, rgba(255, 255, 255, 0.96), rgba(232, 243, 255, 0.86));
-            box-shadow: var(--zny-shadow-md);
-        }
-        .zny-header-logo { width: 100%; height: 100%; object-fit: contain; }
-        .zny-brand-logo { width: 100%; height: 100%; object-fit: contain; }
-        .zny-header-brand:hover .zny-header-logo-wrap { transform: translateY(-1px) scale(1.01); }
-        .zny-brand-link:hover .zny-brand-logo-wrap { transform: translateY(-2px); box-shadow: 0 18px 36px rgba(8, 26, 56, 0.18); }
-        .zny-header-logo { filter: saturate(1.04) contrast(1.02) drop-shadow(0 10px 20px rgba(8, 26, 56, 0.16)); }
-
-        .zny-header-brand-title { font-size: 1.12rem; font-weight: 830; letter-spacing: 0.06em; color: #081a37; white-space: nowrap; }
-        .zny-header-brand-subtitle, .zny-brand-subtitle { margin-top: 0.15rem; font-size: 0.66rem; font-weight: 680; letter-spacing: 0.13em; text-transform: uppercase; color: #607191; white-space: nowrap; }
-        .zny-brand-title { font-size: 0.95rem; font-weight: 760; letter-spacing: 0.07em; color: #f5f8ff; }
-
-        .zny-nav-link { position: relative; color: #2d4469; transition: color 0.22s ease; }
-        .zny-nav-link::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -8px; height: 2px; border-radius: 999px; background: linear-gradient(90deg, var(--zny-primary), var(--zny-accent)); transition: right 0.24s ease; }
-        .zny-nav-link:hover, .zny-nav-link[aria-current="page"] { color: var(--zny-primary); }
-        .zny-nav-link:hover::after, .zny-nav-link[aria-current="page"]::after { right: 0; }
-
-        .zny-card {
-            border-radius: 1.5rem;
-            border: 1px solid var(--zny-border);
-            background: var(--zny-surface-strong);
-            box-shadow: var(--zny-shadow-lg);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-
-        .zny-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
-
-        .zny-primary-btn, .zny-secondary-btn {
-            display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; font-weight: 700;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-        }
-        .zny-primary-btn { padding: 0.88rem 1.45rem; font-size: 0.91rem; color: #fff; background: linear-gradient(134deg, var(--zny-primary), var(--zny-accent)); box-shadow: 0 18px 34px rgba(15, 63, 147, 0.28); }
-        .zny-primary-btn:hover { transform: translateY(-2px); box-shadow: 0 22px 40px rgba(15, 63, 147, 0.32); }
-        .zny-secondary-btn { padding: 0.88rem 1.45rem; font-size: 0.91rem; color: #15356f; border: 1px solid rgba(16, 57, 133, 0.2); background: rgba(255, 255, 255, 0.82); }
-        .zny-secondary-btn:hover { transform: translateY(-2px); border-color: rgba(16, 57, 133, 0.34); background: #fff; }
-
-        .zny-input {
-            width: 100%; padding: 0.84rem 0.94rem; border-radius: 0.9rem; border: 1px solid rgba(16, 45, 102, 0.16);
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(246, 250, 255, 0.95));
-            font-size: 0.95rem; color: #0f2144; transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-        .zny-input:focus { outline: none; border-color: rgba(20, 76, 171, 0.56); box-shadow: 0 0 0 4px rgba(40, 135, 255, 0.12); }
-
-        .zny-footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            background: linear-gradient(126deg, #010b1f, #071936 50%, #0a2d66 100%);
-        }
-
-        .zny-floating-actions {
-            --zny-float-right: 1.25rem;
-            --zny-float-bottom: calc(max(1.2rem, env(safe-area-inset-bottom)) + 8rem);
-            position: fixed;
-            right: var(--zny-float-right);
-            bottom: var(--zny-float-bottom);
-            z-index: 60;
-            pointer-events: none;
-        }
-        .zny-floating-whatsapp {
-            position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 0.65rem;
-            pointer-events: auto; min-width: 4rem; height: 4.25rem; padding: 0 1.2rem; border-radius: 999px; color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.62);
-            background: radial-gradient(circle at 30% 24%, #67f6b4 0%, #27cb69 52%, #129248 100%);
-            box-shadow: 0 22px 46px rgba(8, 26, 52, 0.36), 0 0 0 1px rgba(22, 156, 75, 0.46) inset, 0 0 30px rgba(37, 211, 102, 0.22);
-            transition: transform 0.28s ease, box-shadow 0.28s ease, filter 0.28s ease;
-        }
-        .zny-floating-whatsapp::before {
-            content: ''; position: absolute; inset: -10px; z-index: -1; border-radius: inherit; opacity: 0.9;
-            background: radial-gradient(circle, rgba(37, 211, 102, 0.32) 0%, rgba(37, 211, 102, 0) 70%);
-            transition: transform 0.28s ease, opacity 0.28s ease;
-        }
-        .zny-floating-whatsapp:hover { transform: translateY(-4px) scale(1.02); filter: saturate(1.05); }
-        .zny-floating-whatsapp:hover::before { transform: scale(1.05); opacity: 1; }
-        .zny-floating-whatsapp:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
-        .zny-floating-whatsapp-copy { display: grid; line-height: 1.05; text-align: left; }
-        .zny-floating-whatsapp-meta { font-size: 0.56rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.94; white-space: nowrap; }
-        .zny-floating-whatsapp-text { font-size: 0.78rem; font-weight: 760; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
-        .zny-floating-label { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
-
-        @media (max-width: 1100px) {
-            .zny-floating-actions {
-                --zny-float-right: 0.88rem;
-                --zny-float-bottom: calc(max(0.8rem, env(safe-area-inset-bottom)) + 10.2rem);
-            }
-        }
-        @media (max-width: 768px) {
-            .zny-header-brand { gap: 0.7rem; padding: 0.24rem 0.32rem 0.24rem 0.06rem; border-radius: 0.95rem; }
-            .zny-header-brand-text { padding-right: 0; }
-            .zny-header-logo-wrap { width: 60px; height: 60px; border-radius: 15px; padding: 0; }
-            .zny-header-logo { width: 100%; height: 100%; }
-            .zny-header-brand-title { font-size: 0.94rem; letter-spacing: 0.04em; }
-            .zny-header-brand-subtitle { font-size: 0.61rem; }
-            .zny-floating-actions {
-                --zny-float-right: 0.7rem;
-                --zny-float-bottom: calc(max(0.72rem, env(safe-area-inset-bottom)) + 11.2rem);
-            }
-            .zny-floating-whatsapp { width: 3.4rem; height: 3.4rem; min-width: 3.4rem; padding: 0; box-shadow: 0 18px 28px rgba(8, 26, 52, 0.36), 0 0 0 1px rgba(22, 156, 75, 0.46) inset; }
-            .zny-floating-whatsapp-copy { display: none; }
-        }
-    </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
 <div class="zny-shell">
