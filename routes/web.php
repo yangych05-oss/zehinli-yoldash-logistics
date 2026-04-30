@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/ru');
 
 Route::get('/track', [TrackingController::class, 'public'])->name('tracking.public');
+
+
+Route::redirect('/contact', '/ru/contact', 302);
+Route::redirect('/about', '/ru/about', 302);
+Route::redirect('/services', '/ru/services', 302);
+Route::redirect('/tracking', '/ru/tracking', 302);
 Route::post('/track', [TrackingController::class, 'publicSearch'])->name('tracking.public.search');
 
 Route::prefix('{locale}')
