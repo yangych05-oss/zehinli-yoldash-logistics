@@ -47,11 +47,105 @@
         ],
     ];
     $ui = $uiCopy[app()->getLocale()] ?? $uiCopy['en'];
+
+    $requestPath = '/' . ltrim(request()->path(), '/');
+    if ($requestPath === '/index.php') {
+        $requestPath = '/';
+    }
+
+    $seoPages = [
+        '/ru' => [
+            'title' => 'ZNY LOGISTICS — международная логистика и грузоперевозки',
+            'description' => 'ZNY LOGISTICS предоставляет корпоративные логистические решения, международные перевозки, сопровождение грузов и прозрачную коммуникацию для торговых направлений.',
+            'canonical' => 'https://znylogistic.com/ru',
+            'hreflang' => ['ru' => 'https://znylogistic.com/ru', 'tm' => 'https://znylogistic.com/tm', 'x-default' => 'https://znylogistic.com/ru'],
+        ],
+        '/tm' => [
+            'title' => 'ZNY LOGISTICS — halkara logistika we ýük daşamak',
+            'description' => 'ZNY LOGISTICS halkara ýük daşamalary, korporatiw logistika çözgütleri, ýük gözegçiligi we ygtybarly hyzmatlary hödürleýär.',
+            'canonical' => 'https://znylogistic.com/tm',
+            'hreflang' => ['ru' => 'https://znylogistic.com/ru', 'tm' => 'https://znylogistic.com/tm', 'x-default' => 'https://znylogistic.com/ru'],
+        ],
+        '/ru/about' => [
+            'title' => 'О компании — ZNY LOGISTICS',
+            'description' => 'Узнайте о ZNY LOGISTICS: логистическом партнёре для точности, контроля и долгосрочного доверия в международных перевозках.',
+            'canonical' => 'https://znylogistic.com/ru/about',
+            'hreflang' => ['ru' => 'https://znylogistic.com/ru/about', 'tm' => 'https://znylogistic.com/tm/about', 'x-default' => 'https://znylogistic.com/ru/about'],
+        ],
+        '/tm/about' => [
+            'title' => 'Kompaniýa barada — ZNY LOGISTICS',
+            'description' => 'ZNY LOGISTICS barada maglumat: halkara logistika ugurlarynda takyklyk, gözegçilik we uzak möhletli ynam üçin hyzmatdaş.',
+            'canonical' => 'https://znylogistic.com/tm/about',
+            'hreflang' => ['ru' => 'https://znylogistic.com/ru/about', 'tm' => 'https://znylogistic.com/tm/about', 'x-default' => 'https://znylogistic.com/ru/about'],
+        ],
+        '/ru/services' => [
+            'title' => 'Логистические услуги — ZNY LOGISTICS',
+            'description' => 'Международные логистические услуги ZNY LOGISTICS: сопровождение грузов, перевозки, координация маршрутов и корпоративная поддержка.',
+            'canonical' => 'https://znylogistic.com/ru/services',
+            'hreflang' => ['ru' => 'https://znylogistic.com/ru/services', 'tm' => 'https://znylogistic.com/tm/services', 'x-default' => 'https://znylogistic.com/ru/services'],
+        ],
+        '/tm/services' => [
+            'title' => 'Logistika hyzmatlary — ZNY LOGISTICS',
+            'description' => 'ZNY LOGISTICS halkara logistika hyzmatlaryny, ýük daşamagy, ugur utgaşdyrmagy we korporatiw goldawy hödürleýär.',
+            'canonical' => 'https://znylogistic.com/tm/services',
+            'hreflang' => ['ru' => 'https://znylogistic.com/ru/services', 'tm' => 'https://znylogistic.com/tm/services', 'x-default' => 'https://znylogistic.com/ru/services'],
+        ],
+        '/ru/contact' => [
+            'title' => 'Контакты — ZNY LOGISTICS',
+            'description' => 'Свяжитесь с ZNY LOGISTICS для консультации по логистике, перевозкам, сопровождению грузов и корпоративной поддержке.',
+            'canonical' => 'https://znylogistic.com/ru/contact',
+            'hreflang' => ['ru' => 'https://znylogistic.com/ru/contact', 'tm' => 'https://znylogistic.com/tm/contact', 'x-default' => 'https://znylogistic.com/ru/contact'],
+        ],
+        '/tm/contact' => [
+            'title' => 'Habarlaşmak — ZNY LOGISTICS',
+            'description' => 'Logistika, ýük daşamak, ýük gözegçiligi we korporatiw goldaw boýunça ZNY LOGISTICS bilen habarlaşyň.',
+            'canonical' => 'https://znylogistic.com/tm/contact',
+            'hreflang' => ['ru' => 'https://znylogistic.com/ru/contact', 'tm' => 'https://znylogistic.com/tm/contact', 'x-default' => 'https://znylogistic.com/ru/contact'],
+        ],
+        '/ru/tracking' => [
+            'title' => 'Отслеживание груза — ZNY LOGISTICS',
+            'description' => 'Отслеживайте груз через защищённый корпоративный доступ ZNY LOGISTICS и получайте актуальную информацию по перевозке.',
+            'canonical' => 'https://znylogistic.com/ru/tracking',
+            'hreflang' => ['ru' => 'https://znylogistic.com/ru/tracking', 'tm' => 'https://znylogistic.com/tm/tracking', 'x-default' => 'https://znylogistic.com/ru/tracking'],
+        ],
+        '/tm/tracking' => [
+            'title' => 'Ýüki yzarlamak — ZNY LOGISTICS',
+            'description' => 'ZNY LOGISTICS arkaly ýüküňizi ygtybarly korporatiw giriş bilen yzarlaň we daşama barada täzelikleri görüň.',
+            'canonical' => 'https://znylogistic.com/tm/tracking',
+            'hreflang' => ['ru' => 'https://znylogistic.com/ru/tracking', 'tm' => 'https://znylogistic.com/tm/tracking', 'x-default' => 'https://znylogistic.com/ru/tracking'],
+        ],
+    ];
+
+    $canonicalRedirects = [
+        '/' => '/ru',
+        '/about' => '/ru/about',
+        '/services' => '/ru/services',
+        '/contact' => '/ru/contact',
+        '/tracking' => '/ru/tracking',
+    ];
+
+    if (isset($canonicalRedirects[$requestPath])) {
+        $requestPath = $canonicalRedirects[$requestPath];
+    }
+
+    $seo = $seoPages[$requestPath] ?? $seoPages['/ru'];
 @endphp
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $companyName }}</title>
+    <title>{{ $seo['title'] ?? $companyName }}</title>
+    <meta name="description" content="{{ $seo['description'] }}">
+    <link rel="canonical" href="{{ $seo['canonical'] }}">
+    <link rel="alternate" hreflang="ru" href="{{ $seo['hreflang']['ru'] }}">
+    <link rel="alternate" hreflang="tm" href="{{ $seo['hreflang']['tm'] }}">
+    <link rel="alternate" hreflang="x-default" href="{{ $seo['hreflang']['x-default'] }}">
+    <meta property="og:title" content="{{ $seo['title'] }}">
+    <meta property="og:description" content="{{ $seo['description'] }}">
+    <meta property="og:url" content="{{ $seo['canonical'] }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ZNY LOGISTICS">
+    <meta property="og:image" content="https://znylogistic.com/images/logo-final.png">
+    <meta name="twitter:card" content="summary_large_image">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
