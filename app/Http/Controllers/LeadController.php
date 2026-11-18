@@ -7,6 +7,7 @@ use App\Notifications\NewLeadNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Log;
 
 class LeadController extends Controller
 {
@@ -24,8 +25,16 @@ class LeadController extends Controller
 
         $lead = Lead::query()->create($data + ['locale' => $locale, 'status' => 'new']);
 
-        Notification::route('mail', config('mail.from.address'))
-            ->notify(new NewLeadNotification($lead));
+        // A persisted lead must not appear to have failed if SMTP is unavailable.
+        try {
+            Notification::route('mail', config('mail.from.address'))
+                ->notify(new NewLeadNotification($lead));
+        } catch (\Throwable $exception) {
+            Log::error('Lead notification failed after database persistence.', [
+                'lead_id' => $lead->getKey(),
+                'exception_type' => $exception::class,
+            ]);
+        }
 
         return back()->with('status', __('messages.quote_sent'));
     }
