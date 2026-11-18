@@ -14,7 +14,7 @@ class RequestResource extends Resource
 {
     protected static ?string $model = CrmRequest::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-clipboard-document-list';
 
     public static function form(Form $form): Form
     {
