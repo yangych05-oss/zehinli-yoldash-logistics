@@ -5,20 +5,21 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ShipmentEventResource\Pages;
 use App\Models\ShipmentEvent;
 use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Actions\EditAction;
 
 class ShipmentEventResource extends Resource
 {
     protected static ?string $model = ShipmentEvent::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-map-pin';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-map-pin';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->components([
             Forms\Components\Select::make('shipment_id')
                 ->relationship('shipment', 'tracking_code')
                 ->required()
@@ -38,8 +39,8 @@ class ShipmentEventResource extends Resource
             Tables\Columns\TextColumn::make('status')->badge(),
             Tables\Columns\TextColumn::make('location'),
             Tables\Columns\TextColumn::make('event_time')->dateTime(),
-        ])->actions([
-            Tables\Actions\EditAction::make(),
+        ])->recordActions([
+            EditAction::make(),
         ]);
     }
 

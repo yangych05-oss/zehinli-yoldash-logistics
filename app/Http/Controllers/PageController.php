@@ -21,6 +21,16 @@ class PageController extends Controller
         return view('pages.services', compact('locale'));
     }
 
+    public function projects(string $locale): View
+    {
+        return view('pages.projects', compact('locale'));
+    }
+
+    public function hamburg(string $locale): View
+    {
+        return view('pages.hamburg', compact('locale'));
+    }
+
     public function contact(string $locale): View
     {
         return view('pages.contact', compact('locale'));

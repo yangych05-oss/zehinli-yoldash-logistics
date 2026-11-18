@@ -1,0 +1,85 @@
+name: ZNY PHP Security Checks
+
+on:
+  push:
+    branches:
+      - main
+      - 'fix/**'
+      - 'spike/**'
+      - 'integration/**'
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  static-security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+      - name: PHP syntax
+        run: |
+          find app bootstrap config database routes -type f -name '*.php' -print0 | xargs -0 -n 1 php -l
+      - name: Security regression assertions
+        run: php scripts/zny_static_security_audit.php
+
+  laravel-authorization:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      APP_ENV: testing
+      APP_DEBUG: 'true'
+      DB_CONNECTION: sqlite
+      DB_DATABASE: ':memory:'
+      DB_SQLITE_DATABASE: ':memory:'
+      CACHE_STORE: array
+      SESSION_DRIVER: array
+      QUEUE_CONNECTION: sync
+      MAIL_MAILER: array
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, pdo_sqlite, sqlite3, intl
+          coverage: none
+      - name: Resolve PHP dependencies in isolated CI
+        run: composer install --no-interaction --prefer-dist --no-progress
+      - name: Preserve isolated composer.lock for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: zny-spike-composer-lock
+          path: composer.lock
+          retention-days: 7
+      - name: Composer dependency vulnerability audit
+        run: COMPOSER_NO_AUDIT=0 composer audit --locked --no-interaction
+      - name: Laravel CRM authorization tests
+        run: ./vendor/bin/phpunit --display-warnings --fail-on-warning
+
+  frontend-assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install frontend dependencies
+        run: npm install --no-fund --no-audit
+      - name: Preserve isolated package-lock for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: zny-spike-package-lock
+          path: package-lock.json
+          retention-days: 7
+      - name: Compile production frontend assets
+        run: npm run build
+      - name: Audit frontend dependencies
+        run: npm audit --audit-level=high

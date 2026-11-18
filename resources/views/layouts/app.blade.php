@@ -16,6 +16,7 @@
 
     $uiCopy = [
         'en' => [
+            'projects' => 'Projects',
             'header_subtitle' => 'Enterprise Freight Governance',
             'quote' => 'Request a Quote',
             'footer_tagline' => 'International logistics engineered for predictable outcomes, strict control, and long-term enterprise trust.',
@@ -26,6 +27,7 @@
             'footer_rights' => 'All rights reserved.',
         ],
         'ru' => [
+            'projects' => 'Проекты',
             'header_subtitle' => 'Корпоративное управление грузоперевозками',
             'quote' => 'Запросить расчёт',
             'footer_tagline' => 'Международная логистика для прогнозируемых результатов, строгого контроля и долгосрочного доверия бизнеса.',
@@ -36,6 +38,7 @@
             'footer_rights' => 'Все права защищены.',
         ],
         'tm' => [
+            'projects' => 'Taslamalar',
             'header_subtitle' => 'Korporatiw ýük dolandyryşy',
             'quote' => 'Bahany soramak',
             'footer_tagline' => 'Çaklanylýan netijeler, berk gözegçilik we uzak möhletli ynam üçin halkara logistika.',
@@ -138,6 +141,17 @@
         $seoMap = [
             '/ru' => ['title' => 'ZNY LOGISTICS — международная логистика и грузоперевозки','description' => 'ZNY LOGISTICS предоставляет корпоративные логистические решения, международные перевозки, сопровождение грузов и прозрачную коммуникацию для торговых направлений.','canonical' => 'https://znylogistic.com/ru','alt_ru' => 'https://znylogistic.com/ru','alt_tm' => 'https://znylogistic.com/tm','x_default' => 'https://znylogistic.com/ru'],
             '/tm' => ['title' => 'ZNY LOGISTICS — halkara logistika we ýük daşamak','description' => 'ZNY LOGISTICS halkara ýük daşamalary, korporatiw logistika çözgütleri, ýük gözegçiligi we ygtybarly hyzmatlary hödürleýär.','canonical' => 'https://znylogistic.com/tm','alt_ru' => 'https://znylogistic.com/ru','alt_tm' => 'https://znylogistic.com/tm','x_default' => 'https://znylogistic.com/ru'],
+            '/en' => ['title' => 'ZNY LOGISTICS — International Freight and Logistics','description' => 'ZNY LOGISTICS delivers international freight forwarding, multimodal transport coordination, shipment tracking, and reliable logistics support for global trade.','canonical' => 'https://znylogistic.com/en','alt_ru' => 'https://znylogistic.com/ru','alt_tm' => 'https://znylogistic.com/tm','x_default' => 'https://znylogistic.com/ru'],
+            '/en/about' => ['title' => 'About Us — ZNY LOGISTICS','description' => 'Learn about ZNY LOGISTICS and our operational approach to international transport, logistics coordination, and dependable cargo management.','canonical' => 'https://znylogistic.com/en/about','alt_ru' => 'https://znylogistic.com/ru/about','alt_tm' => 'https://znylogistic.com/tm/about','x_default' => 'https://znylogistic.com/ru/about'],
+            '/en/services' => ['title' => 'International Logistics Services — ZNY LOGISTICS','description' => 'Explore international freight forwarding, road, air, and multimodal cargo transport, customs coordination, and enterprise logistics services.','canonical' => 'https://znylogistic.com/en/services','alt_ru' => 'https://znylogistic.com/ru/services','alt_tm' => 'https://znylogistic.com/tm/services','x_default' => 'https://znylogistic.com/ru/services'],
+            '/en/contact' => ['title' => 'Contact Us — ZNY LOGISTICS','description' => 'Contact ZNY LOGISTICS for international freight quotes, shipment updates, transport coordination, and corporate logistics assistance.','canonical' => 'https://znylogistic.com/en/contact','alt_ru' => 'https://znylogistic.com/ru/contact','alt_tm' => 'https://znylogistic.com/tm/contact','x_default' => 'https://znylogistic.com/ru/contact'],
+            '/ru/projects' => ['title' => 'Наши перевозки и проекты — ZNY LOGISTICS','description' => 'Реальные фотографии перевозок, порт Гамбурга и международные деловые события ZNY LOGISTICS.','canonical' => 'https://znylogistic.com/ru/projects','alt_ru' => 'https://znylogistic.com/ru/projects','alt_tm' => 'https://znylogistic.com/tm/projects','x_default' => 'https://znylogistic.com/ru/projects'],
+            '/tm/projects' => ['title' => 'Ýük daşamalary we taslamalar — ZNY LOGISTICS','description' => 'ZNY LOGISTICS ýük işleri, Gamburg porty we halkara işewür çäreleri barada hakyky suratlar.','canonical' => 'https://znylogistic.com/tm/projects','alt_ru' => 'https://znylogistic.com/ru/projects','alt_tm' => 'https://znylogistic.com/tm/projects','x_default' => 'https://znylogistic.com/ru/projects'],
+            '/en/projects' => ['title' => 'Our Projects and Operations — ZNY LOGISTICS','description' => 'Authentic cargo projects, Hamburg port footage and international business events from ZNY LOGISTICS.','canonical' => 'https://znylogistic.com/en/projects','alt_ru' => 'https://znylogistic.com/ru/projects','alt_tm' => 'https://znylogistic.com/tm/projects','x_default' => 'https://znylogistic.com/ru/projects'],
+            '/ru/projects/hamburg' => ['title' => 'Порт Гамбурга: реальные фото и видео — ZNY LOGISTICS','description' => 'Документальные фотографии и видеоматериалы порта Гамбурга из архива ZNY LOGISTICS.','canonical' => 'https://znylogistic.com/ru/projects/hamburg','alt_ru' => 'https://znylogistic.com/ru/projects/hamburg','alt_tm' => 'https://znylogistic.com/tm/projects/hamburg','x_default' => 'https://znylogistic.com/ru/projects/hamburg'],
+            '/tm/projects/hamburg' => ['title' => 'Gamburg porty: hakyky suratlar we wideolar — ZNY LOGISTICS','description' => 'Gamburg portunyň ZNY LOGISTICS arhiwindäki hakyky foto we wideolary.','canonical' => 'https://znylogistic.com/tm/projects/hamburg','alt_ru' => 'https://znylogistic.com/ru/projects/hamburg','alt_tm' => 'https://znylogistic.com/tm/projects/hamburg','x_default' => 'https://znylogistic.com/ru/projects/hamburg'],
+            '/en/projects/hamburg' => ['title' => 'Port of Hamburg: Authentic Photos and Film — ZNY LOGISTICS','description' => 'Original documentary photos and video recorded at the Port of Hamburg, from ZNY LOGISTICS.','canonical' => 'https://znylogistic.com/en/projects/hamburg','alt_ru' => 'https://znylogistic.com/ru/projects/hamburg','alt_tm' => 'https://znylogistic.com/tm/projects/hamburg','x_default' => 'https://znylogistic.com/ru/projects/hamburg'],
+            '/en/tracking' => ['title' => 'Shipment Tracking — ZNY LOGISTICS','description' => 'Track shipment status and coordinate updates securely with ZNY LOGISTICS.','canonical' => 'https://znylogistic.com/en/tracking','alt_ru' => 'https://znylogistic.com/ru/tracking','alt_tm' => 'https://znylogistic.com/tm/tracking','x_default' => 'https://znylogistic.com/ru/tracking'],
             '/ru/about' => ['title' => 'О компании — ZNY LOGISTICS','description' => 'Узнайте о ZNY LOGISTICS: логистическом партнёре для точности, контроля и долгосрочного доверия в международных перевозках.','canonical' => 'https://znylogistic.com/ru/about','alt_ru' => 'https://znylogistic.com/ru/about','alt_tm' => 'https://znylogistic.com/tm/about','x_default' => 'https://znylogistic.com/ru/about'],
             '/tm/about' => ['title' => 'Kompaniýa barada — ZNY LOGISTICS','description' => 'ZNY LOGISTICS barada maglumat: halkara logistika ugurlarynda takyklyk, gözegçilik we uzak möhletli ynam üçin hyzmatdaş.','canonical' => 'https://znylogistic.com/tm/about','alt_ru' => 'https://znylogistic.com/ru/about','alt_tm' => 'https://znylogistic.com/tm/about','x_default' => 'https://znylogistic.com/ru/about'],
             '/ru/services' => ['title' => 'Логистические услуги — ZNY LOGISTICS','description' => 'Международные логистические услуги ZNY LOGISTICS: сопровождение грузов, перевозки, координация маршрутов и корпоративная поддержка.','canonical' => 'https://znylogistic.com/ru/services','alt_ru' => 'https://znylogistic.com/ru/services','alt_tm' => 'https://znylogistic.com/tm/services','x_default' => 'https://znylogistic.com/ru/services'],
@@ -154,6 +168,7 @@
     <link rel="canonical" href="{{ $seo['canonical'] }}">
     <link rel="alternate" hreflang="ru" href="{{ $seo['alt_ru'] }}">
     <link rel="alternate" hreflang="tm" href="{{ $seo['alt_tm'] }}">
+    <link rel="alternate" hreflang="en" href="https://znylogistic.com/en{{ $localizedPath ? '/' . $localizedPath : '' }}">
     <link rel="alternate" hreflang="x-default" href="{{ $seo['x_default'] }}">
     <meta property="og:title" content="{{ $seo['title'] }}">
     <meta property="og:description" content="{{ $seo['description'] }}">
@@ -182,6 +197,7 @@
                 <a href="/{{ app()->getLocale() }}" class="zny-nav-link" @if(request()->routeIs('home')) aria-current="page" @endif>{{ __('messages.nav_home') }}</a>
                 <a href="/{{ app()->getLocale() }}/about" class="zny-nav-link" @if(request()->routeIs('about')) aria-current="page" @endif>{{ __('messages.nav_about') }}</a>
                 <a href="/{{ app()->getLocale() }}/services" class="zny-nav-link" @if(request()->routeIs('services')) aria-current="page" @endif>{{ __('messages.nav_services') }}</a>
+                <a href="/{{ app()->getLocale() }}/projects" class="zny-nav-link" @if(request()->routeIs('projects', 'projects.hamburg')) aria-current="page" @endif>{{ $ui['projects'] }}</a>
                 <a href="/{{ app()->getLocale() }}/tracking" class="zny-nav-link" @if(request()->routeIs('tracking')) aria-current="page" @endif>{{ __('messages.nav_tracking') }}</a>
                 <a href="/{{ app()->getLocale() }}/contact" class="zny-nav-link" @if(request()->routeIs('contact')) aria-current="page" @endif>{{ __('messages.nav_contact') }}</a>
             </nav>
@@ -240,6 +256,7 @@
                         <a href="/{{ app()->getLocale() }}" class="block hover:text-white">{{ __('messages.nav_home') }}</a>
                         <a href="/{{ app()->getLocale() }}/about" class="block hover:text-white">{{ __('messages.nav_about') }}</a>
                         <a href="/{{ app()->getLocale() }}/services" class="block hover:text-white">{{ __('messages.nav_services') }}</a>
+                        <a href="/{{ app()->getLocale() }}/projects" class="block hover:text-white">{{ $ui['projects'] }}</a>
                         <a href="/{{ app()->getLocale() }}/tracking" class="block hover:text-white">{{ __('messages.nav_tracking') }}</a>
                         <a href="/{{ app()->getLocale() }}/contact" class="block hover:text-white">{{ __('messages.nav_contact') }}</a>
                     </div>

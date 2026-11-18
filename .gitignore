@@ -5,3 +5,13 @@
 /public/build
 /storage/*.key
 /storage/logs/*.log
+/database/*.sqlite
+/database/*.sqlite-*
+/*.sql
+/*.sql.gz
+/*.bak
+/*.zip
+/.env.*
+!/.env.example
+/public/*.php.backup
+/public/*.php.bak

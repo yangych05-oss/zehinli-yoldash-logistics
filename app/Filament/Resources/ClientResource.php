@@ -5,20 +5,21 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ClientResource\Pages;
 use App\Models\Client;
 use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Actions\EditAction;
 
 class ClientResource extends Resource
 {
     protected static ?string $model = Client::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-users';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->components([
             Forms\Components\TextInput::make('name')->required(),
             Forms\Components\TextInput::make('company'),
             Forms\Components\TextInput::make('email')->email(),
@@ -39,8 +40,8 @@ class ClientResource extends Resource
             Tables\Columns\TextColumn::make('company')->searchable(),
             Tables\Columns\TextColumn::make('email'),
             Tables\Columns\TextColumn::make('status')->badge(),
-        ])->actions([
-            Tables\Actions\EditAction::make(),
+        ])->recordActions([
+            EditAction::make(),
         ]);
     }
 
