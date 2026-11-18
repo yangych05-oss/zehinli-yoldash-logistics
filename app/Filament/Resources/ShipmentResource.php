@@ -9,6 +9,7 @@ use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Actions\EditAction;
 
 class ShipmentResource extends Resource
 {
@@ -45,8 +46,8 @@ class ShipmentResource extends Resource
             Tables\Columns\TextColumn::make('destination'),
             Tables\Columns\TextColumn::make('status')->badge(),
             Tables\Columns\TextColumn::make('current_location'),
-        ])->actions([
-            Tables\Actions\EditAction::make(),
+        ])->recordActions([
+            EditAction::make(),
         ]);
     }
 
