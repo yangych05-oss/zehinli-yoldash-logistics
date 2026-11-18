@@ -1,0 +1,29 @@
+name: ZNY PHP Security Checks
+
+on:
+  push:
+    branches:
+      - main
+      - 'fix/**'
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  static-security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+      - name: PHP syntax
+        run: |
+          find app bootstrap config database routes -type f -name '*.php' -print0 | xargs -0 -n 1 php -l
+      - name: Security regression assertions
+        run: php scripts/zny_static_security_audit.php
