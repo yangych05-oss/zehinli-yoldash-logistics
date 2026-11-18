@@ -18,11 +18,11 @@ class SiteSettings extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-cog-6-tooth';
 
     protected static ?string $navigationLabel = 'Site Settings';
 
-    protected static ?string $navigationGroup = 'Configuration';
+    protected static string|\UnitEnum|null $navigationGroup = 'Configuration';
 
     protected static ?int $navigationSort = 1;
 
