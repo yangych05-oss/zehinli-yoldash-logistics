@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Filament\Pages\SiteSettings;
 use App\Filament\Resources\ClientResource;
 use App\Filament\Resources\LeadResource;
 use App\Filament\Resources\RequestResource;
@@ -29,6 +30,33 @@ class FilamentCompatibilityTest extends TestCase
         foreach (['/ru', '/tm', '/en', '/admin/login'] as $path) {
             $this->get($path)->assertOk();
         }
+    }
+
+    public function test_site_settings_is_restricted_to_administrators_and_renders_for_admin(): void
+    {
+        $this->seed(RolePermissionSeeder::class);
+
+        $manager = User::query()->create([
+            'name' => 'CI Manager',
+            'email' => 'ci-manager@example.test',
+            'password' => bcrypt('ci-only-not-a-production-password'),
+        ]);
+        $manager->assignRole('manager');
+
+        $this->actingAs($manager)
+            ->get(SiteSettings::getUrl())
+            ->assertForbidden();
+
+        $admin = User::query()->create([
+            'name' => 'CI Administrator',
+            'email' => 'ci-settings-admin@example.test',
+            'password' => bcrypt('ci-only-not-a-production-password'),
+        ]);
+        $admin->assignRole('admin');
+
+        $this->actingAs($admin)
+            ->get(SiteSettings::getUrl())
+            ->assertOk();
     }
 
     public function test_admin_resource_list_and_create_pages_render(): void
