@@ -36,13 +36,13 @@ class SubmissionResilienceTest extends TestCase
 
     public function test_quote_remains_saved_when_notification_fails(): void
     {
-        $notificationAttempts = 0;
-        Notification::shouldReceive('route')
-            ->zeroOrMoreTimes()
-            ->andReturnUsing(function () use (&$notificationAttempts) {
-                $notificationAttempts++;
-                throw new RuntimeException('simulated smtp outage');
-            });
+        // Notification::route() is a static helper creating AnonymousNotifiable.
+        // Mock the actual mail channel used by the dispatcher instead.
+        $mailChannel = \Mockery::mock(\Illuminate\Notifications\Channels\MailChannel::class);
+        $mailChannel->shouldReceive('send')
+            ->once()
+            ->andThrow(new RuntimeException('simulated smtp outage'));
+        $this->app->instance(\Illuminate\Notifications\Channels\MailChannel::class, $mailChannel);
 
         $this->from('/en/services')->post('/en/quote-request', [
             'name' => 'CI Quote Contact',
@@ -54,7 +54,6 @@ class SubmissionResilienceTest extends TestCase
             'cargo_details' => 'One test pallet (virtual record).',
         ])->assertRedirect('/en/services')->assertSessionHasNoErrors();
 
-        $this->assertSame(1, $notificationAttempts, 'Notification must be attempted once after persisting lead.');
         $this->assertSame(1, Lead::query()->count());
         $this->assertDatabaseHas('leads', [
             'email' => 'quote@example.test',
