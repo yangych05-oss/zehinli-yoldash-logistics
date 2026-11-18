@@ -5,7 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ShipmentEventResource\Pages;
 use App\Models\ShipmentEvent;
 use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -16,9 +16,9 @@ class ShipmentEventResource extends Resource
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-map-pin';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->components([
             Forms\Components\Select::make('shipment_id')
                 ->relationship('shipment', 'tracking_code')
                 ->required()
