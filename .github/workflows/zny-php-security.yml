@@ -55,3 +55,18 @@ jobs:
         run: COMPOSER_NO_AUDIT=0 composer audit --locked --no-interaction
       - name: Laravel CRM authorization tests
         run: ./vendor/bin/phpunit --display-warnings --fail-on-warning
+
+  frontend-assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install frontend dependencies
+        run: npm install --no-fund --no-audit
+      - name: Audit frontend dependencies
+        run: npm audit --audit-level=high
+      - name: Compile production frontend assets
+        run: npm run build
