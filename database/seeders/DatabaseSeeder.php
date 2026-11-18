@@ -13,6 +13,13 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        // Demo clients, leads, tracking codes, admin users, and settings must
+        // NEVER be created or overwritten by accidental production db:seed.
+        if (! app()->environment(['local', 'testing'])) {
+            $this->command?->warn('ZNY demo database seeding is disabled outside local/testing.');
+            return;
+        }
+
         $this->call([
             RolePermissionSeeder::class,
             AdminUserSeeder::class,

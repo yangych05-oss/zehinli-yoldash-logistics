@@ -15,7 +15,7 @@ Route::redirect('/contact', '/ru/contact', 302);
 Route::redirect('/about', '/ru/about', 302);
 Route::redirect('/services', '/ru/services', 302);
 Route::redirect('/tracking', '/ru/tracking', 302);
-Route::post('/track', [TrackingController::class, 'publicSearch'])->name('tracking.public.search');
+Route::post('/track', [TrackingController::class, 'publicSearch'])->middleware('throttle:zny-tracking')->name('tracking.public.search');
 
 Route::prefix('{locale}')
     ->whereIn('locale', ['ru', 'tm', 'en'])
@@ -26,8 +26,8 @@ Route::prefix('{locale}')
         Route::get('/services', [PageController::class, 'services'])->name('services');
         Route::get('/contact', [PageController::class, 'contact'])->name('contact');
         Route::get('/tracking', [TrackingController::class, 'index'])->name('tracking.index');
-        Route::post('/tracking', [TrackingController::class, 'search'])->name('tracking.search');
+        Route::post('/tracking', [TrackingController::class, 'search'])->middleware('throttle:zny-tracking')->name('tracking.search');
 
-        Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
-        Route::post('/quote-request', [LeadController::class, 'store'])->name('quote.store');
+        Route::post('/contact', [ContactController::class, 'store'])->middleware('throttle:zny-submission')->name('contact.store');
+        Route::post('/quote-request', [LeadController::class, 'store'])->middleware('throttle:zny-submission')->name('quote.store');
     });

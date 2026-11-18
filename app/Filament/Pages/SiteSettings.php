@@ -30,6 +30,13 @@ class SiteSettings extends Page implements HasForms
 
     public ?array $data = [];
 
+    public static function canAccess(): bool
+    {
+        // Prevent non-admin operators from changing public contact details
+        // or the remote JavaScript URL used for the live-chat integration.
+        return auth()->user()?->hasRole('admin') === true;
+    }
+
     public function mount(): void
     {
         $record = SiteSettingModel::query()->first();

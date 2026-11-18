@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Notifications\ShipmentStatusUpdatedNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Shipment extends Model
 {
@@ -38,7 +39,16 @@ class Shipment extends Model
             }
 
             if ($shipment->client?->email) {
-                $shipment->client->notify(new ShipmentStatusUpdatedNotification($shipment));
+                // The status is already stored when this event fires. An email
+                // transport failure must not masquerade as an update failure.
+                try {
+                    $shipment->client->notify(new ShipmentStatusUpdatedNotification($shipment));
+                } catch (\Throwable $exception) {
+                    Log::error('Shipment status notification failed after persistence.', [
+                        'shipment_id' => $shipment->getKey(),
+                        'exception_type' => $exception::class,
+                    ]);
+                }
             }
         });
     }
