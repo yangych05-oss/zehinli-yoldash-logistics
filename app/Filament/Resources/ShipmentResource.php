@@ -14,7 +14,7 @@ class ShipmentResource extends Resource
 {
     protected static ?string $model = Shipment::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-truck';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-truck';
 
     public static function form(Form $form): Form
     {
