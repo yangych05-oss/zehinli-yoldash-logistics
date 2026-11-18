@@ -9,6 +9,7 @@ use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Actions\EditAction;
 
 class ShipmentEventResource extends Resource
 {
@@ -38,8 +39,8 @@ class ShipmentEventResource extends Resource
             Tables\Columns\TextColumn::make('status')->badge(),
             Tables\Columns\TextColumn::make('location'),
             Tables\Columns\TextColumn::make('event_time')->dateTime(),
-        ])->actions([
-            Tables\Actions\EditAction::make(),
+        ])->recordActions([
+            EditAction::make(),
         ]);
     }
 
