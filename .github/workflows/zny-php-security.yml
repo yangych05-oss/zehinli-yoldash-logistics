@@ -51,5 +51,7 @@ jobs:
           coverage: none
       - name: Resolve PHP dependencies in isolated CI
         run: composer install --no-interaction --prefer-dist --no-progress
+      - name: Composer dependency vulnerability audit
+        run: COMPOSER_NO_AUDIT=0 composer audit --locked --no-interaction
       - name: Laravel CRM authorization tests
         run: ./vendor/bin/phpunit --display-warnings --fail-on-warning
