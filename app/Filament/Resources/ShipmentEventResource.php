@@ -14,7 +14,7 @@ class ShipmentEventResource extends Resource
 {
     protected static ?string $model = ShipmentEvent::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-map-pin';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-map-pin';
 
     public static function form(Form $form): Form
     {
