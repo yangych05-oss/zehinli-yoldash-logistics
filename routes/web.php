@@ -14,6 +14,8 @@ Route::get('/track', [TrackingController::class, 'public'])->name('tracking.publ
 Route::redirect('/contact', '/ru/contact', 302);
 Route::redirect('/about', '/ru/about', 302);
 Route::redirect('/services', '/ru/services', 302);
+Route::redirect('/projects', '/ru/projects', 302);
+Route::redirect('/projects/hamburg', '/ru/projects/hamburg', 302);
 Route::redirect('/tracking', '/ru/tracking', 302);
 Route::post('/track', [TrackingController::class, 'publicSearch'])->middleware('throttle:zny-tracking')->name('tracking.public.search');
 
@@ -24,6 +26,8 @@ Route::prefix('{locale}')
         Route::get('/', [PageController::class, 'home'])->name('home');
         Route::get('/about', [PageController::class, 'about'])->name('about');
         Route::get('/services', [PageController::class, 'services'])->name('services');
+        Route::get('/projects', [PageController::class, 'projects'])->name('projects');
+        Route::get('/projects/hamburg', [PageController::class, 'hamburg'])->name('projects.hamburg');
         Route::get('/contact', [PageController::class, 'contact'])->name('contact');
         Route::get('/tracking', [TrackingController::class, 'index'])->name('tracking.index');
         Route::post('/tracking', [TrackingController::class, 'search'])->middleware('throttle:zny-tracking')->name('tracking.search');
