@@ -9,6 +9,7 @@ use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Actions\EditAction;
 
 class LeadResource extends Resource
 {
@@ -43,8 +44,8 @@ class LeadResource extends Resource
             Tables\Columns\TextColumn::make('phone'),
             Tables\Columns\TextColumn::make('status')->badge(),
             Tables\Columns\TextColumn::make('created_at')->dateTime(),
-        ])->actions([
-            Tables\Actions\EditAction::make(),
+        ])->recordActions([
+            EditAction::make(),
         ]);
     }
 
