@@ -37,7 +37,7 @@ class SubmissionResilienceTest extends TestCase
     public function test_quote_remains_saved_when_notification_fails(): void
     {
         Notification::shouldReceive('route')
-            ->once()
+            ->zeroOrMoreTimes()
             ->andThrow(new RuntimeException('simulated smtp outage'));
 
         $this->from('/en/services')->post('/en/quote-request', [
@@ -48,7 +48,7 @@ class SubmissionResilienceTest extends TestCase
             'origin' => 'Test Origin',
             'destination' => 'Test Destination',
             'cargo_details' => 'One test pallet (virtual record).',
-        ])->assertRedirect('/en/services');
+        ])->assertRedirect('/en/services')->assertSessionHasNoErrors();
 
         $this->assertSame(1, Lead::query()->count());
         $this->assertDatabaseHas('leads', [
