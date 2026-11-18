@@ -51,6 +51,12 @@ jobs:
           coverage: none
       - name: Resolve PHP dependencies in isolated CI
         run: composer install --no-interaction --prefer-dist --no-progress
+      - name: Preserve isolated composer.lock for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: zny-spike-composer-lock
+          path: composer.lock
+          retention-days: 7
       - name: Composer dependency vulnerability audit
         run: COMPOSER_NO_AUDIT=0 composer audit --locked --no-interaction
       - name: Laravel CRM authorization tests
@@ -66,6 +72,12 @@ jobs:
           node-version: '24'
       - name: Install frontend dependencies
         run: npm install --no-fund --no-audit
+      - name: Preserve isolated package-lock for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: zny-spike-package-lock
+          path: package-lock.json
+          retention-days: 7
       - name: Compile production frontend assets
         run: npm run build
       - name: Audit frontend dependencies
