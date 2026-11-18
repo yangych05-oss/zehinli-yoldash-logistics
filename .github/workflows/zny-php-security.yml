@@ -52,4 +52,4 @@ jobs:
       - name: Resolve PHP dependencies in isolated CI
         run: composer install --no-interaction --prefer-dist --no-progress
       - name: Laravel CRM authorization tests
-        run: php artisan test --filter CrmAuthorizationTest
+        run: ./vendor/bin/phpunit --filter CrmAuthorizationTest --display-warnings --fail-on-warning
