@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\SiteMediaItemResource\Pages;
 
 use App\Filament\Resources\SiteMediaItemResource;
-use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditSiteMediaItem extends EditRecord
@@ -16,8 +15,4 @@ class EditSiteMediaItem extends EditRecord
         return $data;
     }
 
-    protected function getHeaderActions(): array
-    {
-        return [Actions\DeleteAction::make()];
-    }
 }
