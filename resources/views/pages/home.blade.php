@@ -151,4 +151,6 @@
             <img src="{{ $premiumPhotos['warehouse'] }}" alt="Warehouse logistics operations" class="h-full min-h-[290px] w-full object-cover contrast-[1.04] saturate-[1.06]" loading="lazy">
         </aside>
     </section>
+
+    @include('partials.zny-media')
 @endsection
