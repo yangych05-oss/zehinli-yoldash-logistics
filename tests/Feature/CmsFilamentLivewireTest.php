@@ -114,9 +114,7 @@ final class CmsFilamentLivewireTest extends TestCase
 
         $replacement = UploadedFile::fake()->image('cms-replacement.jpg', 640, 420);
         Livewire::test(EditSiteMediaItem::class, ['record' => $media->getKey()])
-            // As in the UI, clear the existing upload before selecting a replacement.
-            ->fillForm(['file_path' => null])
-            ->fillForm(['file_path' => $replacement, 'is_published' => true])
+            ->fillForm(['file_path' => [$replacement], 'is_published' => true])
             ->call('save')
             ->assertHasNoFormErrors();
 
