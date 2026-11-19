@@ -22,6 +22,17 @@ class SiteSetting extends Model
         'footer_text',
         'tracking_cta_text',
         'contact_cta_text',
+        'logo_image',
+        'whatsapp_qr_image',
+        'whatsapp_link',
+        'hero_title_ru',
+        'hero_title_tm',
+        'hero_subtitle_ru',
+        'hero_subtitle_tm',
+        'footer_text_ru',
+        'footer_text_tm',
+        'address_ru',
+        'address_tm',
     ];
 
     protected $casts = [
