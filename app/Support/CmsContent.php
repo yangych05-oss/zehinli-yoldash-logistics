@@ -84,6 +84,13 @@ final class CmsContent
                 if ($poster !== null && !preg_match('#^(?:cms/media/|media/zny/2026/)[A-Za-z0-9_./-]+$#D', $poster)) {
                     $poster = null;
                 }
+                // Laravel public disk files are served via the /storage symlink.
+                if (str_starts_with($file, 'cms/media/')) {
+                    $file = 'storage/'.$file;
+                }
+                if ($poster !== null && str_starts_with($poster, 'cms/media/')) {
+                    $poster = 'storage/'.$poster;
+                }
                 $result[$item->slot] = [
                     'file_path' => $file,
                     'poster_path' => $poster,
