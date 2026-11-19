@@ -36,7 +36,9 @@ class SiteMediaItemResource extends Resource
 
     public static function canDelete(Model $record): bool
     {
-        return static::canViewAny();
+        // Keep the record and original file available for rollback.
+        // A soft-deleted row still reserves its unique collection/kind/slot.
+        return false;
     }
 
     public static function form(Form $form): Form
@@ -99,7 +101,6 @@ class SiteMediaItemResource extends Resource
             Tables\Filters\SelectFilter::make('kind')->options(['image'=>'Photo','video'=>'Video']),
         ])->actions([
             Tables\Actions\EditAction::make(),
-            Tables\Actions\DeleteAction::make(),
         ]);
     }
 
