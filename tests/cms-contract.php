@@ -116,6 +116,7 @@ namespace {
         $GLOBALS['cms_test_errors'][] = $error->getMessage();
     }
 
+    require dirname(__DIR__).'/app/Support/CmsFieldCatalog.php';
     require dirname(__DIR__).'/app/Support/CmsContent.php';
 
     $passed = 0;
@@ -129,6 +130,11 @@ namespace {
         $passed++;
         echo "PASS: ".$label.PHP_EOL;
     }
+
+    verify('Catalog exposes home hero title', \App\Support\CmsFieldCatalog::contains('home','hero_title'));
+    verify('Catalog exposes nested service copy', \App\Support\CmsFieldCatalog::contains('home','services.3.text'));
+    verify('Catalog excludes image URL overrides', !\App\Support\CmsFieldCatalog::contains('home','services.0.image'));
+    verify('Catalog excludes unknown nested keys', !\App\Support\CmsFieldCatalog::contains('about','pillars.4.title'));
 
     $defaults = [
         'hero_title' => 'Original RU headline',

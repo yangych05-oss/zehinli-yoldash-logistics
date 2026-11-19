@@ -36,7 +36,7 @@ final class CmsContent
             foreach ($rows as $row) {
                 $key = (string) $row->content_key;
                 // No arbitrary new keys, markup, or structural array overrides.
-                if (!preg_match('/^[a-z][a-z0-9_]*(?:\.[a-z0-9_]+)*$/D', $key)) {
+                if (!CmsFieldCatalog::contains($page, $key)) {
                     continue;
                 }
                 $fallback = data_get($defaults, $key);

@@ -12,6 +12,7 @@ use App\Filament\Resources\SiteMediaItemResource\Pages\ListSiteMediaItems;
 use App\Models\SiteCopyOverride;
 use App\Models\SiteMediaItem;
 use App\Models\User;
+use App\Support\CmsFieldCatalog;
 use Filament\Facades\Filament;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -39,6 +40,9 @@ final class CmsFilamentLivewireTest extends TestCase
     public function test_admin_cms_pages_render_and_manager_is_denied(): void
     {
         $this->actingAs($this->admin);
+        $this->assertArrayHasKey('hero_title', CmsFieldCatalog::options('home'));
+        $this->assertArrayHasKey('services.3.text', CmsFieldCatalog::options('home'));
+        $this->assertArrayNotHasKey('services.0.image', CmsFieldCatalog::options('home'));
 
         Livewire::test(SiteSettings::class)->assertOk();
         Livewire::test(ListSiteCopyOverrides::class)->assertOk();

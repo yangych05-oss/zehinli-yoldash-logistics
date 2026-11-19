@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SiteCopyOverrideResource\Pages;
 use App\Models\SiteCopyOverride;
+use App\Support\CmsFieldCatalog;
 use Filament\Forms;
 use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
@@ -49,15 +50,17 @@ class SiteCopyOverrideResource extends Resource
                         ->options([
                             'home' => 'Home', 'about' => 'About', 'services' => 'Services',
                             'contact' => 'Contact', 'tracking' => 'Tracking',
-                        ])->required()->native(false),
+                        ])->required()->native(false)->live(),
                     Forms\Components\Select::make('locale')
                         ->options(['ru' => 'Russian', 'tm' => 'Turkmen', 'en' => 'English'])
                         ->required()->native(false)->live(),
-                    Forms\Components\TextInput::make('content_key')
-                        ->label('Template field key')
-                        ->helperText('Use an existing text key from the page template (e.g. hero_title, title, hero_text); nested: value_points.0')
-                        ->required()->maxLength(160)
-                        ->regex('/^[a-z][a-z0-9_]*(?:\.[a-z0-9_]+)*$/D')
+                    Forms\Components\Select::make('content_key')
+                        ->label('Text block')
+                        ->options(fn (\Filament\Schemas\Components\Utilities\Get $get): array => CmsFieldCatalog::options((string) $get('page')))
+                        ->placeholder('Choose which part of the page to edit')
+                        ->searchable()->native(false)
+                        ->required()
+                        ->helperText('Only existing text fields can be replaced. Photos and videos use the Media editor.')
                         ->unique(
                             table: SiteCopyOverride::class,
                             column: 'content_key',
