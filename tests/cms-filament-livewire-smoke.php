@@ -2,9 +2,22 @@
 declare(strict_types=1);
 
 /** Disposable Laravel + Livewire/Filament tests. Never run against production. */
+set_exception_handler(static function (\Throwable $e): void {
+    fwrite(STDERR, "CMS_LIVEWIRE_UNCAUGHT: ".get_class($e).": ".$e->getMessage()." @ ".$e->getFile().":".$e->getLine().PHP_EOL.$e->getTraceAsString().PHP_EOL);
+    exit(1);
+});
+set_error_handler(static function (int $severity, string $message, string $file, int $line): bool {
+    if (!(error_reporting() & $severity)) {
+        return false;
+    }
+    fwrite(STDERR, "CMS_LIVEWIRE_PHP_ERROR: ".$message." @ ".$file.":".$line.PHP_EOL);
+    return false;
+});
+fwrite(STDERR, "CMS_LIVEWIRE_TRACE: startup".PHP_EOL);
 require dirname(__DIR__).'/vendor/autoload.php';
 $app = require dirname(__DIR__).'/bootstrap/app.php';
 $app->make(\Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+fwrite(STDERR, "CMS_LIVEWIRE_TRACE: app bootstrapped".PHP_EOL);
 
 use App\Filament\Pages\SiteSettings;
 use App\Filament\Resources\SiteCopyOverrideResource\Pages\CreateSiteCopyOverride;
@@ -33,7 +46,9 @@ function okCms(string $test, bool $condition): void
 
 $admin = User::where('email','cms-admin@test.invalid')->firstOrFail();
 $manager = User::where('email','cms-manager@test.invalid')->firstOrFail();
+fwrite(STDERR, "CMS_LIVEWIRE_TRACE: selecting panel".PHP_EOL);
 Filament::setCurrentPanel(Filament::getPanel('admin'));
+fwrite(STDERR, "CMS_LIVEWIRE_TRACE: panel selected".PHP_EOL);
 Auth::login($admin);
 
 Livewire::test(SiteSettings::class)->assertOk();
