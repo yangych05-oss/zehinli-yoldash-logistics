@@ -15,7 +15,12 @@ function pathFor(key, ending) {
 
 const textCreate = pathFor('site-copy-overrides', '.create');
 const photoCreate = pathFor('site-media-items', '.create');
-const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
+assert.ok(process.env.CMS_CHROME_BIN, 'Preinstalled Chrome executable is required');
+const browser = await chromium.launch({
+  headless: true,
+  executablePath: process.env.CMS_CHROME_BIN,
+  args: ['--no-sandbox'],
+});
 let failed = false;
 
 try {

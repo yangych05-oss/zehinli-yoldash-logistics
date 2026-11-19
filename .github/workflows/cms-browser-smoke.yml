@@ -15,6 +15,10 @@ on:
     branches:
       - 'spike/cms-laravel12-filament4-20261119'
 
+concurrency:
+  group: cms-browser-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -82,10 +86,13 @@ jobs:
           php tests/cms-laravel-smoke.php
           php artisan filament:assets
           php artisan route:list --path=admin --json > tests/browser/admin-routes.json
-      - name: Install headless Chromium
+      - name: Use preinstalled Chrome from the runner
         run: |
           npm install --no-save --no-package-lock playwright@1.57.0
-          npx playwright install --with-deps chromium
+          CHROME=$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)
+          if [ -z "$CHROME" ]; then echo "No system Chrome found"; exit 1; fi
+          "$CHROME" --version
+          echo "CMS_CHROME_BIN=$CHROME" >> "$GITHUB_ENV"
       - name: Run Chromium on desktop and mobile admin editors
         run: |
           php artisan serve --host=127.0.0.1 --port=8100 > /tmp/zny-cms-server.log 2>&1 &
