@@ -54,7 +54,7 @@ try {
 
       const cases = [
         { title: 'page-text-editor', path: textCreate, expected: 'Text block' },
-        { title: 'media-upload-editor', path: photoCreate, expected: 'Gallery item' },
+        { title: 'media-upload-editor', path: photoCreate, expected: 'Photos and videos' },
       ];
       for (const item of cases) {
         const res = await page.goto(base + item.path, {
@@ -63,6 +63,10 @@ try {
         assert.equal(res?.status(), 200, item.title+' HTTP status');
         const text = await page.locator('body').innerText();
         assert.ok(text.includes(item.expected), item.title+' expected label not found');
+        if (item.title === 'media-upload-editor') {
+          assert.ok(text.includes('Раздел сайта'), 'Media collection selector missing');
+          assert.ok(text.includes('Позиция на странице'), 'Media placement selector missing');
+        }
         await page.screenshot({
           path: out+'/'+item.title+'-'+width+'.png',
           fullPage: true,
