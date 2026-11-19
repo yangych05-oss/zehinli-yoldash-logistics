@@ -7,6 +7,7 @@
     <testsuites>
         <testsuite name="CMS disposable Laravel/Livewire tests">
             <file>tests/Feature/CmsFilamentLivewireTest.php</file>
+            <file>tests/Feature/CmsPublicRoutesTest.php</file>
         </testsuite>
     </testsuites>
 </phpunit>
