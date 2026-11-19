@@ -8,6 +8,15 @@
             'sea' => 'https://images.pexels.com/photos/262353/pexels-photo-262353.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1100&w=1600',
             'warehouse' => 'https://images.pexels.com/photos/4481324/pexels-photo-4481324.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1100&w=1600',
         ];
+        // Uploaded CMS photos override only the selected visual positions.
+        // Published images are shared across locales; captions remain localized.
+        $imageSlots = ['sea', 'warehouse'];
+        foreach (\App\Support\CmsContent::media('image', $locale, 'page-contact') as $slot => $media) {
+            $key = $imageSlots[$slot] ?? null;
+            if ($key !== null && array_key_exists($key, $premiumPhotos)) {
+                $premiumPhotos[$key] = asset($media['file_path']);
+            }
+        }
         $copy = [
             'en' => [
                 'intro' => 'Client Operations Desk',

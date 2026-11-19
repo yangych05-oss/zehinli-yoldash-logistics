@@ -7,6 +7,15 @@
             'air' => 'https://images.pexels.com/photos/358319/pexels-photo-358319.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1100&w=1600',
             'road' => 'https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1100&w=1600',
         ];
+        // Uploaded CMS photos override only the selected visual positions.
+        // Published images are shared across locales; captions remain localized.
+        $imageSlots = ['air', 'road'];
+        foreach (\App\Support\CmsContent::media('image', $locale, 'page-tracking') as $slot => $media) {
+            $key = $imageSlots[$slot] ?? null;
+            if ($key !== null && array_key_exists($key, $premiumPhotos)) {
+                $premiumPhotos[$key] = asset($media['file_path']);
+            }
+        }
         $copy = [
             'en' => [
                 'eyebrow' => 'Shipment Intelligence',

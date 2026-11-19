@@ -44,4 +44,30 @@ final class CmsPublicRoutesTest extends TestCase
         $this->assertStringContainsString('gallery.css', $html);
         $this->assertStringContainsString('preload="none"', $html);
     }
+    public function test_published_page_photo_override_and_fallback(): void
+    {
+        $media = \App\Models\SiteMediaItem::create([
+            'collection' => 'page-about',
+            'kind' => 'image',
+            'slot' => 0,
+            'file_path' => 'cms/media/cms-about-hero-qa.webp',
+            'caption_en' => 'Company operations',
+            'is_published' => true,
+        ]);
+
+        $this->get('/ru/about')
+            ->assertOk()
+            ->assertSee('storage/cms/media/cms-about-hero-qa.webp', false);
+
+        $this->get('/en/about')
+            ->assertOk()
+            ->assertSee('storage/cms/media/cms-about-hero-qa.webp', false);
+
+        $media->update(['is_published' => false]);
+
+        $this->get('/ru/about')
+            ->assertOk()
+            ->assertDontSee('storage/cms/media/cms-about-hero-qa.webp', false);
+    }
+
 }

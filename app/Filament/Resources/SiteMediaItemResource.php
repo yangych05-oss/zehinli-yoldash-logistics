@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SiteMediaItemResource\Pages;
 use App\Models\SiteMediaItem;
+use App\Support\CmsMediaCatalog;
 use Filament\Forms;
 use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
@@ -44,16 +45,29 @@ class SiteMediaItemResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            \Filament\Schemas\Components\Section::make('Gallery item')
-                ->description('Upload, replace or hide an individual slot. The published site keeps existing images until this record is published.')
+            \Filament\Schemas\Components\Section::make('Photos and videos')
+                ->description('Загружайте и заменяйте фотографии/видео по разделам сайта. Черновики не отображаются посетителям.')
                 ->schema([
-                    Forms\Components\TextInput::make('collection')
-                        ->default('home-gallery')->required()->maxLength(64),
+                    Forms\Components\Select::make('collection')
+                        ->label('Раздел сайта')
+                        ->options(CmsMediaCatalog::collections())
+                        ->default('home-gallery')->required()->native(false)->live(),
                     Forms\Components\Select::make('kind')->options([
                         'image'=>'Photo', 'video'=>'Video',
                     ])->required()->native(false)->live(),
-                    Forms\Components\TextInput::make('slot')
-                        ->numeric()->minValue(0)->maxValue(200)->required()
+                    Forms\Components\Select::make('slot')
+                        ->label('Позиция на странице')
+                        ->options(fn (\Filament\Schemas\Components\Utilities\Get $get): array => CmsMediaCatalog::slots(
+                            (string) $get('collection'),
+                            (string) $get('kind'),
+                        ))
+                        ->searchable()->native(false)->required()
+                        ->rules(fn (\Filament\Schemas\Components\Utilities\Get $get): array => [
+                            \Illuminate\Validation\Rule::in(array_keys(CmsMediaCatalog::slots(
+                                (string) $get('collection'),
+                                (string) $get('kind'),
+                            ))),
+                        ])
                         ->unique(
                             table: SiteMediaItem::class,
                             column: 'slot',
@@ -62,7 +76,7 @@ class SiteMediaItemResource extends Resource
                                 ->where('collection', $get('collection'))
                                 ->where('kind', $get('kind')),
                         )
-                        ->helperText('0–8 replace existing photos; 0–6 replace existing videos. Higher slots append.'),
+                        ->helperText('Выберите готовую позицию. Публикация заменит её изображение; новые позиции добавят материал.'),
                     Forms\Components\FileUpload::make('file_path')
                         ->label('Image or video file')
                         ->disk('public')->directory('cms/media')->visibility('public')

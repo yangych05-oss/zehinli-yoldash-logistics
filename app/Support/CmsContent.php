@@ -59,7 +59,7 @@ final class CmsContent
      */
     public static function media(string $kind, string $locale, string $collection = 'home-gallery'): array
     {
-        if (!in_array($kind, ['image', 'video'], true) || !in_array($locale, self::LOCALES, true)) {
+        if (!in_array($kind, ['image', 'video'], true) || !in_array($locale, self::LOCALES, true) || !CmsMediaCatalog::supports($collection, $kind)) {
             return [];
         }
 
@@ -81,7 +81,7 @@ final class CmsContent
                     continue;
                 }
                 $slot = (int) $item->slot;
-                if ($slot < 0 || $slot > 200) {
+                if (!CmsMediaCatalog::allows($collection, $kind, $slot)) {
                     continue;
                 }
                 $poster = $item->poster_path;
