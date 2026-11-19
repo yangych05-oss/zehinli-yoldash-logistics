@@ -41,6 +41,15 @@ jobs:
           tools: composer:v2
       - name: Validate Composer metadata
         run: composer validate --no-check-publish
+      - name: Node 22 for audited Vite production assets
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build Vite/Tailwind assets for real public Blade routes
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+          test -s public/build/manifest.json
       - name: Resolve and install project dependencies
         run: composer install --no-interaction --prefer-dist --no-progress
       - name: Composer security audit (production dependencies)

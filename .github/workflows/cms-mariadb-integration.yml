@@ -59,6 +59,15 @@ jobs:
           php-version: '8.3'
           extensions: mbstring, intl, pdo_mysql, mysqli, fileinfo, gd, zip
           tools: composer:v2
+      - name: Node 22 for audited Vite production assets
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build Vite/Tailwind assets for real public Blade routes
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+          test -s public/build/manifest.json
       - name: Install dependencies, keeping Composer advisory policy active
         run: composer install --no-interaction --prefer-dist --no-progress
       - name: Audit third-party dependencies
