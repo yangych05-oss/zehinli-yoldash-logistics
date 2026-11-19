@@ -94,6 +94,7 @@
             ],
         ];
         $content = $copy[$locale] ?? $copy['en'];
+        $content = \App\Support\CmsContent::copy('home', $locale, $content);
     @endphp
 
     <section class="relative overflow-hidden rounded-[2.35rem] border border-slate-900/75 bg-[#031634] p-8 text-white shadow-[0_45px_110px_rgba(3,15,38,.56)] md:p-12 lg:p-14">
@@ -150,4 +151,6 @@
             <img src="{{ $premiumPhotos['warehouse'] }}" alt="Warehouse logistics operations" class="h-full min-h-[290px] w-full object-cover contrast-[1.04] saturate-[1.06]" loading="lazy">
         </aside>
     </section>
+
+    @include('partials.zny-media')
 @endsection
