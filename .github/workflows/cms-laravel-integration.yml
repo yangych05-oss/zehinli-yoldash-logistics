@@ -12,6 +12,7 @@ on:
   push:
     branches:
       - 'feature/cms-text-media-stage-20261119'
+      - 'spike/cms-laravel12-filament4-20261119'
 
 permissions:
   contents: read
