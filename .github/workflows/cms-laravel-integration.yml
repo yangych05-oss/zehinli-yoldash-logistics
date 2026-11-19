@@ -12,6 +12,7 @@ on:
   push:
     branches:
       - 'feature/cms-text-media-stage-20261119'
+      - 'spike/cms-laravel12-filament4-20261119'
 
 permissions:
   contents: read
@@ -32,16 +33,35 @@ jobs:
     steps:
       - name: Checkout staging branch
         uses: actions/checkout@v4
-      - name: PHP 8.3 and SQLite
+      - name: PHP 8.2 and SQLite
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: '8.2'
           extensions: mbstring, intl, sqlite3, pdo_sqlite, fileinfo, gd, zip
           tools: composer:v2
       - name: Validate Composer metadata
         run: composer validate --no-check-publish
+      - name: Node 22 for audited Vite production assets
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build Vite/Tailwind assets for real public Blade routes
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+          test -s public/build/manifest.json
       - name: Resolve and install project dependencies
         run: composer install --no-interaction --prefer-dist --no-progress
+      - name: Composer security audit (production dependencies)
+        run: composer audit --locked --no-dev --no-interaction
+      - name: Check production package requirements against active PHP
+        run: composer check-platform-reqs --no-dev --no-interaction
+      - name: Save resolved lock file for reproducibility review
+        uses: actions/upload-artifact@v4
+        with:
+          name: cms-composer-lock
+          path: composer.lock
+          retention-days: 7
       - name: Prepare isolated application and empty SQLite database
         run: |
           cp .env.example .env
@@ -54,3 +74,5 @@ jobs:
         run: php artisan route:list --path=admin
       - name: Test role isolation, drafts, publishing and media replacement
         run: php tests/cms-laravel-smoke.php
+      - name: Exercise Filament pages and uploads inside Laravel PHPUnit lifecycle
+        run: vendor/bin/phpunit -c phpunit.cms.xml --testdox

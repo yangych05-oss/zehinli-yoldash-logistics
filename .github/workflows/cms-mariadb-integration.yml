@@ -1,0 +1,85 @@
+name: CMS MariaDB integration (disposable)
+
+on:
+  pull_request:
+    paths:
+      - 'app/**'
+      - 'bootstrap/**'
+      - 'database/**'
+      - 'resources/views/**'
+      - 'tests/**'
+      - 'composer.json'
+      - '.github/workflows/cms-mariadb-integration.yml'
+  push:
+    branches:
+      - 'spike/cms-laravel12-filament4-20261119'
+
+permissions:
+  contents: read
+
+jobs:
+  cms-mariadb:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    services:
+      mariadb:
+        image: mariadb:11.4
+        env:
+          MARIADB_DATABASE: cms_ci_disposable
+          MARIADB_USER: cms_ci
+          MARIADB_PASSWORD: cms_ci_ephemeral_only
+          MARIADB_ROOT_PASSWORD: cms_ci_root_ephemeral_only
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+    env:
+      APP_ENV: testing
+      APP_DEBUG: 'false'
+      APP_URL: https://example.invalid
+      DB_CONNECTION: mysql
+      DB_HOST: 127.0.0.1
+      DB_PORT: '3306'
+      DB_DATABASE: cms_ci_disposable
+      DB_USERNAME: cms_ci
+      DB_PASSWORD: cms_ci_ephemeral_only
+      SESSION_DRIVER: array
+      CACHE_STORE: array
+      QUEUE_CONNECTION: sync
+      FILESYSTEM_DISK: public
+    steps:
+      - name: Checkout staging branch
+        uses: actions/checkout@v4
+      - name: PHP 8.2 with PDO MySQL and image support
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, intl, pdo_mysql, mysqli, fileinfo, gd, zip
+          tools: composer:v2
+      - name: Node 22 for audited Vite production assets
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build Vite/Tailwind assets for real public Blade routes
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+          test -s public/build/manifest.json
+      - name: Install dependencies, keeping Composer advisory policy active
+        run: composer install --no-interaction --prefer-dist --no-progress
+      - name: Audit third-party dependencies
+        run: composer audit --locked --no-dev --no-interaction
+      - name: Check production package requirements against active PHP
+        run: composer check-platform-reqs --no-dev --no-interaction
+      - name: Configure test-only Laravel installation
+        run: |
+          cp .env.example .env
+          php artisan key:generate --no-interaction
+          php artisan migrate --force --no-interaction
+      - name: Exercise MariaDB schema, roles and published CMS content
+        run: php tests/cms-laravel-smoke.php
+      - name: Exercise Livewire forms and photo/video uploads against MariaDB
+        run: vendor/bin/phpunit -c phpunit.cms.xml --testdox

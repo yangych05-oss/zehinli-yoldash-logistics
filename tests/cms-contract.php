@@ -116,6 +116,8 @@ namespace {
         $GLOBALS['cms_test_errors'][] = $error->getMessage();
     }
 
+    require dirname(__DIR__).'/app/Support/CmsFieldCatalog.php';
+    require dirname(__DIR__).'/app/Support/CmsMediaCatalog.php';
     require dirname(__DIR__).'/app/Support/CmsContent.php';
 
     $passed = 0;
@@ -130,6 +132,15 @@ namespace {
         echo "PASS: ".$label.PHP_EOL;
     }
 
+    verify('Catalog exposes home hero title', \App\Support\CmsFieldCatalog::contains('home','hero_title'));
+    verify('Catalog exposes nested service copy', \App\Support\CmsFieldCatalog::contains('home','services.3.text'));
+    verify('Catalog excludes image URL overrides', !\App\Support\CmsFieldCatalog::contains('home','services.0.image'));
+    verify('Catalog excludes unknown nested keys', !\App\Support\CmsFieldCatalog::contains('about','pillars.4.title'));
+
+    verify('Page photo slots have a localized section catalogue', \App\Support\CmsMediaCatalog::allows('page-home','image',4));
+    verify('Page media catalog blocks wrong video locations', !\App\Support\CmsMediaCatalog::allows('page-about','video',0));
+    verify('Gallery accepts additional photo positions', \App\Support\CmsMediaCatalog::allows('home-gallery','image',10));
+    verify('Unexpected photo positions are blocked', !\App\Support\CmsMediaCatalog::allows('page-contact','image',15));
     $defaults = [
         'hero_title' => 'Original RU headline',
         'hero_text' => 'Original copy',

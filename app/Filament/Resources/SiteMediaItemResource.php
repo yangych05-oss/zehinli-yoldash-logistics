@@ -4,8 +4,9 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SiteMediaItemResource\Pages;
 use App\Models\SiteMediaItem;
+use App\Support\CmsMediaCatalog;
 use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -14,8 +15,8 @@ use Illuminate\Database\Eloquent\Model;
 class SiteMediaItemResource extends Resource
 {
     protected static ?string $model = SiteMediaItem::class;
-    protected static ?string $navigationIcon = 'heroicon-o-photo';
-    protected static ?string $navigationGroup = 'Website CMS';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-photo';
+    protected static string|\UnitEnum|null $navigationGroup = 'Website CMS';
     protected static ?string $navigationLabel = 'Photos and videos';
     protected static ?int $navigationSort = 2;
 
@@ -41,46 +42,59 @@ class SiteMediaItemResource extends Resource
         return false;
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
-            Forms\Components\Section::make('Gallery item')
-                ->description('Upload, replace or hide an individual slot. The published site keeps existing images until this record is published.')
+        return $schema->components([
+            \Filament\Schemas\Components\Section::make('Photos and videos')
+                ->description('Загружайте и заменяйте фотографии/видео по разделам сайта. Черновики не отображаются посетителям.')
                 ->schema([
-                    Forms\Components\TextInput::make('collection')
-                        ->default('home-gallery')->required()->maxLength(64),
+                    Forms\Components\Select::make('collection')
+                        ->label('Раздел сайта')
+                        ->options(CmsMediaCatalog::collections())
+                        ->default('home-gallery')->required()->native(false)->live(),
                     Forms\Components\Select::make('kind')->options([
                         'image'=>'Photo', 'video'=>'Video',
                     ])->required()->native(false)->live(),
-                    Forms\Components\TextInput::make('slot')
-                        ->numeric()->minValue(0)->maxValue(200)->required()
+                    Forms\Components\Select::make('slot')
+                        ->label('Позиция на странице')
+                        ->options(fn (\Filament\Schemas\Components\Utilities\Get $get): array => CmsMediaCatalog::slots(
+                            (string) $get('collection'),
+                            (string) $get('kind'),
+                        ))
+                        ->searchable()->native(false)->required()
+                        ->rules(fn (\Filament\Schemas\Components\Utilities\Get $get): array => [
+                            \Illuminate\Validation\Rule::in(array_keys(CmsMediaCatalog::slots(
+                                (string) $get('collection'),
+                                (string) $get('kind'),
+                            ))),
+                        ])
                         ->unique(
                             table: SiteMediaItem::class,
                             column: 'slot',
                             ignoreRecord: true,
-                            modifyRuleUsing: fn (\Illuminate\Validation\Rules\Unique $rule, Forms\Get $get): \Illuminate\Validation\Rules\Unique => $rule
+                            modifyRuleUsing: fn (\Illuminate\Validation\Rules\Unique $rule, \Filament\Schemas\Components\Utilities\Get $get): \Illuminate\Validation\Rules\Unique => $rule
                                 ->where('collection', $get('collection'))
                                 ->where('kind', $get('kind')),
                         )
-                        ->helperText('0–8 replace existing photos; 0–6 replace existing videos. Higher slots append.'),
+                        ->helperText('Выберите готовую позицию. Публикация заменит её изображение; новые позиции добавят материал.'),
                     Forms\Components\FileUpload::make('file_path')
                         ->label('Image or video file')
                         ->disk('public')->directory('cms/media')->visibility('public')
-                        ->acceptedFileTypes(fn (Forms\Get $get): array => $get('kind') === 'video'
+                        ->acceptedFileTypes(fn (\Filament\Schemas\Components\Utilities\Get $get): array => $get('kind') === 'video'
                             ? ['video/mp4', 'video/webm']
                             : ['image/jpeg', 'image/png', 'image/webp'])
-                        ->maxSize(fn (Forms\Get $get): int => $get('kind') === 'video' ? 51200 : 8192)->preserveFilenames(false)
+                        ->maxSize(fn (\Filament\Schemas\Components\Utilities\Get $get): int => $get('kind') === 'video' ? 51200 : 8192)->preserveFilenames(false)
                         ->required()->helperText('Maximum 50 MB in Filament; server upload limits may be lower.'),
                     Forms\Components\FileUpload::make('poster_path')
                         ->label('Video poster (optional)')
                         ->disk('public')->directory('cms/media/posters')->visibility('public')
                         ->image()->maxSize(4096)
-                        ->visible(fn (Forms\Get $get): bool => $get('kind') === 'video')
-                        ->required(fn (Forms\Get $get): bool => $get('kind') === 'video' && (bool) $get('is_published')),
+                        ->visible(fn (\Filament\Schemas\Components\Utilities\Get $get): bool => $get('kind') === 'video')
+                        ->required(fn (\Filament\Schemas\Components\Utilities\Get $get): bool => $get('kind') === 'video' && (bool) $get('is_published')),
                     Forms\Components\TextInput::make('caption_ru')->label('Caption / alt — Russian')->maxLength(255),
                     Forms\Components\TextInput::make('caption_tm')->label('Caption / alt — Turkmen')->maxLength(255),
                     Forms\Components\TextInput::make('caption_en')->label('Caption / alt — English')->maxLength(255)
-                        ->required(fn (Forms\Get $get): bool => (bool) $get('is_published')),
+                        ->required(fn (\Filament\Schemas\Components\Utilities\Get $get): bool => (bool) $get('is_published')),
                     Forms\Components\Toggle::make('is_published')
                         ->label('Published on website')->default(false),
                 ])->columns(2),
@@ -99,8 +113,8 @@ class SiteMediaItemResource extends Resource
             Tables\Columns\TextColumn::make('updated_at')->dateTime()->sortable(),
         ])->filters([
             Tables\Filters\SelectFilter::make('kind')->options(['image'=>'Photo','video'=>'Video']),
-        ])->actions([
-            Tables\Actions\EditAction::make(),
+        ])->recordActions([
+            \Filament\Actions\EditAction::make(),
         ]);
     }
 

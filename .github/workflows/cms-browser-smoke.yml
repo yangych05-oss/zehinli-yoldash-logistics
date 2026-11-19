@@ -1,0 +1,119 @@
+name: CMS browser smoke (disposable)
+
+on:
+  pull_request:
+    paths:
+      - 'app/**'
+      - 'bootstrap/**'
+      - 'database/**'
+      - 'resources/**'
+      - 'tests/browser/**'
+      - 'package.json'
+      - 'vite.config.js'
+      - '.github/workflows/cms-browser-smoke.yml'
+  push:
+    branches:
+      - 'spike/cms-laravel12-filament4-20261119'
+
+concurrency:
+  group: cms-browser-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  cms-chromium:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    services:
+      mariadb:
+        image: mariadb:11.4
+        env:
+          MARIADB_DATABASE: cms_ci_disposable
+          MARIADB_USER: cms_ci
+          MARIADB_PASSWORD: cms_ci_ephemeral_only
+          MARIADB_ROOT_PASSWORD: cms_ci_root_ephemeral_only
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+    env:
+      APP_ENV: testing
+      APP_DEBUG: 'false'
+      APP_URL: http://127.0.0.1:8100
+      DB_CONNECTION: mysql
+      DB_HOST: 127.0.0.1
+      DB_PORT: '3306'
+      DB_DATABASE: cms_ci_disposable
+      DB_USERNAME: cms_ci
+      DB_PASSWORD: cms_ci_ephemeral_only
+      SESSION_DRIVER: file
+      CACHE_STORE: array
+      QUEUE_CONNECTION: sync
+      FILESYSTEM_DISK: public
+      CMS_BROWSER_BASE: http://127.0.0.1:8100
+    steps:
+      - name: Checkout release experiment
+        uses: actions/checkout@v4
+      - name: PHP 8.2 / MySQL
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, intl, pdo_mysql, mysqli, fileinfo, gd, zip
+          tools: composer:v2
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Composer and audit vulnerabilities
+        run: |
+          composer install --no-interaction --prefer-dist --no-progress
+          composer audit --locked --no-dev --no-interaction
+          composer check-platform-reqs --no-dev --no-interaction
+      - name: Build public Vite assets
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+          test -s public/build/manifest.json
+      - name: Prepare disposable database and admin
+        run: |
+          cp .env.example .env
+          php artisan key:generate --no-interaction
+          php artisan migrate --force --no-interaction
+          php tests/cms-laravel-smoke.php
+          php artisan filament:assets
+          php artisan route:list --path=admin --json > tests/browser/admin-routes.json
+      - name: Use preinstalled Chrome from the runner
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          CHROME=$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)
+          if [ -z "$CHROME" ]; then echo "No system Chrome found"; exit 1; fi
+          "$CHROME" --version
+          echo "CMS_CHROME_BIN=$CHROME" >> "$GITHUB_ENV"
+      - name: Run Chromium on desktop and mobile admin editors
+        run: |
+          php artisan serve --host=127.0.0.1 --port=8100 > /tmp/zny-cms-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do
+            if curl -fsS -o /dev/null http://127.0.0.1:8100/admin/login; then break; fi
+            sleep 1
+          done
+          node tests/browser/cms-admin-smoke.mjs
+      - name: Preserve screenshots and diagnostics
+        if: always()
+        run: |
+          mkdir -p tests/browser/results
+          if [ -f /tmp/zny-cms-server.log ]; then cp /tmp/zny-cms-server.log tests/browser/results/server.log; fi
+          if [ -f storage/logs/laravel.log ]; then cp storage/logs/laravel.log tests/browser/results/laravel.log; fi
+      - name: Upload browser QA artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cms-browser-screenshots
+          path: tests/browser/results/
+          retention-days: 5
