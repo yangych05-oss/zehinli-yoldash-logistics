@@ -77,11 +77,15 @@ final class CmsContent
             $result = [];
             foreach ($items as $item) {
                 $file = (string) $item->file_path;
-                if (!preg_match('#^(?:cms/media/|media/zny/2026/)[A-Za-z0-9_./-]+$#D', $file)) {
+                if (!self::safeMediaPath($file, $kind)) {
+                    continue;
+                }
+                $slot = (int) $item->slot;
+                if ($slot < 0 || $slot > 200) {
                     continue;
                 }
                 $poster = $item->poster_path;
-                if ($poster !== null && !preg_match('#^(?:cms/media/|media/zny/2026/)[A-Za-z0-9_./-]+$#D', $poster)) {
+                if ($poster !== null && !self::safeMediaPath((string) $poster, 'image')) {
                     $poster = null;
                 }
                 // Laravel public disk files are served via the /storage symlink.
@@ -91,7 +95,7 @@ final class CmsContent
                 if ($poster !== null && str_starts_with($poster, 'cms/media/')) {
                     $poster = 'storage/'.$poster;
                 }
-                $result[$item->slot] = [
+                $result[$slot] = [
                     'file_path' => $file,
                     'poster_path' => $poster,
                     'caption' => (string) ($item->{'caption_'.$locale} ?: $item->caption_en ?: ''),
@@ -103,4 +107,18 @@ final class CmsContent
             return [];
         }
     }
+    /**
+     * Restrict database paths to known public media roots, safe path segments
+     * and expected file extensions. Never allow traversal, PHP or URLs.
+     */
+    private static function safeMediaPath(string $path, string $kind): bool
+    {
+        $ext = $kind === 'video' ? '(?:mp4|webm)' : '(?:jpg|jpeg|png|webp)';
+
+        return preg_match(
+            '#\A(?:cms/media/|media/zny/2026/)(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_-]+\.'.$ext.'\z#iD',
+            $path,
+        ) === 1;
+    }
+
 }
