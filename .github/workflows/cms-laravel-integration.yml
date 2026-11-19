@@ -43,6 +43,14 @@ jobs:
         run: composer validate --no-check-publish
       - name: Resolve and install project dependencies
         run: composer install --no-interaction --prefer-dist --no-progress
+      - name: Composer security audit (production dependencies)
+        run: composer audit --locked --no-dev --no-interaction
+      - name: Save resolved lock file for reproducibility review
+        uses: actions/upload-artifact@v4
+        with:
+          name: cms-composer-lock
+          path: composer.lock
+          retention-days: 7
       - name: Prepare isolated application and empty SQLite database
         run: |
           cp .env.example .env
@@ -55,3 +63,5 @@ jobs:
         run: php artisan route:list --path=admin
       - name: Test role isolation, drafts, publishing and media replacement
         run: php tests/cms-laravel-smoke.php
+      - name: Exercise real Filament Livewire resource forms
+        run: php tests/cms-filament-livewire-smoke.php
