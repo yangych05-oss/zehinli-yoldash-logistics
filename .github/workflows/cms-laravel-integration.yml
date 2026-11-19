@@ -1,0 +1,56 @@
+name: CMS Laravel integration smoke
+
+on:
+  pull_request:
+    paths:
+      - 'app/**'
+      - 'database/**'
+      - 'resources/views/**'
+      - 'tests/**'
+      - 'composer.json'
+      - '.github/workflows/cms-laravel-integration.yml'
+  push:
+    branches:
+      - 'feature/cms-text-media-stage-20261119'
+
+permissions:
+  contents: read
+
+jobs:
+  cms-sqlite-integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      APP_ENV: testing
+      APP_DEBUG: 'false'
+      APP_URL: https://example.invalid
+      DB_CONNECTION: sqlite
+      SESSION_DRIVER: array
+      CACHE_STORE: array
+      QUEUE_CONNECTION: sync
+      FILESYSTEM_DISK: public
+    steps:
+      - name: Checkout staging branch
+        uses: actions/checkout@v4
+      - name: PHP 8.3 and SQLite
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, intl, sqlite3, pdo_sqlite, fileinfo, gd, zip
+          tools: composer:v2
+      - name: Validate Composer metadata
+        run: composer validate --no-check-publish
+      - name: Resolve and install project dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+      - name: Prepare isolated application and empty SQLite database
+        run: |
+          cp .env.example .env
+          touch database/testing.sqlite
+          echo "DB_DATABASE=$GITHUB_WORKSPACE/database/testing.sqlite" >> "$GITHUB_ENV"
+          php artisan key:generate --no-interaction
+      - name: Migrate disposable CMS schema
+        run: php artisan migrate --force --no-interaction
+      - name: Load Filament admin routes
+        run: php artisan route:list --path=admin
+      - name: Test role isolation, drafts, publishing and media replacement
+        run: php tests/cms-laravel-smoke.php
