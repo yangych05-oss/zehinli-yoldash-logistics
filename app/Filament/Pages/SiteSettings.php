@@ -4,14 +4,14 @@ namespace App\Filament\Pages;
 
 use App\Models\SiteSetting as SiteSettingModel;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Section;
+use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 
@@ -19,11 +19,11 @@ class SiteSettings extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-cog-6-tooth';
 
     protected static ?string $navigationLabel = 'Site Settings';
 
-    protected static ?string $navigationGroup = 'Configuration';
+    protected static string|\UnitEnum|null $navigationGroup = 'Configuration';
 
     protected static ?int $navigationSort = 1;
 
@@ -43,10 +43,9 @@ class SiteSettings extends Page implements HasForms
         $this->form->fill($record?->toArray() ?? []);
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema->components([
 
                 Section::make('Branding & Images')->schema([
                     FileUpload::make('logo_image')

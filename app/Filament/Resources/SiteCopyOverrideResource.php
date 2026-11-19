@@ -5,7 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\SiteCopyOverrideResource\Pages;
 use App\Models\SiteCopyOverride;
 use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -14,8 +14,8 @@ use Illuminate\Database\Eloquent\Model;
 class SiteCopyOverrideResource extends Resource
 {
     protected static ?string $model = SiteCopyOverride::class;
-    protected static ?string $navigationIcon = 'heroicon-o-language';
-    protected static ?string $navigationGroup = 'Website CMS';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-language';
+    protected static string|\UnitEnum|null $navigationGroup = 'Website CMS';
     protected static ?string $navigationLabel = 'Page texts';
     protected static ?int $navigationSort = 1;
 
@@ -39,10 +39,10 @@ class SiteCopyOverrideResource extends Resource
         return static::canViewAny();
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
-            Forms\Components\Section::make('Localized page text')
+        return $schema->components([
+            \Filament\Schemas\Components\Section::make('Localized page text')
                 ->description('Draft by default. Publish only after reviewing the public fallback and its translation.')
                 ->schema([
                     Forms\Components\Select::make('page')
@@ -62,7 +62,7 @@ class SiteCopyOverrideResource extends Resource
                             table: SiteCopyOverride::class,
                             column: 'content_key',
                             ignoreRecord: true,
-                            modifyRuleUsing: fn (\Illuminate\Validation\Rules\Unique $rule, Forms\Get $get): \Illuminate\Validation\Rules\Unique => $rule
+                            modifyRuleUsing: fn (\Illuminate\Validation\Rules\Unique $rule, \Filament\Schemas\Components\Utilities\Get $get): \Illuminate\Validation\Rules\Unique => $rule
                                 ->where('page', $get('page'))
                                 ->where('locale', $get('locale')),
                         ),
@@ -90,9 +90,9 @@ class SiteCopyOverrideResource extends Resource
                 'home'=>'Home','about'=>'About','services'=>'Services','contact'=>'Contact','tracking'=>'Tracking',
             ]),
             Tables\Filters\SelectFilter::make('locale')->options(['ru'=>'RU','tm'=>'TM','en'=>'EN']),
-        ])->actions([
-            Tables\Actions\EditAction::make(),
-            Tables\Actions\DeleteAction::make(),
+        ])->recordActions([
+            \Filament\Actions\EditAction::make(),
+            \Filament\Actions\DeleteAction::make(),
         ]);
     }
 
