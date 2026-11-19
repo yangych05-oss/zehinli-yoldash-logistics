@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Models\SiteSetting as SiteSettingModel;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -41,6 +42,23 @@ class SiteSettings extends Page implements HasForms
     {
         return $form
             ->schema([
+
+                Section::make('Branding & Images')->schema([
+                    FileUpload::make('logo_image')
+                        ->label('Logo image')
+                        ->disk('public')
+                        ->directory('site-settings')
+                        ->image()
+                        ->acceptedFileTypes(['image/png', 'image/jpeg', 'image/webp'])
+                        ->maxSize(2048),
+                    FileUpload::make('whatsapp_qr_image')
+                        ->label('WhatsApp QR image')
+                        ->disk('public')
+                        ->directory('site-settings')
+                        ->image()
+                        ->acceptedFileTypes(['image/png', 'image/jpeg', 'image/webp'])
+                        ->maxSize(2048),
+                ])->columns(2),
                 Section::make('Company & Contact')->schema([
                     TextInput::make('company_name')->required()->maxLength(255),
                     TextInput::make('company_domain')->maxLength(255),
@@ -50,6 +68,7 @@ class SiteSettings extends Page implements HasForms
                     TextInput::make('email_secondary')->email()->maxLength(255),
                     TextInput::make('address')->maxLength(255),
                     TextInput::make('whatsapp_number')->required()->maxLength(50),
+                    TextInput::make('whatsapp_link')->label('WhatsApp direct link')->url()->maxLength(255),
                 ])->columns(2),
                 Section::make('Live Chat')->schema([
                     Toggle::make('live_chat_enabled')->default(true),
@@ -61,6 +80,19 @@ class SiteSettings extends Page implements HasForms
                         ->default('tawk')
                         ->native(false),
                     Textarea::make('live_chat_src')->rows(3),
+                ])->columns(2),
+
+                Section::make('Home Hero RU/TM')->schema([
+                    Textarea::make('hero_title_ru')->label('Hero title RU')->rows(2),
+                    Textarea::make('hero_title_tm')->label('Hero title TM')->rows(2),
+                    Textarea::make('hero_subtitle_ru')->label('Hero subtitle RU')->rows(3),
+                    Textarea::make('hero_subtitle_tm')->label('Hero subtitle TM')->rows(3),
+                ])->columns(2),
+                Section::make('Localized Footer & Address')->schema([
+                    Textarea::make('footer_text_ru')->label('Footer text RU')->rows(3),
+                    Textarea::make('footer_text_tm')->label('Footer text TM')->rows(3),
+                    Textarea::make('address_ru')->label('Address RU')->rows(2),
+                    Textarea::make('address_tm')->label('Address TM')->rows(2),
                 ])->columns(2),
                 Section::make('Public Content')->schema([
                     Textarea::make('footer_text')->rows(3),
