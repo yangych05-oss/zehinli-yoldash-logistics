@@ -63,5 +63,5 @@ jobs:
         run: php artisan route:list --path=admin
       - name: Test role isolation, drafts, publishing and media replacement
         run: php tests/cms-laravel-smoke.php
-      - name: Exercise real Filament Livewire resource forms
-        run: php tests/cms-filament-livewire-smoke.php
+      - name: Exercise Filament pages and uploads inside Laravel PHPUnit lifecycle
+        run: vendor/bin/phpunit -c phpunit.cms.xml --testdox
