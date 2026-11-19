@@ -33,10 +33,10 @@ jobs:
     steps:
       - name: Checkout staging branch
         uses: actions/checkout@v4
-      - name: PHP 8.3 and SQLite
+      - name: PHP 8.2 and SQLite
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: '8.2'
           extensions: mbstring, intl, sqlite3, pdo_sqlite, fileinfo, gd, zip
           tools: composer:v2
       - name: Validate Composer metadata
@@ -54,6 +54,8 @@ jobs:
         run: composer install --no-interaction --prefer-dist --no-progress
       - name: Composer security audit (production dependencies)
         run: composer audit --locked --no-dev --no-interaction
+      - name: Check production package requirements against active PHP
+        run: composer check-platform-reqs --no-dev --no-interaction
       - name: Save resolved lock file for reproducibility review
         uses: actions/upload-artifact@v4
         with:

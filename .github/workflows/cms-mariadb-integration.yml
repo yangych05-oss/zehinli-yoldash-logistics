@@ -53,10 +53,10 @@ jobs:
     steps:
       - name: Checkout staging branch
         uses: actions/checkout@v4
-      - name: PHP 8.3 with PDO MySQL and image support
+      - name: PHP 8.2 with PDO MySQL and image support
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: '8.2'
           extensions: mbstring, intl, pdo_mysql, mysqli, fileinfo, gd, zip
           tools: composer:v2
       - name: Node 22 for audited Vite production assets
@@ -72,6 +72,8 @@ jobs:
         run: composer install --no-interaction --prefer-dist --no-progress
       - name: Audit third-party dependencies
         run: composer audit --locked --no-dev --no-interaction
+      - name: Check production package requirements against active PHP
+        run: composer check-platform-reqs --no-dev --no-interaction
       - name: Configure test-only Laravel installation
         run: |
           cp .env.example .env
