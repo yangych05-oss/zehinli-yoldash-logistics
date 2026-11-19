@@ -1,10 +1,11 @@
-name: CMS PHP syntax check
+name: CMS PHP syntax and contract checks
 on:
   pull_request:
     paths:
       - 'app/**'
       - 'database/migrations/**'
       - 'resources/views/**'
+      - 'tests/**'
       - '.github/workflows/cms-php-lint.yml'
   push:
     branches:
@@ -21,4 +22,6 @@ jobs:
         run: php --version
       - name: Check all PHP syntax
         run: |
-          find app database/migrations resources/views -type f -name '*.php' -print0 | xargs -0 -n1 php -l
+          find app database/migrations resources/views tests -type f -name '*.php' -print0 | xargs -0 -n1 php -l
+      - name: CMS public content contract tests
+        run: php tests/cms-contract.php
