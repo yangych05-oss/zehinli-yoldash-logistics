@@ -20,6 +20,9 @@ final class CmsPublicRoutesTest extends TestCase
                 $response = $this->get($path);
 
                 $response->assertOk();
+                $response->assertHeader('X-Content-Type-Options', 'nosniff');
+                $response->assertHeader('X-Frame-Options', 'SAMEORIGIN');
+                $response->assertHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
                 $this->assertStringContainsString(
                     '<html',
                     strtolower((string) $response->getContent()),
@@ -68,6 +71,22 @@ final class CmsPublicRoutesTest extends TestCase
         $this->get('/ru/about')
             ->assertOk()
             ->assertDontSee('storage/cms/media/cms-about-hero-qa.webp', false);
+    }
+
+    public function test_hsts_is_opt_in_after_verified_https_cutover(): void
+    {
+        config(['zny_security.hsts_enabled' => false]);
+        $this->withServerVariables(['HTTPS' => 'on'])
+            ->get('/ru')
+            ->assertOk()
+            ->assertHeaderMissing('Strict-Transport-Security');
+
+        config(['zny_security.hsts_enabled' => true]);
+        $this->withServerVariables(['HTTPS' => 'on'])
+            ->get('/ru')
+            ->assertOk()
+            ->assertHeader('Strict-Transport-Security', 'max-age=86400');
+        config(['zny_security.hsts_enabled' => false]);
     }
 
 }
