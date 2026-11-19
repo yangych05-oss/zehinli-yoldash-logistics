@@ -52,12 +52,20 @@ class SiteCopyOverrideResource extends Resource
                         ])->required()->native(false),
                     Forms\Components\Select::make('locale')
                         ->options(['ru' => 'Russian', 'tm' => 'Turkmen', 'en' => 'English'])
-                        ->required()->native(false),
+                        ->required()->native(false)->live(),
                     Forms\Components\TextInput::make('content_key')
                         ->label('Template field key')
                         ->helperText('Use an existing text key from the page template (e.g. hero_title, title, hero_text); nested: value_points.0')
                         ->required()->maxLength(160)
-                        ->regex('/^[a-z][a-z0-9_]*(?:\.[a-z0-9_]+)*$/D'),
+                        ->regex('/^[a-z][a-z0-9_]*(?:\.[a-z0-9_]+)*$/D')
+                        ->unique(
+                            table: SiteCopyOverride::class,
+                            column: 'content_key',
+                            ignoreRecord: true,
+                            modifyRuleUsing: fn (\Illuminate\Validation\Rules\Unique $rule, Forms\Get $get): \Illuminate\Validation\Rules\Unique => $rule
+                                ->where('page', $get('page'))
+                                ->where('locale', $get('locale')),
+                        ),
                     Forms\Components\Textarea::make('value')
                         ->label('Plain text replacement')->rows(6)->required()->maxLength(20000)
                         ->helperText('HTML is not interpreted. Blank values retain the original page text.'),
