@@ -1,0 +1,24 @@
+name: CMS PHP syntax check
+on:
+  pull_request:
+    paths:
+      - 'app/**'
+      - 'database/migrations/**'
+      - 'resources/views/**'
+      - '.github/workflows/cms-php-lint.yml'
+  push:
+    branches:
+      - 'feature/cms-text-media-stage-20261119'
+jobs:
+  php-lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout changes
+        uses: actions/checkout@v4
+      - name: PHP version
+        run: php --version
+      - name: Check all PHP syntax
+        run: |
+          find app database/migrations resources/views -type f -name '*.php' -print0 | xargs -0 -n1 php -l
