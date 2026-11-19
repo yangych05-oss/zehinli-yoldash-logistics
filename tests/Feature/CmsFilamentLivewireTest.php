@@ -125,4 +125,75 @@ final class CmsFilamentLivewireTest extends TestCase
         Storage::disk('public')->assertExists($media->file_path);
         Storage::disk('public')->assertExists($oldPath);
     }
+
+    public function test_mp4_video_and_poster_upload_publish_and_replace(): void
+    {
+        $this->actingAs($this->admin);
+        Storage::fake('public');
+
+        $video = UploadedFile::fake()->create('cargo-clip.mp4', 128, 'video/mp4');
+        $poster = UploadedFile::fake()->image('cargo-poster.jpg', 640, 420);
+
+        Livewire::test(CreateSiteMediaItem::class)
+            ->fillForm([
+                'collection' => 'home-gallery',
+                'kind' => 'video',
+                'slot' => 7,
+                'file_path' => $video,
+                'poster_path' => $poster,
+                'caption_ru' => 'Видео о перевозках',
+                'caption_tm' => 'Ýük daşaýyş wideosy',
+                'caption_en' => 'Logistics video',
+                'is_published' => false,
+            ])
+            ->call('create')
+            ->assertHasNoFormErrors();
+
+        $record = SiteMediaItem::query()
+            ->where('collection', 'home-gallery')
+            ->where('kind', 'video')
+            ->where('slot', 7)
+            ->firstOrFail();
+
+        $firstPath = (string) $record->file_path;
+        $this->assertStringEndsWith('.mp4', $firstPath);
+        $this->assertStringStartsWith('cms/media/', $firstPath);
+        Storage::disk('public')->assertExists($firstPath);
+
+        $posterPath = (string) $record->poster_path;
+        $this->assertStringStartsWith('cms/media/posters/', $posterPath);
+        Storage::disk('public')->assertExists($posterPath);
+        $this->assertFalse($record->is_published);
+
+        Livewire::test(EditSiteMediaItem::class, ['record' => $record->getKey()])
+            ->fillForm(['is_published' => true])
+            ->call('save')
+            ->assertHasNoFormErrors();
+
+        $record->refresh();
+        $this->assertTrue($record->is_published);
+        $published = \App\Support\CmsContent::media('video', 'en');
+        $this->assertSame('storage/'.$firstPath, $published[7]['file_path']);
+        $this->assertSame('storage/'.$posterPath, $published[7]['poster_path']);
+        $this->assertSame('Logistics video', $published[7]['caption']);
+
+        $replacement = UploadedFile::fake()->create('cargo-replacement.mp4', 128, 'video/mp4');
+        Livewire::test(EditSiteMediaItem::class, ['record' => $record->getKey()])
+            ->fillForm(['file_path' => [$replacement], 'is_published' => true])
+            ->call('save')
+            ->assertHasNoFormErrors();
+
+        $record->refresh();
+        $this->assertNotSame($firstPath, $record->file_path);
+        Storage::disk('public')->assertExists((string) $record->file_path);
+        Storage::disk('public')->assertExists($firstPath);
+        Storage::disk('public')->assertExists($posterPath);
+
+        Livewire::test(EditSiteMediaItem::class, ['record' => $record->getKey()])
+            ->fillForm(['is_published' => false])
+            ->call('save')
+            ->assertHasNoFormErrors();
+        $this->assertArrayNotHasKey(7, \App\Support\CmsContent::media('video', 'en'));
+    }
+
 }
