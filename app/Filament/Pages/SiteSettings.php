@@ -31,6 +31,11 @@ class SiteSettings extends Page implements HasForms
 
     public ?array $data = [];
 
+    public static function canAccess(): bool
+    {
+        return auth()->user()?->hasRole('admin') ?? false;
+    }
+
     public function mount(): void
     {
         $record = SiteSettingModel::query()->first();
