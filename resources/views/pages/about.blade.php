@@ -40,6 +40,7 @@
             ],
         ];
         $content = $copy[$locale] ?? $copy['en'];
+        $content = \App\Support\CmsContent::copy('about', $locale, $content);
     @endphp
 
     <section class="relative overflow-hidden rounded-[2.2rem] border border-slate-800 bg-gradient-to-br from-slate-950 via-[#071a3f] to-[#123874] p-8 text-white shadow-[0_40px_95px_rgba(5,18,46,.44)] md:p-12">
